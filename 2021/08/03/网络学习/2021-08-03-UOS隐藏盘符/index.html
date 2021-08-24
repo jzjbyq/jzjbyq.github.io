@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="AJian的Blog">
 <meta property="og:description" content="由于UOS默认显示efi、boot等分区，感官上觉得很多余，搜索论坛有人分享了隐藏指定分区的方法，现在做个记录。 #查看挂载分区对应的设备名称 ~$ lsblk #查看设备名称对应的UUID ~$ blkid #讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUID ENV{ID_FS_UUID}==&amp;quot;2720-4A42&amp;quot;,ENV{UDISKS">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-08-10T06:43:49.000Z">
+<meta property="og:updated_time" content="2021-08-24T10:19:19.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UOS隐藏指定分区">
 <meta name="twitter:description" content="由于UOS默认显示efi、boot等分区，感官上觉得很多余，搜索论坛有人分享了隐藏指定分区的方法，现在做个记录。 #查看挂载分区对应的设备名称 ~$ lsblk #查看设备名称对应的UUID ~$ blkid #讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUID ENV{ID_FS_UUID}==&amp;quot;2720-4A42&amp;quot;,ENV{UDISKS">
@@ -563,11 +563,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">parted</a>
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">parted</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -583,6 +591,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">视频直播</a>
               </li>
              
@@ -595,23 +607,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
               </li>
             
             <div class="clearfix"></div>
