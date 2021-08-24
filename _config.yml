@@ -103,8 +103,8 @@ theme: yilia-plus
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repo: https://gitee.com/jzjbyq/jzjbyq.git
-  branch: master
+  repo: https://github.com/jzjbyq/jzjbyq.github.io.git
+  branch: main
 
 jsonContent:
     meta: false
