@@ -180,7 +180,7 @@
             
 
   
-    <article id="post-软件工具/2021-07-19-kettlepack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-资源分享/2021-07-19-kettlepack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -188,7 +188,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/07/19/软件工具/2021-07-19-kettlepack/" target="_blank">KettlePack 任务管理工具</a>
+	  <a class="article-title" href="/2021/07/19/资源分享/2021-07-19-kettlepack/" target="_blank">KettlePack 任务管理工具</a>
   
     </h1>
   
@@ -196,7 +196,7 @@
 
   
   
-<a href="/2021/07/19/软件工具/2021-07-19-kettlepack/" class="archive-article-date">
+<a href="/2021/07/19/资源分享/2021-07-19-kettlepack/" class="archive-article-date">
         <time datetime="2021-07-19T07:29:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-19</time>
 </a>
 
@@ -227,7 +227,7 @@
 <p>任务监控：7天内，作业和转换的监控状况，可以通过折线图的方式监控每日作业及转换的变化规律。</p>
 <p>作业及错误记录：显示正在运行中的任务（转换和作业），以及任务对应的错误记录，可以方便快捷的定位问题所在。</p>
     
-    <a class="article-more-a" href="/2021/07/19/软件工具/2021-07-19-kettlepack/#more">more >></a>
+    <a class="article-more-a" href="/2021/07/19/资源分享/2021-07-19-kettlepack/#more">more >></a>
     
     
 
@@ -270,7 +270,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/19/软件工具/2021-07-19-kettlepack/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/07/19/资源分享/2021-07-19-kettlepack/">展开全文 >></a>
     </p>
     
 
@@ -407,7 +407,7 @@
 
 
   
-    <article id="post-网络学习/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-学习技术/2021-08-26-ElasticSearch启动报错ForLinux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -415,7 +415,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/08/17/网络学习/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误/" target="_blank">SecureCRT使用秘钥登录报libgssapi.so错误</a>
+	  <a class="article-title" href="/2021/08/26/学习技术/2021-08-26-ElasticSearch启动报错ForLinux/" target="_blank">ElasticSearch启动报错ForLinux</a>
   
     </h1>
   
@@ -423,7 +423,347 @@
 
   
   
-<a href="/2021/08/17/网络学习/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误/" class="archive-article-date">
+<a href="/2021/08/26/学习技术/2021-08-26-ElasticSearch启动报错ForLinux/" class="archive-article-date">
+        <time datetime="2021-08-26T07:26:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>解压版ElasticSearch在启动服务时经常遇到这样的报错信息</p>
+<img src="https://i.loli.net/2021/08/26/xESGJyNiqt5DfsF.png" align="left" alt="error" style="zoom:67%;">
+
+<p>编辑 /etc/security/limits.conf，追加以下内容，内容前边的 * 号也需要复制到。</p>
+<pre><code>* soft nofile 65536
+* hard nofile 65536
+</code></pre>
+<p>然后在 /etc/sysctl.conf文件最后一行添加</p>
+<pre><code>vm.max_map_count=262144
+</code></pre>
+<p>修改完成后需要重新登录用户生效。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/08/26/学习技术/2021-08-26-ElasticSearch启动报错ForLinux/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+  
+    <article id="post-资源分享/2021-08-26-VMwarePro-16最新序列号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/08/26/资源分享/2021-08-26-VMwarePro-16最新序列号/" target="_blank">VMwarePro-16最新序列号</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/08/26/资源分享/2021-08-26-VMwarePro-16最新序列号/" class="archive-article-date">
+        <time datetime="2021-08-26T07:20:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>Vmware 安装请自行到官网下载</p>
+<table>
+<thead>
+<tr>
+<th align="center">版本号</th>
+<th align="center">序列号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">16.x</td>
+<td align="center">1ZF3R0-FHED2-M80TY-8QYGC-NPKYF</td>
+</tr>
+<tr>
+<td align="center">15.x</td>
+<td align="center">1FC7D0-D1YDL-M8DXZ-CYPZE-P2AY6</td>
+</tr>
+<tr>
+<td align="center">14.x</td>
+<td align="center">1AU108-FLF9P-H8EJZ-7XMQ9-XG0U8</td>
+</tr>
+<tr>
+<td align="center">12.x</td>
+<td align="center">1ZC3TK-63GE6-481JY-WWW5T-Z7ATA</td>
+</tr>
+<tr>
+<td align="center">11.x</td>
+<td align="center">1YG74R-86G1M-M8DLP-XEQNT-XAHW2</td>
+</tr>
+<tr>
+<td align="center">10.x</td>
+<td align="center">11Z0G9-67285-FZG78-ZL3Q2-234JG</td>
+</tr>
+</tbody></table>
+<p>注意事项<br>1、从VM11开始就不再支持32位系统了，所以32位系统用户和XP系统用户请使用10.0.7版本；<br>2、从VM14开始，对硬件要求进一步提高，所以低配电脑用户请使用12.5.9版本；<br>3、关于VM14黑屏问题，这是 VMware tools 版本过低引起的。<br>转载请注明：<a href="https://www.xuchengen.cn/" target="_blank" rel="noopener">思码老徐</a> » <a href="https://www.xuchengen.cn/521" target="_blank" rel="noopener">VMware Workstation Pro 16序列号亲测可用</a></p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/08/26/资源分享/2021-08-26-VMwarePro-16最新序列号/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+  
+    <article id="post-学习技术/2021-08-26-Postgre忘记密码后如何处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/08/26/学习技术/2021-08-26-Postgre忘记密码后如何处理/" target="_blank">Postgre忘记密码后如何处理</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/08/26/学习技术/2021-08-26-Postgre忘记密码后如何处理/" class="archive-article-date">
+        <time datetime="2021-08-26T07:11:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>1、停止服务<br>2、找到数据库data目录下的 pg_hba.conf 文件<br>3、打开编辑内容，host后边的 md5 修改为 trust。(下列所有步骤操作完成后记得恢复。)</p>
+<pre><code># TYPE  DATABASE        USER            ADDRESS                 METHOD
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            trust
+# IPv6 local connections:
+host    all             all             ::1/128                 trust
+# Allow replication connections from localhost, by a user with the
+# replication privilege.
+#host    replication     all             127.0.0.1/32            md5
+#host    replication     all             ::1/128                 md5
+</code></pre>
+<p>4、启动服务，然后输入下边命令可直接进入到命令行模式</p>
+<pre><code>psql -U postgres
+</code></pre>
+<p>5、修改默认用户 Postgres 的密码</p>
+<pre><code>ALTER USER Postgres WITH PASSWORD &#39;&lt;newpassword&gt;&#39;;
+</code></pre>
+<p>6、添加新用户</p>
+<pre><code>CREATE USER my_user WITH PASSWORD &#39;123456&#39;;
+</code></pre>
+<p>7、新用户赋权</p>
+<pre><code>GRANT USAGE ON SCHEMA PUBLIC TO my_user;
+</code></pre>
+<p>8、使用新用户登录</p>
+<pre><code>psql -U my_user -W postgres
+</code></pre>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/08/26/学习技术/2021-08-26-Postgre忘记密码后如何处理/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+  
+    <article id="post-学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/08/17/学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误/" target="_blank">SecureCRT使用秘钥登录报libgssapi.so错误</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/08/17/学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误/" class="archive-article-date">
         <time datetime="2021-08-17T02:23:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-17</time>
 </a>
 
@@ -468,11 +808,11 @@ sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SecureCRT</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -482,7 +822,7 @@ sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/08/17/网络学习/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/08/17/学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误/">展开全文 >></a>
     </p>
     
 
@@ -514,7 +854,7 @@ sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
 
 
   
-    <article id="post-网络学习/2021-08-16-UOS常见问题记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-学习技术/2021-08-16-UOS常见问题记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -522,7 +862,7 @@ sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/08/16/网络学习/2021-08-16-UOS常见问题记录/" target="_blank">UOS常见问题记录</a>
+	  <a class="article-title" href="/2021/08/16/学习技术/2021-08-16-UOS常见问题记录/" target="_blank">UOS常见问题记录</a>
   
     </h1>
   
@@ -530,7 +870,7 @@ sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
 
   
   
-<a href="/2021/08/16/网络学习/2021-08-16-UOS常见问题记录/" class="archive-article-date">
+<a href="/2021/08/16/学习技术/2021-08-16-UOS常见问题记录/" class="archive-article-date">
         <time datetime="2021-08-16T09:47:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-16</time>
 </a>
 
@@ -564,7 +904,11 @@ sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -574,7 +918,7 @@ sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/08/16/网络学习/2021-08-16-UOS常见问题记录/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/08/16/学习技术/2021-08-16-UOS常见问题记录/">展开全文 >></a>
     </p>
     
 
@@ -606,7 +950,7 @@ sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
 
 
   
-    <article id="post-网络学习/2021-08-03-UOS隐藏盘符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-学习技术/2021-08-03-UOS隐藏盘符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -614,7 +958,7 @@ sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/08/03/网络学习/2021-08-03-UOS隐藏盘符/" target="_blank">UOS隐藏指定分区</a>
+	  <a class="article-title" href="/2021/08/03/学习技术/2021-08-03-UOS隐藏盘符/" target="_blank">UOS隐藏指定分区</a>
   
     </h1>
   
@@ -622,7 +966,7 @@ sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
 
   
   
-<a href="/2021/08/03/网络学习/2021-08-03-UOS隐藏盘符/" class="archive-article-date">
+<a href="/2021/08/03/学习技术/2021-08-03-UOS隐藏盘符/" class="archive-article-date">
         <time datetime="2021-08-03T08:54:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-03</time>
 </a>
 
@@ -666,11 +1010,11 @@ ENV{ID_FS_UUID}==&quot;2720-4A42&quot;,ENV{UDISKS_IGNORE}=&quot;1&quot;
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">UOS相关</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -680,7 +1024,7 @@ ENV{ID_FS_UUID}==&quot;2720-4A42&quot;,ENV{UDISKS_IGNORE}=&quot;1&quot;
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/08/03/网络学习/2021-08-03-UOS隐藏盘符/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/08/03/学习技术/2021-08-03-UOS隐藏盘符/">展开全文 >></a>
     </p>
     
 
@@ -786,6 +1130,10 @@ ENV{ID_FS_UUID}==&quot;2720-4A42&quot;,ENV{UDISKS_IGNORE}=&quot;1&quot;
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
+        		</li>
+      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">在线影院</a>
         		</li>
@@ -899,6 +1247,10 @@ ENV{ID_FS_UUID}==&quot;2720-4A42&quot;,ENV{UDISKS_IGNORE}=&quot;1&quot;
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据库工具</a>
         		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
+        		</li>
       		
 		</ul>
 	</div>
@@ -908,364 +1260,6 @@ ENV{ID_FS_UUID}==&quot;2720-4A42&quot;,ENV{UDISKS_IGNORE}=&quot;1&quot;
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2021/08/03/资源分享/2021-08-03-Dbeaver/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-  
-    <article id="post-网络学习/2021-07-27-SecureCRT运行提示libc.so.6找不到GLIBC_2.29" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/07/27/网络学习/2021-07-27-SecureCRT运行提示libc.so.6找不到GLIBC_2.29/" target="_blank">SecureCRT运行提示libc.so.6找不到GLIBC_2.29</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/07/27/网络学习/2021-07-27-SecureCRT运行提示libc.so.6找不到GLIBC_2.29/" class="archive-article-date">
-        <time datetime="2021-07-27T01:04:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>在UOSBeta5中安装SecureCRT，8.7.3,运行时提示找不到版本为GLIBC_2.29的libm.so.6文件</p>
-<pre><code>:~$ SecureCRT 
-SecureCRT: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29&#39; not found (required by SecureCRT)
-:~$
-</code></pre>
-<p>网上查找了资料</p>
-<p>根据这条命令可以查询libm.so.6所支持的版本</p>
-<pre><code>:~$ strings  /lib/x86_64-linux-gnu/libm.so.6 | grep GLIBC_
-GLIBC_2.2.5
-GLIBC_2.4
-GLIBC_2.15
-GLIBC_2.18
-GLIBC_2.23
-GLIBC_2.24
-GLIBC_2.25
-GLIBC_2.26
-GLIBC_2.27
-GLIBC_2.28
-GLIBC_PRIVATE
-:~$ 
-</code></pre>
-<p>从上面结果可以看到GLIBC支持到了2.28,但是我们现在需要的是2.29</p>
-<p>到 <a href="http://www.gnu.org/software/libc" target="_blank" rel="noopener">http://www.gnu.org/software/libc</a> 下载新的GLIBC</p>
-<p>找到对应版本进入页面下载</p>
-<p>对应版本链接为 <a href="http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz" target="_blank" rel="noopener">http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz</a></p>
-<p>可以通过wget获取, 以下是下载编译和使用过程，这里有编译好的libm文件可以 <a href="https://jzjbyq.lanzoui.com/iqy8upz1euf" target="_blank" rel="noopener">下载</a></p>
-<pre><code>$ cd ~/Downloads/
-$ wget http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz
---2021-07-27 09:17:50--  http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz
-正在解析主机 mirrors.nju.edu.cn (mirrors.nju.edu.cn)... 210.28.130.3, 2001:da8:1007:4011::3
-正在连接 mirrors.nju.edu.cn (mirrors.nju.edu.cn)|210.28.130.3|:80... 已连接。
-已发出 HTTP 请求，正在等待回应... 200 OK
-长度：32592893 (31M) [application/octet-stream]
-正在保存至: “glibc-2.29.tar.gz”
-
-glibc-2.29.tar.gz           100%[=========================================&gt;]  31.08M  9.97MB/s  用时 3.1s    
-
-2021-07-27 09:17:53 (9.97 MB/s) - 已保存 “glibc-2.29.tar.gz” [32592893/32592893])
-#解压
-tar zxvf glibc-2.29.tar.gz
-#创建编译目录，并进入该目录
-$ mkdir -p glibc-2.29/build &amp;&amp; cd glibc-2.29/build
-
-#检查运行编译环境,如果有报错：These critical programs are missing or too old: bison
-$ ../configure --prefix=$HOME/Downloads/glibc-2.29/build
-#需要执行安装 sudo apt install bison
-$ ../configure --prefix=$HOME/Downloads/glibc-2.29/build
-
-#开始编译,等待时间约5分钟
-make -j4
-
-#将编译后的文件复制到 /lib/x86_64-linux-gnu/
-sudo cp ~/Downloads/glibc-2.29/build/lib/libm-2.29.so /lib/x86_64-linux-gnu/
-#设置 libm.so.6 链接到新的文件上
-sudo ln -s -f /lib/x86_64-linux-gnu/libm-2.29.so /lib/x86_64-linux-gnu/libm.so.6
-
-#再次运行SecureCRT就可以正常打开了
-</code></pre>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络学习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SecureCRT</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/27/网络学习/2021-07-27-SecureCRT运行提示libc.so.6找不到GLIBC_2.29/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-  
-    <article id="post-网络学习/2021-07-26-VirtualBox看不到USB设备的解决方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/07/26/网络学习/2021-07-26-VirtualBox看不到USB设备的解决方法/" target="_blank">解决VirtualBox找不到USB设备的方法</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/07/26/网络学习/2021-07-26-VirtualBox看不到USB设备的解决方法/" class="archive-article-date">
-        <time datetime="2021-07-26T01:47:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p><strong>安装Oracle VM VirtualBox Extension Pack，需要把linux用户加入 vboxusers 用户组</strong></p>
-<pre><code>sudo usermod -aG vboxusers $USER
-</code></pre>
-<p><strong>然后重启系统或者注销用户生效</strong></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Linux学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/26/网络学习/2021-07-26-VirtualBox看不到USB设备的解决方法/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-  
-    <article id="post-资源分享/2021-07-24-download-linux-iso" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/07/24/资源分享/2021-07-24-download-linux-iso/" target="_blank">Linux镜像下载</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/07/24/资源分享/2021-07-24-download-linux-iso/" class="archive-article-date">
-        <time datetime="2021-07-24T14:22:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-24</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Linux常用镜像下载地址</p>
-<table>
-<thead>
-<tr>
-<th>文件名</th>
-<th>发布时间</th>
-<th align="center">HTTP</th>
-<th align="center">BT</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>uniontechos-desktop-21.0-home-beta5-amd64.iso</td>
-<td>2021-06</td>
-<td align="center"><a href="https://cdimage-download.chinauos.com/home/uniontechos-desktop-21.0-home-beta5-amd64.iso" target="_blank" rel="noopener">下载</a></td>
-<td align="center">无</td>
-</tr>
-<tr>
-<td>CentOS-7-x86_64-DVD-2009.iso</td>
-<td>2020-10</td>
-<td align="center"><a href="http://mirrors.aliyun.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2009.iso" target="_blank" rel="noopener">下载</a></td>
-<td align="center"><a href="http://mirrors.aliyun.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2009.torrent" target="_blank" rel="noopener">下载</a></td>
-</tr>
-<tr>
-<td>ubuntu-20.04.2.0-desktop-amd64.iso</td>
-<td>2021-02</td>
-<td align="center"><a href="https://mirrors.dgut.edu.cn/ubuntu-releases/20.04.2.0/ubuntu-20.04.2.0-desktop-amd64.iso" target="_blank" rel="noopener">下载</a></td>
-<td align="center">无</td>
-</tr>
-</tbody></table>
-<p>本文下载链接来自 各官网 提供的原版镜像链接，仅限于学习、测试及实验。</p>
-<p>有任何版权问题可点击左边邮件通知，我会尽快处理。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">系统镜像</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/24/资源分享/2021-07-24-download-linux-iso/">展开全文 >></a>
     </p>
     
 
@@ -1451,15 +1445,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">视频直播</a>
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1467,31 +1453,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">parted</a>
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">UOS相关</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">SecureCRT</a>
+                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1499,7 +1473,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+                <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
             
             <div class="clearfix"></div>
