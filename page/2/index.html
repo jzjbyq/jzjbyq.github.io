@@ -237,11 +237,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据库工具</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据库工具</a>
         		</li>
       		
 		</ul>
@@ -313,63 +313,19 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>在UOSBeta5中安装SecureCRT，8.7.3,运行时提示找不到版本为GLIBC_2.29的libm.so.6文件</p>
-<pre><code>:~$ SecureCRT 
-SecureCRT: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29&#39; not found (required by SecureCRT)
-:~$
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:~$ SecureCRT </span><br><span class="line">SecureCRT: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29<span class="string">' not found (required by SecureCRT)</span></span><br><span class="line"><span class="string">:~$</span></span><br></pre></td></tr></table></figure>
+
 <p>网上查找了资料</p>
 <p>根据这条命令可以查询libm.so.6所支持的版本</p>
-<pre><code>:~$ strings  /lib/x86_64-linux-gnu/libm.so.6 | grep GLIBC_
-GLIBC_2.2.5
-GLIBC_2.4
-GLIBC_2.15
-GLIBC_2.18
-GLIBC_2.23
-GLIBC_2.24
-GLIBC_2.25
-GLIBC_2.26
-GLIBC_2.27
-GLIBC_2.28
-GLIBC_PRIVATE
-:~$ 
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">:~$ strings  /lib/x86_64-linux-gnu/libm.so.6 | grep GLIBC_</span><br><span class="line">GLIBC_2.2.5</span><br><span class="line">GLIBC_2.4</span><br><span class="line">GLIBC_2.15</span><br><span class="line">GLIBC_2.18</span><br><span class="line">GLIBC_2.23</span><br><span class="line">GLIBC_2.24</span><br><span class="line">GLIBC_2.25</span><br><span class="line">GLIBC_2.26</span><br><span class="line">GLIBC_2.27</span><br><span class="line">GLIBC_2.28</span><br><span class="line">GLIBC_PRIVATE</span><br><span class="line">:~$</span><br></pre></td></tr></table></figure>
+
 <p>从上面结果可以看到GLIBC支持到了2.28,但是我们现在需要的是2.29</p>
 <p>到 <a href="http://www.gnu.org/software/libc" target="_blank" rel="noopener">http://www.gnu.org/software/libc</a> 下载新的GLIBC</p>
 <p>找到对应版本进入页面下载</p>
 <p>对应版本链接为 <a href="http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz" target="_blank" rel="noopener">http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz</a></p>
 <p>可以通过wget获取, 以下是下载编译和使用过程，这里有编译好的libm文件可以 <a href="https://jzjbyq.lanzoui.com/iqy8upz1euf" target="_blank" rel="noopener">下载</a></p>
-<pre><code>$ cd ~/Downloads/
-$ wget http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz
---2021-07-27 09:17:50--  http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz
-正在解析主机 mirrors.nju.edu.cn (mirrors.nju.edu.cn)... 210.28.130.3, 2001:da8:1007:4011::3
-正在连接 mirrors.nju.edu.cn (mirrors.nju.edu.cn)|210.28.130.3|:80... 已连接。
-已发出 HTTP 请求，正在等待回应... 200 OK
-长度：32592893 (31M) [application/octet-stream]
-正在保存至: “glibc-2.29.tar.gz”
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ~/Downloads/</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wget http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz</span></span><br><span class="line">--2021-07-27 09:17:50--  http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz</span><br><span class="line">正在解析主机 mirrors.nju.edu.cn (mirrors.nju.edu.cn)... 210.28.130.3, 2001:da8:1007:4011::3</span><br><span class="line">正在连接 mirrors.nju.edu.cn (mirrors.nju.edu.cn)|210.28.130.3|:80... 已连接。</span><br><span class="line">已发出 HTTP 请求，正在等待回应... 200 OK</span><br><span class="line">长度：32592893 (31M) [application/octet-stream]</span><br><span class="line">正在保存至: “glibc-2.29.tar.gz”</span><br><span class="line"></span><br><span class="line">glibc-2.29.tar.gz           100%[=========================================&gt;]  31.08M  9.97MB/s  用时 3.1s    </span><br><span class="line"></span><br><span class="line">2021-07-27 09:17:53 (9.97 MB/s) - 已保存 “glibc-2.29.tar.gz” [32592893/32592893])</span><br><span class="line"><span class="meta">#</span><span class="bash">解压</span></span><br><span class="line">tar zxvf glibc-2.29.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash">创建编译目录，并进入该目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir -p glibc-2.29/build &amp;&amp; <span class="built_in">cd</span> glibc-2.29/build</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">检查运行编译环境,如果有报错：These critical programs are missing or too old: bison</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ../configure --prefix=<span class="variable">$HOME</span>/Downloads/glibc-2.29/build</span></span><br><span class="line"><span class="meta">#</span><span class="bash">需要执行安装 sudo apt install bison</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ../configure --prefix=<span class="variable">$HOME</span>/Downloads/glibc-2.29/build</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">开始编译,等待时间约5分钟</span></span><br><span class="line">make -j4</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">将编译后的文件复制到 /lib/x86_64-linux-gnu/</span></span><br><span class="line">sudo cp ~/Downloads/glibc-2.29/build/lib/libm-2.29.so /lib/x86_64-linux-gnu/</span><br><span class="line"><span class="meta">#</span><span class="bash">设置 libm.so.6 链接到新的文件上</span></span><br><span class="line">sudo ln -s -f /lib/x86_64-linux-gnu/libm-2.29.so /lib/x86_64-linux-gnu/libm.so.6</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">再次运行SecureCRT就可以正常打开了</span></span><br></pre></td></tr></table></figure>
 
-glibc-2.29.tar.gz           100%[=========================================&gt;]  31.08M  9.97MB/s  用时 3.1s    
-
-2021-07-27 09:17:53 (9.97 MB/s) - 已保存 “glibc-2.29.tar.gz” [32592893/32592893])
-#解压
-tar zxvf glibc-2.29.tar.gz
-#创建编译目录，并进入该目录
-$ mkdir -p glibc-2.29/build &amp;&amp; cd glibc-2.29/build
-
-#检查运行编译环境,如果有报错：These critical programs are missing or too old: bison
-$ ../configure --prefix=$HOME/Downloads/glibc-2.29/build
-#需要执行安装 sudo apt install bison
-$ ../configure --prefix=$HOME/Downloads/glibc-2.29/build
-
-#开始编译,等待时间约5分钟
-make -j4
-
-#将编译后的文件复制到 /lib/x86_64-linux-gnu/
-sudo cp ~/Downloads/glibc-2.29/build/lib/libm-2.29.so /lib/x86_64-linux-gnu/
-#设置 libm.so.6 链接到新的文件上
-sudo ln -s -f /lib/x86_64-linux-gnu/libm-2.29.so /lib/x86_64-linux-gnu/libm.so.6
-
-#再次运行SecureCRT就可以正常打开了
-</code></pre>
 
     
 
@@ -462,8 +418,8 @@ sudo ln -s -f /lib/x86_64-linux-gnu/libm-2.29.so /lib/x86_64-linux-gnu/libm.so.6
   <div class="article-entry" itemprop="articleBody">
     
     <p><strong>安装Oracle VM VirtualBox Extension Pack，需要把linux用户加入 vboxusers 用户组</strong></p>
-<pre><code>sudo usermod -aG vboxusers $USER
-</code></pre>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> usermod -aG vboxusers <span class="variable">$USER</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>然后重启系统或者注销用户生效</strong></p>
 
     
@@ -871,27 +827,24 @@ sudo ln -s -f /lib/x86_64-linux-gnu/libm-2.29.so /lib/x86_64-linux-gnu/libm.so.6
 <p>以下第一步和第二步是两种跳过方式，任选其一。</p>
 <p>1、修改my.ini完成绕过登陆</p>
 <p>​        在my.ini的[mysqld]节点内添加,修改完成后，重启mysql服务即可生效</p>
-<pre><code>[mysqld]
-skip-grant-tables
-</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">skip-<span class="keyword">grant</span>-<span class="keyword">tables</span></span><br></pre></td></tr></table></figure>
+
 <p>2、使用启动服务参数绕过身份检测。（需要先停止mysql服务，以下边的命令进行启动）</p>
-<pre><code>mysqld --console --skip-grant-tables --shared-memory
-</code></pre>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">mysqld</span> --<span class="comment">console</span> --<span class="comment">skip</span><span class="literal">-</span><span class="comment">grant</span><span class="literal">-</span><span class="comment">tables</span> --<span class="comment">shared</span><span class="literal">-</span><span class="comment">memory</span></span><br></pre></td></tr></table></figure>
+
 <p>3、然后保存文件，重启mysql服务，就可以使用;如果默认端口号变更，使用 -P 端口号 进行登陆</p>
-<pre><code>mysql -uroot
-mysql -uroot -P 13306
-</code></pre>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot</span><br><span class="line">mysql -uroot -P <span class="number">13306</span></span><br></pre></td></tr></table></figure>
+
 <p>4、登陆完成后，这个时候我们修改密码或创建新的账户时会提示权限不足，需要先刷新操作权限</p>
-<pre><code>flush privileges;
-</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
+
 <p>5、然后进行密码修改,例如将用户 root 的密码修改为 newpassword,mysql8以上使用第二行命令进行操作。</p>
-<pre><code>update mysql.user set password=password(&#39;newpassword&#39;) where user=&#39;root&#39;;
-update mysql.user set authentication_string=password(&#39;newpassword&#39;) where user=&#39;root&#39;;
-</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">password</span>(<span class="string">'newpassword'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span><br><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> authentication_string=<span class="keyword">password</span>(<span class="string">'newpassword'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span><br></pre></td></tr></table></figure>
+
 <p>修改完成后需要再次刷新操作权限,重复第4步骤</p>
 <p>6、添加新的账户,将 库名 替换为要授权访问的库名称，.* 代表允许访问该库名下所有的表,’%’表示允许任意网络进行访问，如果只允许本机访问，可设置为’localhost’，grant select代表只允许查询，不允许修改。</p>
-<pre><code>grant select on 库名.* to newuser@&#39;%&#39; identified by &#39;password&#39;;
-</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> 库名.* <span class="keyword">to</span> newuser@<span class="string">'%'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
+
 
     
 
@@ -1516,14 +1469,14 @@ update mysql.user set authentication_string=password(&#39;newpassword&#39;) wher
 <p>可以看到 500G硬盘代表的 sda 已经分为了 sda1 以及 sda2 ，根目录50G HOME目录392G</p>
 <p>还有一块14.6T的硬盘 sdb 未分区也未挂载</p>
 <h1 id><a href="#" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/QJLwqGg972C41WT.png" alt="01"></h1><p>输入命令对进入硬盘编辑模式</p>
-<pre><code>parted /dev/sdb
-</code></pre>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parted <span class="regexp">/dev/</span>sdb</span><br></pre></td></tr></table></figure>
+
 <h1 id="-1"><a href="#-1" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/J49R5nkF3gpT1hC.png" alt="02"></h1><p>看到上图表示进入硬盘编辑模式</p>
 <p>输入mktable ，然后输入gpt将硬盘格式设置为gpt</p>
 <h1 id="-2"><a href="#-2" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/OgewXao68b4y9pL.png" alt="03"></h1><p>如果有提示是否将分区设置为gpt，操作后硬盘数据将丢失，是否继续，输入 y 后回车</p>
 <p>接下来创建分区</p>
-<pre><code>mkpart
-</code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mkpart</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="-3"><a href="#-3" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/ticmonw9e34POjq.png" alt="04"></h1><p>提示输入分区名称，这里相当于是Windows的磁盘卷标，默认输入 data，回车</p>
 <p>提示输入文件系统类型，这里输入 xfs，xfs分区支持大硬盘，使用ext4的话超过16T就不能识别了，该硬盘刚好16T，所以我们选择xfs分区</p>
 <p>起始点和结束点，这里是从0扇区到多少位置作为一个分区，可以分多个，这里我们将整块硬盘作为一个分区</p>
@@ -1532,29 +1485,27 @@ update mysql.user set authentication_string=password(&#39;newpassword&#39;) wher
 <p>到这里分区完成，输入q可以退出硬盘编辑模式</p>
 <p>接下来需要格式化分区，再挂载出来才可以正常访问使用，仍然输入lsblk，可以看到刚才分出来的 sdb1 分区</p>
 <h1 id="-4"><a href="#-4" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/A74jP9p2akwZ1IN.png" alt="05"></h1><p>输入格式化命令，图中少了-f，按照代码行格式输入</p>
-<pre><code>mkfs.xfs -f /dev/sdb1
-</code></pre>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.xfs -f <span class="regexp">/dev/</span>sdb1</span><br></pre></td></tr></table></figure>
+
 <p>看到如下图结果</p>
 <h1 id="-5"><a href="#-5" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/qnkEGfhdSoiCLKD.png" alt="06"></h1><p>挂载磁盘，先建立目录，将sdb1分区挂载到/opt/congjing目录</p>
-<pre><code>mkdir -p /opt/congjing
-mount /dev/sdb1 /opt/congjing
-</code></pre>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p <span class="regexp">/opt/</span>congjing</span><br><span class="line">mount <span class="regexp">/dev/</span>sdb1 <span class="regexp">/opt/</span>congjing</span><br></pre></td></tr></table></figure>
+
 <p>输入命令查看磁盘挂载情况</p>
-<pre><code>df -h
-</code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">df -h</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="-6"><a href="#-6" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/pne4UOyQXVMYT3m.png" alt="07"></h1><p>可以看到 /dev/sdb1已经挂载为 /opt/congjing，重启后该挂载点不会自动挂载，接下来的操作设置为开机自动挂载</p>
 <p>先查看当前磁盘挂载配置文件</p>
-<pre><code>cat /etc/fstab
-</code></pre>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat <span class="regexp">/etc/</span>fstab</span><br></pre></td></tr></table></figure>
+
 <h1 id="-7"><a href="#-7" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/1T8WiXSYRCvgMDG.png" alt="08"></h1><p>可以看到配置文件中没有我们之前挂载的磁盘情况，需要将要挂载的磁盘信息添加到该配置文件当中</p>
 <p>通过uuid进行挂载，查看uuid</p>
-<pre><code>blkid
-</code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">blkid</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="-8"><a href="#-8" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/5YQhfw9ivpAMyg8.png" alt="09"></h1><p>可以看到/dev/sdb1的UUID是 ”00198bfc-7cdf-4e81-a1f0-76d2f4ddd9ee“</p>
 <p>输入以下命令将挂载命令添加到 /etc/fstab文件中，输入 cat /etc/fstab 查看是否写入到文件</p>
-<pre><code>echo &quot;UUID=00198bfc-7cdf-4e81-a1f0-76d2f4ddd9ee /opt/congjing xfs defaults 0 0&quot;&gt;&gt;/etc/fstab
-cat /etc/fstab
-</code></pre>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">"UUID=00198bfc-7cdf-4e81-a1f0-76d2f4ddd9ee /opt/congjing xfs defaults 0 0"</span>&gt;&gt;<span class="string">/etc/fstab</span></span><br><span class="line">cat <span class="string">/etc/fstab</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="-9"><a href="#-9" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/fwQGPpz1YWbkx79.png" alt="10"></h1><p>到这里，分区及开机挂载设置完成！</p>
 
     
@@ -1783,6 +1734,30 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
               </li>
              
@@ -1795,31 +1770,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
               </li>
             
             <div class="clearfix"></div>

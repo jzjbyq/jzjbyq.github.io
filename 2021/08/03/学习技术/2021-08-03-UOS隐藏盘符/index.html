@@ -9,18 +9,18 @@
   <title>UOS隐藏指定分区 | AJian的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="由于UOS默认显示efi、boot等分区，感官上觉得很多余，搜索论坛有人分享了隐藏指定分区的方法，现在做个记录。 #查看挂载分区对应的设备名称 ~$ lsblk #查看设备名称对应的UUID ~$ blkid #讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUID ENV{ID_FS_UUID}==&amp;quot;2720-4A42&amp;quot;,ENV{UDISKS">
+  <meta name="description" content="由于UOS默认显示efi、boot等分区，感官上觉得很多余，搜索论坛有人分享了隐藏指定分区的方法，现在做个记录。 12345678910111213#查看挂载分区对应的设备名称~$ lsblk#查看设备名称对应的UUID~$ blkid#讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUIDENV&amp;#123;ID_FS_UUID&amp;#125;==&quot;2720-4A42">
 <meta name="keywords" content="学习技术,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UOS隐藏指定分区">
 <meta property="og:url" content="https://jzjbyq.gitee.io/2021/08/03/学习技术/2021-08-03-UOS隐藏盘符/index.html">
 <meta property="og:site_name" content="AJian的Blog">
-<meta property="og:description" content="由于UOS默认显示efi、boot等分区，感官上觉得很多余，搜索论坛有人分享了隐藏指定分区的方法，现在做个记录。 #查看挂载分区对应的设备名称 ~$ lsblk #查看设备名称对应的UUID ~$ blkid #讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUID ENV{ID_FS_UUID}==&amp;quot;2720-4A42&amp;quot;,ENV{UDISKS">
+<meta property="og:description" content="由于UOS默认显示efi、boot等分区，感官上觉得很多余，搜索论坛有人分享了隐藏指定分区的方法，现在做个记录。 12345678910111213#查看挂载分区对应的设备名称~$ lsblk#查看设备名称对应的UUID~$ blkid#讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUIDENV&amp;#123;ID_FS_UUID&amp;#125;==&quot;2720-4A42">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2021-08-26T07:42:54.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UOS隐藏指定分区">
-<meta name="twitter:description" content="由于UOS默认显示efi、boot等分区，感官上觉得很多余，搜索论坛有人分享了隐藏指定分区的方法，现在做个记录。 #查看挂载分区对应的设备名称 ~$ lsblk #查看设备名称对应的UUID ~$ blkid #讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUID ENV{ID_FS_UUID}==&amp;quot;2720-4A42&amp;quot;,ENV{UDISKS">
+<meta name="twitter:description" content="由于UOS默认显示efi、boot等分区，感官上觉得很多余，搜索论坛有人分享了隐藏指定分区的方法，现在做个记录。 12345678910111213#查看挂载分区对应的设备名称~$ lsblk#查看设备名称对应的UUID~$ blkid#讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUIDENV&amp;#123;ID_FS_UUID&amp;#125;==&quot;2720-4A42">
   
     <link rel="alternative" href="/atom.xml" title="AJian的Blog" type="application/atom+xml">
   
@@ -230,20 +230,8 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>　　由于UOS默认显示efi、boot等分区，感官上觉得很多余，搜索论坛有人分享了隐藏指定分区的方法，现在做个记录。</p>
-<pre><code>#查看挂载分区对应的设备名称
-~$ lsblk
-#查看设备名称对应的UUID
-~$ blkid
-#讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUID
-ENV{ID_FS_UUID}==&quot;2720-4A42&quot;,ENV{UDISKS_IGNORE}=&quot;1&quot;
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#查看挂载分区对应的设备名称</span></span><br><span class="line">~$ lsblk</span><br><span class="line"><span class="meta">#查看设备名称对应的UUID</span></span><br><span class="line">~$ blkid</span><br><span class="line"><span class="meta">#讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUID</span></span><br><span class="line">ENV&#123;ID_FS_UUID&#125;==<span class="string">"2720-4A42"</span>,ENV&#123;UDISKS_IGNORE&#125;=<span class="string">"1"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#然后使用下边命令打开，将上面修改好的语句添加到文件最后边</span></span><br><span class="line">~$ sudo deepin-editor /etc/udev/rules.d/<span class="number">80</span>-udisks2.rules</span><br><span class="line"></span><br><span class="line"><span class="meta">#通常只需要隐藏/boot/efi、/boot 两个分区就可以了</span></span><br><span class="line"><span class="meta">#使用以下脚本将所有分区的隐藏语句打印出来</span></span><br><span class="line">~$ curl https:<span class="comment">//jzjbyq.github.io/bash/uuid-hide.sh|bash</span></span><br></pre></td></tr></table></figure>
 
-#然后使用下边命令打开，将上面修改好的语句添加到文件最后边
-~$ sudo deepin-editor /etc/udev/rules.d/80-udisks2.rules
-
-#通常只需要隐藏/boot/efi、/boot 两个分区就可以了
-#使用以下脚本将所有分区的隐藏语句打印出来
-~$ curl https://jzjbyq.github.io/bash/uuid-hide.sh|bash
-</code></pre>
 
     
 
@@ -528,6 +516,30 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
               </li>
              
@@ -540,31 +552,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
               </li>
             
             <div class="clearfix"></div>

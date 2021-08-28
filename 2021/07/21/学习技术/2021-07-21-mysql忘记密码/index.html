@@ -9,18 +9,18 @@
   <title>mysql忘记密码后的补救操作 | AJian的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="​        维护的数据库多了，总会遇到不清楚管理员密码的时候，这个时候需要临时绕过登陆修改密码或额外创建访问账户，收集了网上的一些资料可以方便操作。 以下第一步和第二步是两种跳过方式，任选其一。 1、修改my.ini完成绕过登陆 ​        在my.ini的[mysqld]节点内添加,修改完成后，重启mysql服务即可生效 [mysqld] skip-grant-tables  2、使">
+  <meta name="description" content="​        维护的数据库多了，总会遇到不清楚管理员密码的时候，这个时候需要临时绕过登陆修改密码或额外创建访问账户，收集了网上的一些资料可以方便操作。 以下第一步和第二步是两种跳过方式，任选其一。 1、修改my.ini完成绕过登陆 ​        在my.ini的[mysqld]节点内添加,修改完成后，重启mysql服务即可生效 12[mysqld]skip-grant-tables  2、">
 <meta name="keywords" content="学习技术,数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql忘记密码后的补救操作">
 <meta property="og:url" content="https://jzjbyq.gitee.io/2021/07/21/学习技术/2021-07-21-mysql忘记密码/index.html">
 <meta property="og:site_name" content="AJian的Blog">
-<meta property="og:description" content="​        维护的数据库多了，总会遇到不清楚管理员密码的时候，这个时候需要临时绕过登陆修改密码或额外创建访问账户，收集了网上的一些资料可以方便操作。 以下第一步和第二步是两种跳过方式，任选其一。 1、修改my.ini完成绕过登陆 ​        在my.ini的[mysqld]节点内添加,修改完成后，重启mysql服务即可生效 [mysqld] skip-grant-tables  2、使">
+<meta property="og:description" content="​        维护的数据库多了，总会遇到不清楚管理员密码的时候，这个时候需要临时绕过登陆修改密码或额外创建访问账户，收集了网上的一些资料可以方便操作。 以下第一步和第二步是两种跳过方式，任选其一。 1、修改my.ini完成绕过登陆 ​        在my.ini的[mysqld]节点内添加,修改完成后，重启mysql服务即可生效 12[mysqld]skip-grant-tables  2、">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2021-08-26T07:42:40.240Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql忘记密码后的补救操作">
-<meta name="twitter:description" content="​        维护的数据库多了，总会遇到不清楚管理员密码的时候，这个时候需要临时绕过登陆修改密码或额外创建访问账户，收集了网上的一些资料可以方便操作。 以下第一步和第二步是两种跳过方式，任选其一。 1、修改my.ini完成绕过登陆 ​        在my.ini的[mysqld]节点内添加,修改完成后，重启mysql服务即可生效 [mysqld] skip-grant-tables  2、使">
+<meta name="twitter:description" content="​        维护的数据库多了，总会遇到不清楚管理员密码的时候，这个时候需要临时绕过登陆修改密码或额外创建访问账户，收集了网上的一些资料可以方便操作。 以下第一步和第二步是两种跳过方式，任选其一。 1、修改my.ini完成绕过登陆 ​        在my.ini的[mysqld]节点内添加,修改完成后，重启mysql服务即可生效 12[mysqld]skip-grant-tables  2、">
   
     <link rel="alternative" href="/atom.xml" title="AJian的Blog" type="application/atom+xml">
   
@@ -209,7 +209,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">422字</span>
+      <span class="post-count">410字</span>
     </span>
   </span>
 
@@ -233,27 +233,24 @@
 <p>以下第一步和第二步是两种跳过方式，任选其一。</p>
 <p>1、修改my.ini完成绕过登陆</p>
 <p>​        在my.ini的[mysqld]节点内添加,修改完成后，重启mysql服务即可生效</p>
-<pre><code>[mysqld]
-skip-grant-tables
-</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">skip-<span class="keyword">grant</span>-<span class="keyword">tables</span></span><br></pre></td></tr></table></figure>
+
 <p>2、使用启动服务参数绕过身份检测。（需要先停止mysql服务，以下边的命令进行启动）</p>
-<pre><code>mysqld --console --skip-grant-tables --shared-memory
-</code></pre>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">mysqld</span> --<span class="comment">console</span> --<span class="comment">skip</span><span class="literal">-</span><span class="comment">grant</span><span class="literal">-</span><span class="comment">tables</span> --<span class="comment">shared</span><span class="literal">-</span><span class="comment">memory</span></span><br></pre></td></tr></table></figure>
+
 <p>3、然后保存文件，重启mysql服务，就可以使用;如果默认端口号变更，使用 -P 端口号 进行登陆</p>
-<pre><code>mysql -uroot
-mysql -uroot -P 13306
-</code></pre>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot</span><br><span class="line">mysql -uroot -P <span class="number">13306</span></span><br></pre></td></tr></table></figure>
+
 <p>4、登陆完成后，这个时候我们修改密码或创建新的账户时会提示权限不足，需要先刷新操作权限</p>
-<pre><code>flush privileges;
-</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
+
 <p>5、然后进行密码修改,例如将用户 root 的密码修改为 newpassword,mysql8以上使用第二行命令进行操作。</p>
-<pre><code>update mysql.user set password=password(&#39;newpassword&#39;) where user=&#39;root&#39;;
-update mysql.user set authentication_string=password(&#39;newpassword&#39;) where user=&#39;root&#39;;
-</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">password</span>(<span class="string">'newpassword'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span><br><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> authentication_string=<span class="keyword">password</span>(<span class="string">'newpassword'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span><br></pre></td></tr></table></figure>
+
 <p>修改完成后需要再次刷新操作权限,重复第4步骤</p>
 <p>6、添加新的账户,将 库名 替换为要授权访问的库名称，.* 代表允许访问该库名下所有的表,’%’表示允许任意网络进行访问，如果只允许本机访问，可设置为’localhost’，grant select代表只允许查询，不允许修改。</p>
-<pre><code>grant select on 库名.* to newuser@&#39;%&#39; identified by &#39;password&#39;;
-</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> 库名.* <span class="keyword">to</span> newuser@<span class="string">'%'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
+
 
     
 
@@ -549,6 +546,30 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
               </li>
              
@@ -561,31 +582,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
               </li>
             
             <div class="clearfix"></div>

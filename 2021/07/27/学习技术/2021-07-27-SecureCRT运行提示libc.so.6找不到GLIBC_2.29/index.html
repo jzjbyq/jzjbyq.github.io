@@ -9,18 +9,18 @@
   <title>SecureCRT运行提示libc.so.6找不到GLIBC_2.29 | AJian的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="在UOSBeta5中安装SecureCRT，8.7.3,运行时提示找不到版本为GLIBC_2.29的libm.so.6文件 :~$ SecureCRT  SecureCRT: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29&amp;#39; not found (required by SecureCRT) :~$  网上查找了资料 根据这条命令可">
+  <meta name="description" content="在UOSBeta5中安装SecureCRT，8.7.3,运行时提示找不到版本为GLIBC_2.29的libm.so.6文件 123:~$ SecureCRT SecureCRT: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29&apos; not found (required by SecureCRT):~$  网上查找了资料 根据这条命令可以查询">
 <meta name="keywords" content="学习技术,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SecureCRT运行提示libc.so.6找不到GLIBC_2.29">
 <meta property="og:url" content="https://jzjbyq.gitee.io/2021/07/27/学习技术/2021-07-27-SecureCRT运行提示libc.so.6找不到GLIBC_2.29/index.html">
 <meta property="og:site_name" content="AJian的Blog">
-<meta property="og:description" content="在UOSBeta5中安装SecureCRT，8.7.3,运行时提示找不到版本为GLIBC_2.29的libm.so.6文件 :~$ SecureCRT  SecureCRT: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29&amp;#39; not found (required by SecureCRT) :~$  网上查找了资料 根据这条命令可">
+<meta property="og:description" content="在UOSBeta5中安装SecureCRT，8.7.3,运行时提示找不到版本为GLIBC_2.29的libm.so.6文件 123:~$ SecureCRT SecureCRT: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29&apos; not found (required by SecureCRT):~$  网上查找了资料 根据这条命令可以查询">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-08-26T07:42:50.407Z">
+<meta property="og:updated_time" content="2021-08-28T03:19:33.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SecureCRT运行提示libc.so.6找不到GLIBC_2.29">
-<meta name="twitter:description" content="在UOSBeta5中安装SecureCRT，8.7.3,运行时提示找不到版本为GLIBC_2.29的libm.so.6文件 :~$ SecureCRT  SecureCRT: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29&amp;#39; not found (required by SecureCRT) :~$  网上查找了资料 根据这条命令可">
+<meta name="twitter:description" content="在UOSBeta5中安装SecureCRT，8.7.3,运行时提示找不到版本为GLIBC_2.29的libm.so.6文件 123:~$ SecureCRT SecureCRT: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29&apos; not found (required by SecureCRT):~$  网上查找了资料 根据这条命令可以查询">
   
     <link rel="alternative" href="/atom.xml" title="AJian的Blog" type="application/atom+xml">
   
@@ -209,7 +209,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">519字</span>
+      <span class="post-count">509字</span>
     </span>
   </span>
 
@@ -230,63 +230,19 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>在UOSBeta5中安装SecureCRT，8.7.3,运行时提示找不到版本为GLIBC_2.29的libm.so.6文件</p>
-<pre><code>:~$ SecureCRT 
-SecureCRT: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29&#39; not found (required by SecureCRT)
-:~$
-</code></pre>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">:~$ SecureCRT </span><br><span class="line">SecureCRT: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29<span class="string">' not found (required by SecureCRT)</span></span><br><span class="line"><span class="string">:~$</span></span><br></pre></td></tr></table></figure>
+
 <p>网上查找了资料</p>
 <p>根据这条命令可以查询libm.so.6所支持的版本</p>
-<pre><code>:~$ strings  /lib/x86_64-linux-gnu/libm.so.6 | grep GLIBC_
-GLIBC_2.2.5
-GLIBC_2.4
-GLIBC_2.15
-GLIBC_2.18
-GLIBC_2.23
-GLIBC_2.24
-GLIBC_2.25
-GLIBC_2.26
-GLIBC_2.27
-GLIBC_2.28
-GLIBC_PRIVATE
-:~$ 
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">:~$ strings  /lib/x86_64-linux-gnu/libm.so.6 | grep GLIBC_</span><br><span class="line">GLIBC_2.2.5</span><br><span class="line">GLIBC_2.4</span><br><span class="line">GLIBC_2.15</span><br><span class="line">GLIBC_2.18</span><br><span class="line">GLIBC_2.23</span><br><span class="line">GLIBC_2.24</span><br><span class="line">GLIBC_2.25</span><br><span class="line">GLIBC_2.26</span><br><span class="line">GLIBC_2.27</span><br><span class="line">GLIBC_2.28</span><br><span class="line">GLIBC_PRIVATE</span><br><span class="line">:~$</span><br></pre></td></tr></table></figure>
+
 <p>从上面结果可以看到GLIBC支持到了2.28,但是我们现在需要的是2.29</p>
 <p>到 <a href="http://www.gnu.org/software/libc" target="_blank" rel="noopener">http://www.gnu.org/software/libc</a> 下载新的GLIBC</p>
 <p>找到对应版本进入页面下载</p>
 <p>对应版本链接为 <a href="http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz" target="_blank" rel="noopener">http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz</a></p>
 <p>可以通过wget获取, 以下是下载编译和使用过程，这里有编译好的libm文件可以 <a href="https://jzjbyq.lanzoui.com/iqy8upz1euf" target="_blank" rel="noopener">下载</a></p>
-<pre><code>$ cd ~/Downloads/
-$ wget http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz
---2021-07-27 09:17:50--  http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz
-正在解析主机 mirrors.nju.edu.cn (mirrors.nju.edu.cn)... 210.28.130.3, 2001:da8:1007:4011::3
-正在连接 mirrors.nju.edu.cn (mirrors.nju.edu.cn)|210.28.130.3|:80... 已连接。
-已发出 HTTP 请求，正在等待回应... 200 OK
-长度：32592893 (31M) [application/octet-stream]
-正在保存至: “glibc-2.29.tar.gz”
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> ~/Downloads/</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> wget http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz</span></span><br><span class="line">--2021-07-27 09:17:50--  http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz</span><br><span class="line">正在解析主机 mirrors.nju.edu.cn (mirrors.nju.edu.cn)... 210.28.130.3, 2001:da8:1007:4011::3</span><br><span class="line">正在连接 mirrors.nju.edu.cn (mirrors.nju.edu.cn)|210.28.130.3|:80... 已连接。</span><br><span class="line">已发出 HTTP 请求，正在等待回应... 200 OK</span><br><span class="line">长度：32592893 (31M) [application/octet-stream]</span><br><span class="line">正在保存至: “glibc-2.29.tar.gz”</span><br><span class="line"></span><br><span class="line">glibc-2.29.tar.gz           100%[=========================================&gt;]  31.08M  9.97MB/s  用时 3.1s    </span><br><span class="line"></span><br><span class="line">2021-07-27 09:17:53 (9.97 MB/s) - 已保存 “glibc-2.29.tar.gz” [32592893/32592893])</span><br><span class="line"><span class="meta">#</span><span class="bash">解压</span></span><br><span class="line">tar zxvf glibc-2.29.tar.gz</span><br><span class="line"><span class="meta">#</span><span class="bash">创建编译目录，并进入该目录</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> mkdir -p glibc-2.29/build &amp;&amp; <span class="built_in">cd</span> glibc-2.29/build</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">检查运行编译环境,如果有报错：These critical programs are missing or too old: bison</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ../configure --prefix=<span class="variable">$HOME</span>/Downloads/glibc-2.29/build</span></span><br><span class="line"><span class="meta">#</span><span class="bash">需要执行安装 sudo apt install bison</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ../configure --prefix=<span class="variable">$HOME</span>/Downloads/glibc-2.29/build</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">开始编译,等待时间约5分钟</span></span><br><span class="line">make -j4</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">将编译后的文件复制到 /lib/x86_64-linux-gnu/</span></span><br><span class="line">sudo cp ~/Downloads/glibc-2.29/build/lib/libm-2.29.so /lib/x86_64-linux-gnu/</span><br><span class="line"><span class="meta">#</span><span class="bash">设置 libm.so.6 链接到新的文件上</span></span><br><span class="line">sudo ln -s -f /lib/x86_64-linux-gnu/libm-2.29.so /lib/x86_64-linux-gnu/libm.so.6</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">再次运行SecureCRT就可以正常打开了</span></span><br></pre></td></tr></table></figure>
 
-glibc-2.29.tar.gz           100%[=========================================&gt;]  31.08M  9.97MB/s  用时 3.1s    
-
-2021-07-27 09:17:53 (9.97 MB/s) - 已保存 “glibc-2.29.tar.gz” [32592893/32592893])
-#解压
-tar zxvf glibc-2.29.tar.gz
-#创建编译目录，并进入该目录
-$ mkdir -p glibc-2.29/build &amp;&amp; cd glibc-2.29/build
-
-#检查运行编译环境,如果有报错：These critical programs are missing or too old: bison
-$ ../configure --prefix=$HOME/Downloads/glibc-2.29/build
-#需要执行安装 sudo apt install bison
-$ ../configure --prefix=$HOME/Downloads/glibc-2.29/build
-
-#开始编译,等待时间约5分钟
-make -j4
-
-#将编译后的文件复制到 /lib/x86_64-linux-gnu/
-sudo cp ~/Downloads/glibc-2.29/build/lib/libm-2.29.so /lib/x86_64-linux-gnu/
-#设置 libm.so.6 链接到新的文件上
-sudo ln -s -f /lib/x86_64-linux-gnu/libm-2.29.so /lib/x86_64-linux-gnu/libm.so.6
-
-#再次运行SecureCRT就可以正常打开了
-</code></pre>
 
     
 
@@ -571,6 +527,30 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
               </li>
              
@@ -583,31 +563,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
               </li>
             
             <div class="clearfix"></div>

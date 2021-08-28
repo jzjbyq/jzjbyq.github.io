@@ -212,7 +212,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">281字</span>
+      <span class="post-count">279字</span>
     </span>
   </span>
 
@@ -238,21 +238,8 @@
 <h4 id="2、启动镜像到安装分区页面"><a href="#2、启动镜像到安装分区页面" class="headerlink" title="2、启动镜像到安装分区页面"></a>2、启动镜像到安装分区页面</h4><p><img src="https://i.loli.net/2021/08/27/v6uK7kX9Pa2CfeE.png" alt="image-20210827153233893"></p>
 <p>在该页面输入组合按键 SHIFT+F10，可以呼叫出cmd命令行窗口。</p>
 <p>在命令行中输入  进入分区软件。</p>
-<pre><code>#指定要操作的磁盘，第一块盘从0号开始
-select disk 0
-#清除磁盘内容，新硬盘无需这一步
-clean
-#转换磁盘格式为gpt分区
-convert gpt
-#创建efi分区,一般200MB就够用，引导文件存放分区
-create partition efi size=200
-#创建MSR分区，也是200MB
-create partition msr size=200
-#创建primary分区，操作系统也将安装在该分区
-create partition primary size=51200
-#退出分区软件
-exit
-</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#指定要操作的磁盘，第一块盘从0号开始</span></span><br><span class="line"><span class="keyword">select</span> disk <span class="number">0</span></span><br><span class="line"><span class="comment">#清除磁盘内容，新硬盘无需这一步</span></span><br><span class="line">clean</span><br><span class="line"><span class="comment">#转换磁盘格式为gpt分区</span></span><br><span class="line"><span class="keyword">convert</span> gpt</span><br><span class="line"><span class="comment">#创建efi分区,一般200MB就够用，引导文件存放分区</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">partition</span> efi <span class="keyword">size</span>=<span class="number">200</span></span><br><span class="line"><span class="comment">#创建MSR分区，也是200MB</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">partition</span> msr <span class="keyword">size</span>=<span class="number">200</span></span><br><span class="line"><span class="comment">#创建primary分区，操作系统也将安装在该分区</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">partition</span> primary <span class="keyword">size</span>=<span class="number">51200</span></span><br><span class="line"><span class="comment">#退出分区软件</span></span><br><span class="line"><span class="keyword">exit</span></span><br></pre></td></tr></table></figure>
+
 <p>3、继续退出命令行窗口后，在安装程序界面中点击刷新，即可看到划分好的分区。</p>
 <p>​    选择主分区后，点击下一步继续系统的安装。</p>
 
@@ -526,6 +513,30 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
               </li>
              
@@ -538,31 +549,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
               </li>
             
             <div class="clearfix"></div>

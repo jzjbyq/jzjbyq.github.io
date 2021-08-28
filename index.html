@@ -509,12 +509,11 @@
 <img src="https://i.loli.net/2021/08/26/xESGJyNiqt5DfsF.png" alt="errorpng" style="zoom:67%;">
 
 <p>编辑 /etc/security/limits.conf，追加以下内容，内容前边的 * 号也需要复制到。</p>
-<pre><code>* soft nofile 65536
-* hard nofile 65536
-</code></pre>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">* </span>soft nofile 65536</span><br><span class="line"><span class="bullet">* </span>hard nofile 65536</span><br></pre></td></tr></table></figure>
+
 <p>然后在 /etc/sysctl.conf文件最后一行添加</p>
-<pre><code>vm.max_map_count=262144
-</code></pre>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">vm.max_map_count</span>=<span class="number">262144</span></span><br></pre></td></tr></table></figure>
+
 <p>修改完成后需要重新登录用户生效。</p>
 
     
@@ -729,31 +728,23 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>1、停止服务<br>2、找到数据库data目录下的 pg_hba.conf 文件<br>3、打开编辑内容，host后边的 md5 修改为 trust。(下列所有步骤操作完成后记得恢复。)</p>
-<pre><code># TYPE  DATABASE        USER            ADDRESS                 METHOD
-# IPv4 local connections:
-host    all             all             127.0.0.1/32            trust
-# IPv6 local connections:
-host    all             all             ::1/128                 trust
-# Allow replication connections from localhost, by a user with the
-# replication privilege.
-#host    replication     all             127.0.0.1/32            md5
-#host    replication     all             ::1/128                 md5
-</code></pre>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">TYPE</span>  DATABASE        USER            ADDRESS                 <span class="function"><span class="keyword">METHOD</span></span></span><br><span class="line"><span class="function"># <span class="title">IPv4</span> <span class="title">local</span> <span class="title">connections</span>:</span></span><br><span class="line">host    all             all             <span class="number">127.0</span>.<span class="number">0.1</span>/<span class="number">32</span>            trust</span><br><span class="line"># IPv6 local connections:</span><br><span class="line">host    all             all             ::<span class="number">1</span>/<span class="number">128</span>                 trust</span><br><span class="line"># Allow replication connections <span class="keyword">from</span> localhost, <span class="keyword">by</span> a user <span class="keyword">with</span> the</span><br><span class="line"># replication privilege.</span><br><span class="line">#host    replication     all             <span class="number">127.0</span>.<span class="number">0.1</span>/<span class="number">32</span>            md5</span><br><span class="line">#host    replication     all             ::<span class="number">1</span>/<span class="number">128</span>                 md5</span><br></pre></td></tr></table></figure>
+
 <p>4、启动服务，然后输入下边命令可直接进入到命令行模式</p>
-<pre><code>psql -U postgres
-</code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">psql -U postgres</span></span><br></pre></td></tr></table></figure>
+
 <p>5、修改默认用户 Postgres 的密码</p>
-<pre><code>ALTER USER Postgres WITH PASSWORD &#39;&lt;newpassword&gt;&#39;;
-</code></pre>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER<span class="built_in"> USER </span>Postgres WITH PASSWORD <span class="string">'&lt;newpassword&gt;'</span>;</span><br></pre></td></tr></table></figure>
+
 <p>6、添加新用户</p>
-<pre><code>CREATE USER my_user WITH PASSWORD &#39;123456&#39;;
-</code></pre>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE<span class="built_in"> USER </span>my_user WITH PASSWORD <span class="string">'123456'</span>;</span><br></pre></td></tr></table></figure>
+
 <p>7、新用户赋权</p>
-<pre><code>GRANT USAGE ON SCHEMA PUBLIC TO my_user;
-</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">USAGE</span> <span class="keyword">ON</span> <span class="keyword">SCHEMA</span> <span class="keyword">PUBLIC</span> <span class="keyword">TO</span> my_user;</span><br></pre></td></tr></table></figure>
+
 <p>8、使用新用户登录</p>
-<pre><code>psql -U my_user -W postgres
-</code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">psql -U my_user -W postgres</span></span><br></pre></td></tr></table></figure>
+
 
     
 
@@ -846,20 +837,12 @@ host    all             all             ::1/128                 trust
   <div class="article-entry" itemprop="articleBody">
     
     <p>当SecureCRT使用私钥连接远端计算机时，报libgssapi.so的错误，测试不影响使用，但是会影响连接时对该文件的判断，连接上的延迟会高一些。那么本文就是介绍解决这个弹窗的一个方法。</p>
-<h1 id><a href="#" class="headerlink" title></a><img src="https://i.loli.net/2021/08/17/MSI7KHvY8VB2AbW.png" alt="01"></h1><pre><code>#检查是否有libgssapi的相关信息
-ls -l /usr/lib/x86_64-linux-gnu/|grep libgssapi
-#如果有，可以看到如下信息，跳过安装 libkrb5-dev 直接创建软链接
-lrwxrwxrwx  1 root root        26 12月 17  2020 libgssapi_krb5.so -&gt; mit-krb5/libgssapi_krb5.so
-lrwxrwxrwx  1 root root        21 12月 17  2020 libgssapi_krb5.so.2 -&gt; libgssapi_krb5.so.2.2
--rw-r--r--  1 root root    309744 12月 17  2020 libgssapi_krb5.so.2.2
-</code></pre>
-<pre><code>#安装 libkrb5-dev
-sudo apt-get install libkrb5-dev
-</code></pre>
-<pre><code>#创建软连接
-cd /usr/lib/x86_64-linux-gnu/
-sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
-</code></pre>
+<h1 id><a href="#" class="headerlink" title></a><img src="https://i.loli.net/2021/08/17/MSI7KHvY8VB2AbW.png" alt="01"></h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">检查是否有libgssapi的相关信息</span></span><br><span class="line">ls -l /usr/lib/x86_64-linux-gnu/|grep libgssapi</span><br><span class="line"><span class="meta">#</span><span class="bash">如果有，可以看到如下信息，跳过安装 libkrb5-dev 直接创建软链接</span></span><br><span class="line">lrwxrwxrwx  1 root root        26 12月 17  2020 libgssapi_krb5.so -&gt; mit-krb5/libgssapi_krb5.so</span><br><span class="line">lrwxrwxrwx  1 root root        21 12月 17  2020 libgssapi_krb5.so.2 -&gt; libgssapi_krb5.so.2.2</span><br><span class="line">-rw-r--r--  1 root root    309744 12月 17  2020 libgssapi_krb5.so.2.2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">安装 libkrb5-dev</span></span><br><span class="line">sudo apt-get install libkrb5-dev</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建软连接</span></span><br><span class="line">cd /usr/lib/x86_64-linux-gnu/</span><br><span class="line">sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so</span><br></pre></td></tr></table></figure>
+
 <p>如此打开的时候就不会再跳提示了。</p>
 
     
@@ -954,8 +937,8 @@ sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
     
     <h6 id="默认使用UOS自己的文件管理器"><a href="#默认使用UOS自己的文件管理器" class="headerlink" title="默认使用UOS自己的文件管理器"></a>默认使用UOS自己的文件管理器</h6><p>安装KDE以后，UOS的DDE桌面计算机打开会出错，可以恢复默认使用UOS的文件管理器</p>
 <p>在终端里输入</p>
-<pre><code>gio mime inode/directory dde-file-manager.desktop
-</code></pre>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gio mime inode/<span class="built_in">directory</span> dde-<span class="built_in">file</span>-manager.desktop</span><br></pre></td></tr></table></figure>
+
 <p>恢复正常</p>
 
     
@@ -1049,20 +1032,8 @@ sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
   <div class="article-entry" itemprop="articleBody">
     
     <p>　　由于UOS默认显示efi、boot等分区，感官上觉得很多余，搜索论坛有人分享了隐藏指定分区的方法，现在做个记录。</p>
-<pre><code>#查看挂载分区对应的设备名称
-~$ lsblk
-#查看设备名称对应的UUID
-~$ blkid
-#讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUID
-ENV{ID_FS_UUID}==&quot;2720-4A42&quot;,ENV{UDISKS_IGNORE}=&quot;1&quot;
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#查看挂载分区对应的设备名称</span></span><br><span class="line">~$ lsblk</span><br><span class="line"><span class="meta">#查看设备名称对应的UUID</span></span><br><span class="line">~$ blkid</span><br><span class="line"><span class="meta">#讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUID</span></span><br><span class="line">ENV&#123;ID_FS_UUID&#125;==<span class="string">"2720-4A42"</span>,ENV&#123;UDISKS_IGNORE&#125;=<span class="string">"1"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#然后使用下边命令打开，将上面修改好的语句添加到文件最后边</span></span><br><span class="line">~$ sudo deepin-editor /etc/udev/rules.d/<span class="number">80</span>-udisks2.rules</span><br><span class="line"></span><br><span class="line"><span class="meta">#通常只需要隐藏/boot/efi、/boot 两个分区就可以了</span></span><br><span class="line"><span class="meta">#使用以下脚本将所有分区的隐藏语句打印出来</span></span><br><span class="line">~$ curl https:<span class="comment">//jzjbyq.github.io/bash/uuid-hide.sh|bash</span></span><br></pre></td></tr></table></figure>
 
-#然后使用下边命令打开，将上面修改好的语句添加到文件最后边
-~$ sudo deepin-editor /etc/udev/rules.d/80-udisks2.rules
-
-#通常只需要隐藏/boot/efi、/boot 两个分区就可以了
-#使用以下脚本将所有分区的隐藏语句打印出来
-~$ curl https://jzjbyq.github.io/bash/uuid-hide.sh|bash
-</code></pre>
 
     
 
@@ -1411,6 +1382,30 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
               </li>
              
@@ -1423,31 +1418,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
               </li>
             
             <div class="clearfix"></div>

@@ -9,18 +9,18 @@
   <title>Postgre忘记密码后如何处理 | AJian的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="1、停止服务2、找到数据库data目录下的 pg_hba.conf 文件3、打开编辑内容，host后边的 md5 修改为 trust。(下列所有步骤操作完成后记得恢复。) # TYPE  DATABASE        USER            ADDRESS                 METHOD # IPv4 local connections: host    all">
+  <meta name="description" content="1、停止服务2、找到数据库data目录下的 pg_hba.conf 文件3、打开编辑内容，host后边的 md5 修改为 trust。(下列所有步骤操作完成后记得恢复。) 123456789# TYPE  DATABASE        USER            ADDRESS                 METHOD# IPv4 local connections:host    al">
 <meta name="keywords" content="学习技术,数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Postgre忘记密码后如何处理">
 <meta property="og:url" content="https://jzjbyq.gitee.io/2021/08/26/学习技术/2021-08-26-Postgre忘记密码后如何处理/index.html">
 <meta property="og:site_name" content="AJian的Blog">
-<meta property="og:description" content="1、停止服务2、找到数据库data目录下的 pg_hba.conf 文件3、打开编辑内容，host后边的 md5 修改为 trust。(下列所有步骤操作完成后记得恢复。) # TYPE  DATABASE        USER            ADDRESS                 METHOD # IPv4 local connections: host    all">
+<meta property="og:description" content="1、停止服务2、找到数据库data目录下的 pg_hba.conf 文件3、打开编辑内容，host后边的 md5 修改为 trust。(下列所有步骤操作完成后记得恢复。) 123456789# TYPE  DATABASE        USER            ADDRESS                 METHOD# IPv4 local connections:host    al">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2021-08-26T07:43:25.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Postgre忘记密码后如何处理">
-<meta name="twitter:description" content="1、停止服务2、找到数据库data目录下的 pg_hba.conf 文件3、打开编辑内容，host后边的 md5 修改为 trust。(下列所有步骤操作完成后记得恢复。) # TYPE  DATABASE        USER            ADDRESS                 METHOD # IPv4 local connections: host    all">
+<meta name="twitter:description" content="1、停止服务2、找到数据库data目录下的 pg_hba.conf 文件3、打开编辑内容，host后边的 md5 修改为 trust。(下列所有步骤操作完成后记得恢复。) 123456789# TYPE  DATABASE        USER            ADDRESS                 METHOD# IPv4 local connections:host    al">
   
     <link rel="alternative" href="/atom.xml" title="AJian的Blog" type="application/atom+xml">
   
@@ -209,7 +209,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">192字</span>
+      <span class="post-count">189字</span>
     </span>
   </span>
 
@@ -230,31 +230,23 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>1、停止服务<br>2、找到数据库data目录下的 pg_hba.conf 文件<br>3、打开编辑内容，host后边的 md5 修改为 trust。(下列所有步骤操作完成后记得恢复。)</p>
-<pre><code># TYPE  DATABASE        USER            ADDRESS                 METHOD
-# IPv4 local connections:
-host    all             all             127.0.0.1/32            trust
-# IPv6 local connections:
-host    all             all             ::1/128                 trust
-# Allow replication connections from localhost, by a user with the
-# replication privilege.
-#host    replication     all             127.0.0.1/32            md5
-#host    replication     all             ::1/128                 md5
-</code></pre>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">TYPE</span>  DATABASE        USER            ADDRESS                 <span class="function"><span class="keyword">METHOD</span></span></span><br><span class="line"><span class="function"># <span class="title">IPv4</span> <span class="title">local</span> <span class="title">connections</span>:</span></span><br><span class="line">host    all             all             <span class="number">127.0</span>.<span class="number">0.1</span>/<span class="number">32</span>            trust</span><br><span class="line"># IPv6 local connections:</span><br><span class="line">host    all             all             ::<span class="number">1</span>/<span class="number">128</span>                 trust</span><br><span class="line"># Allow replication connections <span class="keyword">from</span> localhost, <span class="keyword">by</span> a user <span class="keyword">with</span> the</span><br><span class="line"># replication privilege.</span><br><span class="line">#host    replication     all             <span class="number">127.0</span>.<span class="number">0.1</span>/<span class="number">32</span>            md5</span><br><span class="line">#host    replication     all             ::<span class="number">1</span>/<span class="number">128</span>                 md5</span><br></pre></td></tr></table></figure>
+
 <p>4、启动服务，然后输入下边命令可直接进入到命令行模式</p>
-<pre><code>psql -U postgres
-</code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">psql -U postgres</span></span><br></pre></td></tr></table></figure>
+
 <p>5、修改默认用户 Postgres 的密码</p>
-<pre><code>ALTER USER Postgres WITH PASSWORD &#39;&lt;newpassword&gt;&#39;;
-</code></pre>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER<span class="built_in"> USER </span>Postgres WITH PASSWORD <span class="string">'&lt;newpassword&gt;'</span>;</span><br></pre></td></tr></table></figure>
+
 <p>6、添加新用户</p>
-<pre><code>CREATE USER my_user WITH PASSWORD &#39;123456&#39;;
-</code></pre>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE<span class="built_in"> USER </span>my_user WITH PASSWORD <span class="string">'123456'</span>;</span><br></pre></td></tr></table></figure>
+
 <p>7、新用户赋权</p>
-<pre><code>GRANT USAGE ON SCHEMA PUBLIC TO my_user;
-</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">USAGE</span> <span class="keyword">ON</span> <span class="keyword">SCHEMA</span> <span class="keyword">PUBLIC</span> <span class="keyword">TO</span> my_user;</span><br></pre></td></tr></table></figure>
+
 <p>8、使用新用户登录</p>
-<pre><code>psql -U my_user -W postgres
-</code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">psql -U my_user -W postgres</span></span><br></pre></td></tr></table></figure>
+
 
     
 
@@ -539,6 +531,30 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
               </li>
              
@@ -551,31 +567,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
               </li>
             
             <div class="clearfix"></div>

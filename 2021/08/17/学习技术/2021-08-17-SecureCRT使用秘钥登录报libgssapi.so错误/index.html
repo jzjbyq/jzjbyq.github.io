@@ -9,19 +9,19 @@
   <title>SecureCRT使用秘钥登录报libgssapi.so错误 | AJian的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="当SecureCRT使用私钥连接远端计算机时，报libgssapi.so的错误，测试不影响使用，但是会影响连接时对该文件的判断，连接上的延迟会高一些。那么本文就是介绍解决这个弹窗的一个方法。 #检查是否有libgssapi的相关信息 ls -l /usr/lib/x86_64-linux-gnu/|grep libgssapi #如果有，可以看到如下信息，跳过安装 libkrb5-dev 直接创建">
+  <meta name="description" content="当SecureCRT使用私钥连接远端计算机时，报libgssapi.so的错误，测试不影响使用，但是会影响连接时对该文件的判断，连接上的延迟会高一些。那么本文就是介绍解决这个弹窗的一个方法。 123456#检查是否有libgssapi的相关信息ls -l /usr/lib/x86_64-linux-gnu/|grep libgssapi#如果有，可以看到如下信息，跳过安装 libkrb5-dev">
 <meta name="keywords" content="学习技术,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SecureCRT使用秘钥登录报libgssapi.so错误">
 <meta property="og:url" content="https://jzjbyq.gitee.io/2021/08/17/学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误/index.html">
 <meta property="og:site_name" content="AJian的Blog">
-<meta property="og:description" content="当SecureCRT使用私钥连接远端计算机时，报libgssapi.so的错误，测试不影响使用，但是会影响连接时对该文件的判断，连接上的延迟会高一些。那么本文就是介绍解决这个弹窗的一个方法。 #检查是否有libgssapi的相关信息 ls -l /usr/lib/x86_64-linux-gnu/|grep libgssapi #如果有，可以看到如下信息，跳过安装 libkrb5-dev 直接创建">
+<meta property="og:description" content="当SecureCRT使用私钥连接远端计算机时，报libgssapi.so的错误，测试不影响使用，但是会影响连接时对该文件的判断，连接上的延迟会高一些。那么本文就是介绍解决这个弹窗的一个方法。 123456#检查是否有libgssapi的相关信息ls -l /usr/lib/x86_64-linux-gnu/|grep libgssapi#如果有，可以看到如下信息，跳过安装 libkrb5-dev">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2021/08/17/MSI7KHvY8VB2AbW.png">
-<meta property="og:updated_time" content="2021-08-26T07:43:07.751Z">
+<meta property="og:updated_time" content="2021-08-28T13:21:26.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SecureCRT使用秘钥登录报libgssapi.so错误">
-<meta name="twitter:description" content="当SecureCRT使用私钥连接远端计算机时，报libgssapi.so的错误，测试不影响使用，但是会影响连接时对该文件的判断，连接上的延迟会高一些。那么本文就是介绍解决这个弹窗的一个方法。 #检查是否有libgssapi的相关信息 ls -l /usr/lib/x86_64-linux-gnu/|grep libgssapi #如果有，可以看到如下信息，跳过安装 libkrb5-dev 直接创建">
+<meta name="twitter:description" content="当SecureCRT使用私钥连接远端计算机时，报libgssapi.so的错误，测试不影响使用，但是会影响连接时对该文件的判断，连接上的延迟会高一些。那么本文就是介绍解决这个弹窗的一个方法。 123456#检查是否有libgssapi的相关信息ls -l /usr/lib/x86_64-linux-gnu/|grep libgssapi#如果有，可以看到如下信息，跳过安装 libkrb5-dev">
 <meta name="twitter:image" content="https://i.loli.net/2021/08/17/MSI7KHvY8VB2AbW.png">
   
     <link rel="alternative" href="/atom.xml" title="AJian的Blog" type="application/atom+xml">
@@ -232,20 +232,12 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p>当SecureCRT使用私钥连接远端计算机时，报libgssapi.so的错误，测试不影响使用，但是会影响连接时对该文件的判断，连接上的延迟会高一些。那么本文就是介绍解决这个弹窗的一个方法。</p>
-<h1 id><a href="#" class="headerlink" title></a><img src="https://i.loli.net/2021/08/17/MSI7KHvY8VB2AbW.png" alt="01"></h1><pre><code>#检查是否有libgssapi的相关信息
-ls -l /usr/lib/x86_64-linux-gnu/|grep libgssapi
-#如果有，可以看到如下信息，跳过安装 libkrb5-dev 直接创建软链接
-lrwxrwxrwx  1 root root        26 12月 17  2020 libgssapi_krb5.so -&gt; mit-krb5/libgssapi_krb5.so
-lrwxrwxrwx  1 root root        21 12月 17  2020 libgssapi_krb5.so.2 -&gt; libgssapi_krb5.so.2.2
--rw-r--r--  1 root root    309744 12月 17  2020 libgssapi_krb5.so.2.2
-</code></pre>
-<pre><code>#安装 libkrb5-dev
-sudo apt-get install libkrb5-dev
-</code></pre>
-<pre><code>#创建软连接
-cd /usr/lib/x86_64-linux-gnu/
-sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so
-</code></pre>
+<h1 id><a href="#" class="headerlink" title></a><img src="https://i.loli.net/2021/08/17/MSI7KHvY8VB2AbW.png" alt="01"></h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">检查是否有libgssapi的相关信息</span></span><br><span class="line">ls -l /usr/lib/x86_64-linux-gnu/|grep libgssapi</span><br><span class="line"><span class="meta">#</span><span class="bash">如果有，可以看到如下信息，跳过安装 libkrb5-dev 直接创建软链接</span></span><br><span class="line">lrwxrwxrwx  1 root root        26 12月 17  2020 libgssapi_krb5.so -&gt; mit-krb5/libgssapi_krb5.so</span><br><span class="line">lrwxrwxrwx  1 root root        21 12月 17  2020 libgssapi_krb5.so.2 -&gt; libgssapi_krb5.so.2.2</span><br><span class="line">-rw-r--r--  1 root root    309744 12月 17  2020 libgssapi_krb5.so.2.2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">安装 libkrb5-dev</span></span><br><span class="line">sudo apt-get install libkrb5-dev</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建软连接</span></span><br><span class="line">cd /usr/lib/x86_64-linux-gnu/</span><br><span class="line">sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so</span><br></pre></td></tr></table></figure>
+
 <p>如此打开的时候就不会再跳提示了。</p>
 
     
@@ -531,6 +523,30 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
               </li>
              
@@ -543,31 +559,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
               </li>
             
             <div class="clearfix"></div>

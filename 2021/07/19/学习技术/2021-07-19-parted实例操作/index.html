@@ -9,13 +9,13 @@
   <title>parted分区实例操作 | AJian的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="服务器2块硬盘，500G用来安装操作系统，16T硬盘用来存放数据 当前16T硬盘未初始化，需要先分区再设置开机挂载，以下是记录操作的全过程 第一步，使用 lsblk 命令查看当前硬盘列表， 可以看到 500G硬盘代表的 sda 已经分为了 sda1 以及 sda2 ，根目录50G HOME目录392G 还有一块14.6T的硬盘 sdb 未分区也未挂载 输入命令对进入硬盘编辑模式 parted /d">
+  <meta name="description" content="服务器2块硬盘，500G用来安装操作系统，16T硬盘用来存放数据 当前16T硬盘未初始化，需要先分区再设置开机挂载，以下是记录操作的全过程 第一步，使用 lsblk 命令查看当前硬盘列表， 可以看到 500G硬盘代表的 sda 已经分为了 sda1 以及 sda2 ，根目录50G HOME目录392G 还有一块14.6T的硬盘 sdb 未分区也未挂载 输入命令对进入硬盘编辑模式 1parted /">
 <meta name="keywords" content="学习技术,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="parted分区实例操作">
 <meta property="og:url" content="https://jzjbyq.gitee.io/2021/07/19/学习技术/2021-07-19-parted实例操作/index.html">
 <meta property="og:site_name" content="AJian的Blog">
-<meta property="og:description" content="服务器2块硬盘，500G用来安装操作系统，16T硬盘用来存放数据 当前16T硬盘未初始化，需要先分区再设置开机挂载，以下是记录操作的全过程 第一步，使用 lsblk 命令查看当前硬盘列表， 可以看到 500G硬盘代表的 sda 已经分为了 sda1 以及 sda2 ，根目录50G HOME目录392G 还有一块14.6T的硬盘 sdb 未分区也未挂载 输入命令对进入硬盘编辑模式 parted /d">
+<meta property="og:description" content="服务器2块硬盘，500G用来安装操作系统，16T硬盘用来存放数据 当前16T硬盘未初始化，需要先分区再设置开机挂载，以下是记录操作的全过程 第一步，使用 lsblk 命令查看当前硬盘列表， 可以看到 500G硬盘代表的 sda 已经分为了 sda1 以及 sda2 ，根目录50G HOME目录392G 还有一块14.6T的硬盘 sdb 未分区也未挂载 输入命令对进入硬盘编辑模式 1parted /">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2021/07/19/QJLwqGg972C41WT.png">
 <meta property="og:image" content="https://i.loli.net/2021/07/19/J49R5nkF3gpT1hC.png">
@@ -27,10 +27,10 @@
 <meta property="og:image" content="https://i.loli.net/2021/07/19/1T8WiXSYRCvgMDG.png">
 <meta property="og:image" content="https://i.loli.net/2021/07/19/5YQhfw9ivpAMyg8.png">
 <meta property="og:image" content="https://i.loli.net/2021/07/19/fwQGPpz1YWbkx79.png">
-<meta property="og:updated_time" content="2021-08-26T07:42:32.646Z">
+<meta property="og:updated_time" content="2021-08-28T03:15:44.446Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="parted分区实例操作">
-<meta name="twitter:description" content="服务器2块硬盘，500G用来安装操作系统，16T硬盘用来存放数据 当前16T硬盘未初始化，需要先分区再设置开机挂载，以下是记录操作的全过程 第一步，使用 lsblk 命令查看当前硬盘列表， 可以看到 500G硬盘代表的 sda 已经分为了 sda1 以及 sda2 ，根目录50G HOME目录392G 还有一块14.6T的硬盘 sdb 未分区也未挂载 输入命令对进入硬盘编辑模式 parted /d">
+<meta name="twitter:description" content="服务器2块硬盘，500G用来安装操作系统，16T硬盘用来存放数据 当前16T硬盘未初始化，需要先分区再设置开机挂载，以下是记录操作的全过程 第一步，使用 lsblk 命令查看当前硬盘列表， 可以看到 500G硬盘代表的 sda 已经分为了 sda1 以及 sda2 ，根目录50G HOME目录392G 还有一块14.6T的硬盘 sdb 未分区也未挂载 输入命令对进入硬盘编辑模式 1parted /">
 <meta name="twitter:image" content="https://i.loli.net/2021/07/19/QJLwqGg972C41WT.png">
   
     <link rel="alternative" href="/atom.xml" title="AJian的Blog" type="application/atom+xml">
@@ -220,7 +220,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">740字</span>
+      <span class="post-count">736字</span>
     </span>
   </span>
 
@@ -246,14 +246,14 @@
 <p>可以看到 500G硬盘代表的 sda 已经分为了 sda1 以及 sda2 ，根目录50G HOME目录392G</p>
 <p>还有一块14.6T的硬盘 sdb 未分区也未挂载</p>
 <h1 id><a href="#" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/QJLwqGg972C41WT.png" alt="01"></h1><p>输入命令对进入硬盘编辑模式</p>
-<pre><code>parted /dev/sdb
-</code></pre>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parted <span class="regexp">/dev/</span>sdb</span><br></pre></td></tr></table></figure>
+
 <h1 id="-1"><a href="#-1" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/J49R5nkF3gpT1hC.png" alt="02"></h1><p>看到上图表示进入硬盘编辑模式</p>
 <p>输入mktable ，然后输入gpt将硬盘格式设置为gpt</p>
 <h1 id="-2"><a href="#-2" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/OgewXao68b4y9pL.png" alt="03"></h1><p>如果有提示是否将分区设置为gpt，操作后硬盘数据将丢失，是否继续，输入 y 后回车</p>
 <p>接下来创建分区</p>
-<pre><code>mkpart
-</code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mkpart</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="-3"><a href="#-3" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/ticmonw9e34POjq.png" alt="04"></h1><p>提示输入分区名称，这里相当于是Windows的磁盘卷标，默认输入 data，回车</p>
 <p>提示输入文件系统类型，这里输入 xfs，xfs分区支持大硬盘，使用ext4的话超过16T就不能识别了，该硬盘刚好16T，所以我们选择xfs分区</p>
 <p>起始点和结束点，这里是从0扇区到多少位置作为一个分区，可以分多个，这里我们将整块硬盘作为一个分区</p>
@@ -262,29 +262,27 @@
 <p>到这里分区完成，输入q可以退出硬盘编辑模式</p>
 <p>接下来需要格式化分区，再挂载出来才可以正常访问使用，仍然输入lsblk，可以看到刚才分出来的 sdb1 分区</p>
 <h1 id="-4"><a href="#-4" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/A74jP9p2akwZ1IN.png" alt="05"></h1><p>输入格式化命令，图中少了-f，按照代码行格式输入</p>
-<pre><code>mkfs.xfs -f /dev/sdb1
-</code></pre>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.xfs -f <span class="regexp">/dev/</span>sdb1</span><br></pre></td></tr></table></figure>
+
 <p>看到如下图结果</p>
 <h1 id="-5"><a href="#-5" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/qnkEGfhdSoiCLKD.png" alt="06"></h1><p>挂载磁盘，先建立目录，将sdb1分区挂载到/opt/congjing目录</p>
-<pre><code>mkdir -p /opt/congjing
-mount /dev/sdb1 /opt/congjing
-</code></pre>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p <span class="regexp">/opt/</span>congjing</span><br><span class="line">mount <span class="regexp">/dev/</span>sdb1 <span class="regexp">/opt/</span>congjing</span><br></pre></td></tr></table></figure>
+
 <p>输入命令查看磁盘挂载情况</p>
-<pre><code>df -h
-</code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">df -h</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="-6"><a href="#-6" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/pne4UOyQXVMYT3m.png" alt="07"></h1><p>可以看到 /dev/sdb1已经挂载为 /opt/congjing，重启后该挂载点不会自动挂载，接下来的操作设置为开机自动挂载</p>
 <p>先查看当前磁盘挂载配置文件</p>
-<pre><code>cat /etc/fstab
-</code></pre>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat <span class="regexp">/etc/</span>fstab</span><br></pre></td></tr></table></figure>
+
 <h1 id="-7"><a href="#-7" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/1T8WiXSYRCvgMDG.png" alt="08"></h1><p>可以看到配置文件中没有我们之前挂载的磁盘情况，需要将要挂载的磁盘信息添加到该配置文件当中</p>
 <p>通过uuid进行挂载，查看uuid</p>
-<pre><code>blkid
-</code></pre>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">blkid</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="-8"><a href="#-8" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/5YQhfw9ivpAMyg8.png" alt="09"></h1><p>可以看到/dev/sdb1的UUID是 ”00198bfc-7cdf-4e81-a1f0-76d2f4ddd9ee“</p>
 <p>输入以下命令将挂载命令添加到 /etc/fstab文件中，输入 cat /etc/fstab 查看是否写入到文件</p>
-<pre><code>echo &quot;UUID=00198bfc-7cdf-4e81-a1f0-76d2f4ddd9ee /opt/congjing xfs defaults 0 0&quot;&gt;&gt;/etc/fstab
-cat /etc/fstab
-</code></pre>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="string">"UUID=00198bfc-7cdf-4e81-a1f0-76d2f4ddd9ee /opt/congjing xfs defaults 0 0"</span>&gt;&gt;<span class="string">/etc/fstab</span></span><br><span class="line">cat <span class="string">/etc/fstab</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="-9"><a href="#-9" class="headerlink" title></a><img src="https://i.loli.net/2021/07/19/fwQGPpz1YWbkx79.png" alt="10"></h1><p>到这里，分区及开机挂载设置完成！</p>
 
     
@@ -581,6 +579,30 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
               </li>
              
@@ -593,31 +615,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
               </li>
             
             <div class="clearfix"></div>
