@@ -9,18 +9,18 @@
   <title>UOS常见问题记录 | AJian的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="默认使用UOS自己的文件管理器安装KDE以后，UOS的DDE桌面计算机打开会出错，可以恢复默认使用UOS的文件管理器 在终端里输入 1gio mime inode/directory dde-file-manager.desktop  恢复正常">
+  <meta name="description" content="默认使用UOS自己的文件管理器安装KDE以后，UOS的DDE桌面计算机打开会出错，可以恢复默认使用UOS的文件管理器 在终端里输入 1gio mime inode/directory dde-file-manager.desktop  恢复正常 禁用安卓容器由于UOS默认uengine开启运行，对一些配置老旧的机型影响比较明显，可以禁用容器来释放被占用的系统资源 1sudo systemctl d">
 <meta name="keywords" content="学习技术,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UOS常见问题记录">
 <meta property="og:url" content="https://jzjbyq.gitee.io/2021/08/16/学习技术/2021-08-16-UOS常见问题记录/index.html">
 <meta property="og:site_name" content="AJian的Blog">
-<meta property="og:description" content="默认使用UOS自己的文件管理器安装KDE以后，UOS的DDE桌面计算机打开会出错，可以恢复默认使用UOS的文件管理器 在终端里输入 1gio mime inode/directory dde-file-manager.desktop  恢复正常">
+<meta property="og:description" content="默认使用UOS自己的文件管理器安装KDE以后，UOS的DDE桌面计算机打开会出错，可以恢复默认使用UOS的文件管理器 在终端里输入 1gio mime inode/directory dde-file-manager.desktop  恢复正常 禁用安卓容器由于UOS默认uengine开启运行，对一些配置老旧的机型影响比较明显，可以禁用容器来释放被占用的系统资源 1sudo systemctl d">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-08-29T15:13:41.800Z">
+<meta property="og:updated_time" content="2021-08-30T06:26:55.601Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UOS常见问题记录">
-<meta name="twitter:description" content="默认使用UOS自己的文件管理器安装KDE以后，UOS的DDE桌面计算机打开会出错，可以恢复默认使用UOS的文件管理器 在终端里输入 1gio mime inode/directory dde-file-manager.desktop  恢复正常">
+<meta name="twitter:description" content="默认使用UOS自己的文件管理器安装KDE以后，UOS的DDE桌面计算机打开会出错，可以恢复默认使用UOS的文件管理器 在终端里输入 1gio mime inode/directory dde-file-manager.desktop  恢复正常 禁用安卓容器由于UOS默认uengine开启运行，对一些配置老旧的机型影响比较明显，可以禁用容器来释放被占用的系统资源 1sudo systemctl d">
   
     <link rel="alternative" href="/atom.xml" title="AJian的Blog" type="application/atom+xml">
   
@@ -209,7 +209,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">62字</span>
+      <span class="post-count">117字</span>
     </span>
   </span>
 
@@ -234,6 +234,9 @@
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gio mime inode/<span class="built_in">directory</span> dde-<span class="built_in">file</span>-manager.desktop</span><br></pre></td></tr></table></figure>
 
 <p>恢复正常</p>
+<h6 id="禁用安卓容器"><a href="#禁用安卓容器" class="headerlink" title="禁用安卓容器"></a>禁用安卓容器</h6><p>由于UOS默认uengine开启运行，对一些配置老旧的机型影响比较明显，可以禁用容器来释放被占用的系统资源</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="keyword">disable</span> uengine-<span class="keyword">container</span> uengine-session</span><br></pre></td></tr></table></figure>
+
 
     
 
@@ -352,6 +355,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#默认使用UOS自己的文件管理器"><span class="toc-number">1.</span> <span class="toc-text">默认使用UOS自己的文件管理器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#禁用安卓容器"><span class="toc-number">2.</span> <span class="toc-text">禁用安卓容器</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -530,7 +546,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -542,6 +558,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
               </li>
              
@@ -550,11 +570,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
               </li>
             
             <div class="clearfix"></div>
@@ -624,11 +640,11 @@ MathJax.Hub.Queue(function() {
             </li>
           
             <li class="search-li">
-              <a href="https://gitee.com/zhousiwei" target="_blank" class="search-title" >
+              <a href="https://www.linuxcool.com" target="_blank" class="search-title" >
                 
                   <i class="icon-link icon"></i>
                 
-                码云
+                Linux命令大全
               </a>
             </li>
           
