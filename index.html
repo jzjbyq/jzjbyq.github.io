@@ -943,7 +943,11 @@
 
 <p>恢复正常</p>
 <h6 id="禁用安卓容器"><a href="#禁用安卓容器" class="headerlink" title="禁用安卓容器"></a>禁用安卓容器</h6><p>由于UOS默认uengine开启运行，对一些配置老旧的机型影响比较明显，可以禁用容器来释放被占用的系统资源</p>
+<p>1、禁用容器</p>
 <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="keyword">disable</span> uengine-<span class="keyword">container</span> uengine-session</span><br></pre></td></tr></table></figure>
+
+<p>2、启用容器，如果想要继续使用，可以通过以下命令恢复使用</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable uengine-container uengine-session</span><br><span class="line">sudo systemctl <span class="keyword">start</span> uengine-<span class="keyword">container</span> uengine-<span class="keyword">session</span></span><br></pre></td></tr></table></figure>
 
 
     
@@ -1387,23 +1391,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1419,11 +1407,27 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
               </li>
             
             <div class="clearfix"></div>
