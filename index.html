@@ -65,7 +65,20 @@
 
 
   
-
+    <script>
+    (function(){
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+        }
+        else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+    </script>
 </head>
 
 <body>
@@ -258,6 +271,122 @@
     
     <p class="article-more-link">
       <a class="article-more-a" href="/2021/07/19/资源分享/2021-07-19-kettlepack/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+  
+    <article id="post-学习技术/2021-09-17-油猴插件屏蔽网页广告" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/09/17/学习技术/2021-09-17-油猴插件屏蔽网页广告/" target="_blank">油猴插件屏蔽网页广告</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/09/17/学习技术/2021-09-17-油猴插件屏蔽网页广告/" class="archive-article-date">
+        <time datetime="2021-09-17T03:12:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-17</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p><strong>油猴是一个很棒的浏览器插件，里面可以安装各式各样的脚本来赋予浏览器更多的能力。</strong></p>
+<p><strong>常见浏览器基本上都支持安装油猴插件，推荐Chrome、Microsoft Edge、360浏览器</strong></p>
+<p><strong>接下来的内容，首先确认已经正常安装好油猴插件，并显示在浏览器工具栏中显示。</strong></p>
+<ul>
+<li><h4 id="第一节-屏蔽广告"><a href="#第一节-屏蔽广告" class="headerlink" title="第一节 屏蔽广告"></a>第一节 屏蔽广告</h4><p>测试网站：<a href="https://www.nfmovies.com/" target="_blank" rel="noopener">https://www.nfmovies.com</a>  (没有针对的意思，仅作测试用例使用)</p>
+<p>打开网站后可以看到页面两端都有一个飘窗广告，俗称对联广告。</p>
+<p>接下来我们使用自定义油猴脚本对该广告进行屏蔽</p>
+<p>点击工具栏上的油猴图标<img src="https://i.loli.net/2021/09/17/XyhPB42VSKiuYdk.png" width="25"></p>
+<p>选择添加脚本，可以看到以下内容</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">//</span> ==UserScript==</span><br><span class="line"><span class="string">//</span> @name         New Userscript</span><br><span class="line"><span class="string">//</span> @namespace    http:<span class="string">//tampermonkey.net/</span></span><br><span class="line"><span class="string">//</span> @<span class="keyword">version</span>      0.1</span><br><span class="line"><span class="string">//</span> @description  <span class="keyword">try</span> to take over the world!</span><br><span class="line"><span class="string">//</span> @author       You</span><br><span class="line"><span class="string">//</span> @match        https:<span class="string">//www.nfmovies.com/</span>*</span><br><span class="line"><span class="string">//</span> @icon         https:<span class="string">//www.google.com/s2/favicons</span>?domain=nfmovies.com</span><br><span class="line"><span class="string">//</span> @grant        none</span><br><span class="line"><span class="string">//</span> ==<span class="string">/UserScript==</span></span><br><span class="line"></span><br><span class="line"><span class="params">(function()</span> &#123;</span><br><span class="line">    'use strict';</span><br><span class="line">    </span><br><span class="line">    <span class="string">//</span> Your code here.<span class="string">..</span></span><br><span class="line">&#125;)<span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+
+<h6 id="关于脚本元素值可以参考-Greasy-Fork-要读取的脚本元素值"><a href="#关于脚本元素值可以参考-Greasy-Fork-要读取的脚本元素值" class="headerlink" title="关于脚本元素值可以参考 Greasy Fork 要读取的脚本元素值"></a>关于脚本元素值可以参考 <a href="https://greasyfork.org/zh-CN/help/meta-keys" target="_blank" rel="noopener">Greasy Fork 要读取的脚本元素值</a></h6><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义的脚本全部写在这里</span></span><br><span class="line">(function() &#123;</span><br><span class="line">    <span class="string">'use strict'</span>;</span><br><span class="line">    <span class="comment">//调用Jquery方法屏蔽</span></span><br><span class="line">    <span class="comment">//屏蔽奈菲影视的页面广告</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">window</span>.location.href.indexOf(<span class="string">'nfmovies.com'</span>)!=<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        $(<span class="string">"div.myui-ra-container.container"</span>).<span class="keyword">hide</span>();<span class="comment">//中间靠上的提示信息</span></span><br><span class="line">        $(<span class="string">"*[onclick^='openurl(']"</span>).<span class="keyword">parent</span>().<span class="keyword">hide</span>();<span class="comment">//两侧以及中间广告</span></span><br><span class="line">        $(<span class="string">".btnclose"</span>).<span class="keyword">parent</span>().<span class="keyword">hide</span>();<span class="comment">//右下角广告</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+
+<h6 id="分析过程"><a href="#分析过程" class="headerlink" title="分析过程"></a>分析过程</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://i.loli.net/2021/09/18/cdMuex18gBhVows.png" alt="image-20210918092548120"></p>
+<p>对着要隐藏的内容点击右键，选择检查，可以弹出开发者工具并且定位到该元素代码位置，鼠标悬停到代码块位置，可以看到页面中橙色块左上角显示的名称。</p>
+<p><img src="https://i.loli.net/2021/09/18/lcEVvr7T5dYtSxB.png" alt="image-20210918092912878"></p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#检查定位到的代码块内容</span></span><br><span class="line">&lt;<span class="keyword">div</span> class=<span class="string">"myui-ra-container container"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> class=<span class="string">"row"</span> style=<span class="string">"margin:-5px 0 10px 0;color: #3c763d;background-color: #dff0d8;border: 2px dashed #CCC;border-radius: 5px;padding: 5px 20px;"</span>&gt;</span><br><span class="line">        如果喜欢奈菲，请把奈菲影视推荐给你的小伙伴。注意哦，微信和国产浏览器会直接屏蔽本网站或者显示不正常，安卓小伙伴建议用chrome和APP访问，IOS小伙伴必须用alook和夸克浏览器观看。safari浏览器及其他浏览器无法观看。最近大量资源失效，我们已经开始尽全力补救，如果遇到高清线路无法播放，请先看ckm3u8，kuyun等采集线路。如果想加入我们的大家庭，这是我们的地址：&lt;<span class="keyword">a</span> href=<span class="string">"https://t.me/joinchat/KmUaGRMWdO29JVd3wcCHCg"</span> target=<span class="string">"_blank"</span>&gt;<span class="keyword">https</span>://t.me/joinchat/KmUaGRMWdO29JVd3wcCHCg&lt;/<span class="keyword">a</span>&gt;</span><br><span class="line">    &lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>从代码中可以看到这块信息内容都在 <div class="myui-ra-container container"> 这个div标签下，class名称为”myui-ra-container container”,直接使用jQuery选择器将该代码块隐藏。</div></p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"div.myui-ra-container.container"</span>).<span class="keyword">hide</span>();<span class="comment">//中间靠上的提示信息</span></span><br></pre></td></tr></table></figure>
+
+
+<p>使用这种方法，将左右两边以及右下角的广告也进行隐藏。</p>
+</li>
+</ul>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/09/17/学习技术/2021-09-17-油猴插件屏蔽网页广告/">展开全文 >></a>
     </p>
     
 
@@ -1161,138 +1290,6 @@ function ay(array,val){
 
 
   
-    <article id="post-资源分享/2021-08-03-cuimiandashi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/08/03/资源分享/2021-08-03-cuimiandashi/" target="_blank">推荐电影《催眠大师》(2014)</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/08/03/资源分享/2021-08-03-cuimiandashi/" class="archive-article-date">
-        <time datetime="2021-08-03T06:57:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-03</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>催眠大师(2014)</p>
-<img src="https://image11.m1905.cn/uploadfile/2014/0423/20140423074539431495.jpg" align="left" width="30%"> 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<ul>
-<li>导演：陈正道</li>
-<li>演员：徐峥、莫文蔚、吕中、王耀庆、胡静</li>
-</ul>
-<p><a href="https://www.1905.com/vod/play/806700.shtml" target="_blank">在线观看</a></p>
-<p> 　　国内擅长催眠疗法的知名心理治疗师徐瑞宁（徐峥 饰）正值事业风生水起之时，由他治疗过的病人全都痊愈出院，这也使得徐瑞宁信心倍增，直至骄傲自大。就连自己的学生在课堂上对他理论的质疑，都毫不收敛的回击过去，这些都被徐瑞宁的大学老师方教授看在眼里。在徐瑞宁一次讲课后，方教授受到其学生的请求，让徐瑞宁诊断一位特殊的病人任小妍（莫文蔚 饰），但方教授嘱咐徐瑞宁，称这位病人的十分怪异，她看过的心理医师没有一名能够治疗她的病情，任小妍讲话虚实难辨而且懂得如何回击治疗师。方教授口中所说的这名病人，让徐瑞宁对她产生了极大的兴趣，并且自大的认为没有治不好的病人。</p>
-<p> 　　当任小妍来到徐瑞宁的诊疗室时，徐瑞宁发现这位病患确实如同方教授所说很有古怪。任小妍声称自己能够看到已经死去的人，并且寻求她的帮助完成生前没有做过的事，徐瑞宁听后不以为然，但任小妍解释自己根本就没有心理疾病，她所看到的都是真实存在的。徐瑞宁在任小妍一顿“疯语”过后，决定采用催眠疗法进行治疗。而当任小妍成功进入催眠状态后，徐瑞宁想要找出任小妍的心理阴影所在，却不曾想自己被带入了一个可怕的陷阱…… </p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">在线影院</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/电影//" class="article-tag-list-link color3">电影</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/08/03/资源分享/2021-08-03-cuimiandashi/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1451,11 +1448,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1463,7 +1460,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1475,15 +1472,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
               </li>
             
             <div class="clearfix"></div>
