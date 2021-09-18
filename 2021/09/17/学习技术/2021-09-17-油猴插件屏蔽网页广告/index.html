@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/09/17/XyhPB42VSKiuYdk.png">
 <meta property="og:image" content="https://i.loli.net/2021/09/18/cdMuex18gBhVows.png">
 <meta property="og:image" content="https://i.loli.net/2021/09/18/lcEVvr7T5dYtSxB.png">
-<meta property="og:updated_time" content="2021-09-18T01:42:29.261Z">
+<meta property="og:updated_time" content="2021-09-18T10:07:25.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="油猴插件屏蔽网页广告">
 <meta name="twitter:description" content="油猴是一个很棒的浏览器插件，里面可以安装各式各样的脚本来赋予浏览器更多的能力。 常见浏览器基本上都支持安装油猴插件，推荐Chrome、Microsoft Edge、360浏览器 接下来的内容，首先确认已经正常安装好油猴插件，并显示在浏览器工具栏中显示。  第一节 屏蔽广告测试网站：https://www.nfmovies.com  (没有针对的意思，仅作测试用例使用) 打开网站后可以看到页面两端都">
@@ -226,7 +226,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">723字</span>
+      <span class="post-count">722字</span>
     </span>
   </span>
 
@@ -255,14 +255,14 @@
 <p>接下来我们使用自定义油猴脚本对该广告进行屏蔽</p>
 <p>点击工具栏上的油猴图标<img src="https://i.loli.net/2021/09/17/XyhPB42VSKiuYdk.png" width="25"></p>
 <p>选择添加脚本，可以看到以下内容</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">//</span> ==UserScript==</span><br><span class="line"><span class="string">//</span> @name         New Userscript</span><br><span class="line"><span class="string">//</span> @namespace    http:<span class="string">//tampermonkey.net/</span></span><br><span class="line"><span class="string">//</span> @<span class="keyword">version</span>      0.1</span><br><span class="line"><span class="string">//</span> @description  <span class="keyword">try</span> to take over the world!</span><br><span class="line"><span class="string">//</span> @author       You</span><br><span class="line"><span class="string">//</span> @match        https:<span class="string">//www.nfmovies.com/</span>*</span><br><span class="line"><span class="string">//</span> @icon         https:<span class="string">//www.google.com/s2/favicons</span>?domain=nfmovies.com</span><br><span class="line"><span class="string">//</span> @grant        none</span><br><span class="line"><span class="string">//</span> ==<span class="string">/UserScript==</span></span><br><span class="line"></span><br><span class="line"><span class="params">(function()</span> &#123;</span><br><span class="line">    'use strict';</span><br><span class="line">    </span><br><span class="line">    <span class="string">//</span> Your code here.<span class="string">..</span></span><br><span class="line">&#125;)<span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 
-<h6 id="关于脚本元素值可以参考-Greasy-Fork-要读取的脚本元素值"><a href="#关于脚本元素值可以参考-Greasy-Fork-要读取的脚本元素值" class="headerlink" title="关于脚本元素值可以参考 Greasy Fork 要读取的脚本元素值"></a>关于脚本元素值可以参考 <a href="https://greasyfork.org/zh-CN/help/meta-keys" target="_blank" rel="noopener">Greasy Fork 要读取的脚本元素值</a></h6><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自定义的脚本全部写在这里</span></span><br><span class="line">(function() &#123;</span><br><span class="line">    <span class="string">'use strict'</span>;</span><br><span class="line">    <span class="comment">//调用Jquery方法屏蔽</span></span><br><span class="line">    <span class="comment">//屏蔽奈菲影视的页面广告</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">window</span>.location.href.indexOf(<span class="string">'nfmovies.com'</span>)!=<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        $(<span class="string">"div.myui-ra-container.container"</span>).<span class="keyword">hide</span>();<span class="comment">//中间靠上的提示信息</span></span><br><span class="line">        $(<span class="string">"*[onclick^='openurl(']"</span>).<span class="keyword">parent</span>().<span class="keyword">hide</span>();<span class="comment">//两侧以及中间广告</span></span><br><span class="line">        $(<span class="string">".btnclose"</span>).<span class="keyword">parent</span>().<span class="keyword">hide</span>();<span class="comment">//右下角广告</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  <span class="string">//</span> ==UserScript==</span><br><span class="line">  <span class="string">//</span> @name         New Userscript</span><br><span class="line">  <span class="string">//</span> @namespace    http:<span class="string">//tampermonkey.net/</span></span><br><span class="line">  <span class="string">//</span> @<span class="keyword">version</span>      0.1</span><br><span class="line">  <span class="string">//</span> @description  <span class="keyword">try</span> to take over the world!</span><br><span class="line">  <span class="string">//</span> @author       You</span><br><span class="line">  <span class="string">//</span> @match        https:<span class="string">//www.nfmovies.com/</span>*</span><br><span class="line">  <span class="string">//</span> @icon         https:<span class="string">//www.google.com/s2/favicons</span>?domain=nfmovies.com</span><br><span class="line">  <span class="string">//</span> @grant        none</span><br><span class="line">  <span class="string">//</span> ==<span class="string">/UserScript==</span></span><br><span class="line">  </span><br><span class="line">  <span class="params">(function()</span> &#123;</span><br><span class="line">      'use strict';</span><br><span class="line">      </span><br><span class="line">      <span class="string">//</span> Your code here.<span class="string">..</span></span><br><span class="line">&#125;)<span class="params">()</span>;</span><br></pre></td></tr></table></figure>
 
-<h6 id="分析过程"><a href="#分析过程" class="headerlink" title="分析过程"></a>分析过程</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<h6 id="关于脚本元素值可以参考-Greasy-Fork-要读取的脚本元素值"><a href="#关于脚本元素值可以参考-Greasy-Fork-要读取的脚本元素值" class="headerlink" title="关于脚本元素值可以参考 Greasy Fork 要读取的脚本元素值"></a>关于脚本元素值可以参考 <a href="https://greasyfork.org/zh-CN/help/meta-keys" target="_blank" rel="noopener">Greasy Fork 要读取的脚本元素值</a></h6><figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">//自定义的脚本全部写在这里</span></span><br><span class="line">  (function() &#123;</span><br><span class="line">      <span class="string">'use strict'</span>;</span><br><span class="line">      <span class="comment">//调用Jquery方法屏蔽</span></span><br><span class="line">      <span class="comment">//屏蔽奈菲影视的页面广告</span></span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">window</span>.location.href.indexOf(<span class="string">'nfmovies.com'</span>)!=<span class="number">-1</span>)</span><br><span class="line">      &#123;</span><br><span class="line">          $(<span class="string">"div.myui-ra-container.container"</span>).<span class="keyword">hide</span>();<span class="comment">//中间靠上的提示信息</span></span><br><span class="line">          $(<span class="string">"*[onclick^='openurl(']"</span>).<span class="keyword">parent</span>().<span class="keyword">hide</span>();<span class="comment">//两侧以及中间广告</span></span><br><span class="line">          $(<span class="string">".btnclose"</span>).<span class="keyword">parent</span>().<span class="keyword">hide</span>();<span class="comment">//右下角广告</span></span><br><span class="line">      &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="https://i.loli.net/2021/09/18/cdMuex18gBhVows.png" alt="image-20210918092548120"></p>
+<h6 id="分析过程"><a href="#分析过程" class="headerlink" title="分析过程"></a>分析过程</h6><p><img src="https://i.loli.net/2021/09/18/cdMuex18gBhVows.png" alt="image-20210918092548120"></p>
 <p>对着要隐藏的内容点击右键，选择检查，可以弹出开发者工具并且定位到该元素代码位置，鼠标悬停到代码块位置，可以看到页面中橙色块左上角显示的名称。</p>
 <p><img src="https://i.loli.net/2021/09/18/lcEVvr7T5dYtSxB.png" alt="image-20210918092912878"></p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#检查定位到的代码块内容</span></span><br><span class="line">&lt;<span class="keyword">div</span> class=<span class="string">"myui-ra-container container"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> class=<span class="string">"row"</span> style=<span class="string">"margin:-5px 0 10px 0;color: #3c763d;background-color: #dff0d8;border: 2px dashed #CCC;border-radius: 5px;padding: 5px 20px;"</span>&gt;</span><br><span class="line">        如果喜欢奈菲，请把奈菲影视推荐给你的小伙伴。注意哦，微信和国产浏览器会直接屏蔽本网站或者显示不正常，安卓小伙伴建议用chrome和APP访问，IOS小伙伴必须用alook和夸克浏览器观看。safari浏览器及其他浏览器无法观看。最近大量资源失效，我们已经开始尽全力补救，如果遇到高清线路无法播放，请先看ckm3u8，kuyun等采集线路。如果想加入我们的大家庭，这是我们的地址：&lt;<span class="keyword">a</span> href=<span class="string">"https://t.me/joinchat/KmUaGRMWdO29JVd3wcCHCg"</span> target=<span class="string">"_blank"</span>&gt;<span class="keyword">https</span>://t.me/joinchat/KmUaGRMWdO29JVd3wcCHCg&lt;/<span class="keyword">a</span>&gt;</span><br><span class="line">    &lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
@@ -562,10 +562,6 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
               </li>
              
@@ -574,11 +570,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
               </li>
              
               <li class="article-tag-list-item">
