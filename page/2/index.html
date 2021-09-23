@@ -193,6 +193,100 @@
             
 
   
+    <article id="post-学习技术/2021-08-03-UOS隐藏盘符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/08/03/学习技术/2021-08-03-UOS隐藏盘符/" target="_blank">UOS隐藏指定分区</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/08/03/学习技术/2021-08-03-UOS隐藏盘符/" class="archive-article-date">
+        <time datetime="2021-08-03T08:54:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-03</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>　　由于UOS默认显示efi、boot等分区，感官上觉得很多余，搜索论坛有人分享了隐藏指定分区的方法，现在做个记录。</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#查看挂载分区对应的设备名称</span></span><br><span class="line">~$ lsblk</span><br><span class="line"><span class="meta">#查看设备名称对应的UUID</span></span><br><span class="line">~$ blkid</span><br><span class="line"><span class="meta">#讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUID</span></span><br><span class="line">ENV&#123;ID_FS_UUID&#125;==<span class="string">"2720-4A42"</span>,ENV&#123;UDISKS_IGNORE&#125;=<span class="string">"1"</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#然后使用下边命令打开，将上面修改好的语句添加到文件最后边</span></span><br><span class="line">~$ sudo deepin-editor /etc/udev/rules.d/<span class="number">80</span>-udisks2.rules</span><br><span class="line"></span><br><span class="line"><span class="meta">#通常只需要隐藏/boot/efi、/boot 两个分区就可以了</span></span><br><span class="line"><span class="meta">#使用以下脚本将所有分区的隐藏语句打印出来</span></span><br><span class="line">~$ curl https:<span class="comment">//ajian.xyz/bash/uuid-hide.sh|bash</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#添加卷标命令,格式 e2label device [newlabel]</span></span><br><span class="line">e2label /dev/sda5 home</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/08/03/学习技术/2021-08-03-UOS隐藏盘符/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+  
     <article id="post-资源分享/2021-08-03-cuimiandashi" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -382,11 +476,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据库工具</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据库工具</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
         		</li>
       		
 		</ul>
@@ -1485,114 +1579,6 @@
 
 
   
-    <article id="post-音乐分享/2021-07-20-IU-Blueming" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/07/20/音乐分享/2021-07-20-IU-Blueming/" target="_blank">IU-Blueming 好歌推荐</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/07/20/音乐分享/2021-07-20-IU-Blueming/" class="archive-article-date">
-        <time datetime="2021-07-20T02:11:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-20</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>《Blueming》是韩国女歌手<a href="https://baike.baidu.com/item/%E6%9D%8E%E7%9F%A5%E6%81%A9/74308" target="_blank" rel="noopener">李知恩</a>（IU）发行的迷你专辑《[Love Poem](<a href="https://baike.baidu.com/item/Love" target="_blank" rel="noopener">https://baike.baidu.com/item/Love</a> Poem/24154290)》中的一首主打歌曲.</p>
-<p>该歌曲于2019年11月18日下午6时发行，截至韩国时间11月19日上午8时，《Blueming》在melon、genie、olleh music、FLO、bugs、soribada等主要音源网站均取得了第一的成绩</p>
-<video width="70%" height="70%" id="video" controls autoplay="autoplay" preload="none" align="left">
-    <source id="mp4" src="https://yk8yggo6.v1d.szbdyd.com:9305/fseeca82d4.a.bdydns.com/1924164272/cloudmusic/b3ec/core/79ca/9f4f8c52b29ade50a375f0cdb3305a0c.mp4?wsSecret=34817b089262b0122b4878746ef600f8&wsTime=1626746904" type="video/mp4">
-</video>
-
-
-
-
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">音乐分享</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/MV//" class="article-tag-list-link color3">MV</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/20/音乐分享/2021-07-20-IU-Blueming/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1751,23 +1737,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1775,11 +1749,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
               </li>
              
               <li class="article-tag-list-item">
