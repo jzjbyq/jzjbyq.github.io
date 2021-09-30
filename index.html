@@ -332,299 +332,25 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p><strong>完整教程查看 <a href="https://www.w3school.com.cn/jquery/index.asp" target="_blank" rel="noopener">https://www.w3school.com.cn/jquery/index.asp</a></strong></p>
-<h4 id="jQuery-参考手册-选择器"><a href="#jQuery-参考手册-选择器" class="headerlink" title="jQuery 参考手册 - 选择器"></a>jQuery 参考手册 - 选择器</h4><table>
-<thead>
-<tr>
-<th align="left">选择器</th>
-<th align="left">实例</th>
-<th align="left">选取</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_all.asp" target="_blank" rel="noopener">*</a></td>
-<td align="left">$(“*”)</td>
-<td align="left">所有元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_id.asp" target="_blank" rel="noopener">#<em>id</em></a></td>
-<td align="left">$(“#lastname”)</td>
-<td align="left">id=”lastname” 的元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_class.asp" target="_blank" rel="noopener">.<em>class</em></a></td>
-<td align="left">$(“.intro”)</td>
-<td align="left">所有 class=”intro” 的元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_element.asp" target="_blank" rel="noopener"><em>element</em></a></td>
-<td align="left">$(“p”)</td>
-<td align="left">所有 <p> 元素</p></td>
-</tr>
-<tr>
-<td align="left">.<em>class</em>.<em>class</em></td>
-<td align="left">$(“.intro.demo”)</td>
-<td align="left">所有 class=”intro” 且 class=”demo” 的元素</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_first.asp" target="_blank" rel="noopener">:first</a></td>
-<td align="left">$(“p:first”)</td>
-<td align="left">第一个 <p> 元素</p></td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_last.asp" target="_blank" rel="noopener">:last</a></td>
-<td align="left">$(“p:last”)</td>
-<td align="left">最后一个 <p> 元素</p></td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_even.asp" target="_blank" rel="noopener">:even</a></td>
-<td align="left">$(“tr:even”)</td>
-<td align="left">所有偶数 </td></tr><tr> 元素
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_odd.asp" target="_blank" rel="noopener">:odd</a></td>
-<td align="left">$(“tr:odd”)</td>
-<td align="left">所有奇数 </td></tr><tr> 元素
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_eq.asp" target="_blank" rel="noopener">:eq(<em>index</em>)</a></td>
-<td align="left">$(“ul li:eq(3)”)</td>
-<td align="left">列表中的第四个元素（index 从 0 开始）</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_gt.asp" target="_blank" rel="noopener">:gt(<em>no</em>)</a></td>
-<td align="left">$(“ul li:gt(3)”)</td>
-<td align="left">列出 index 大于 3 的元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_lt.asp" target="_blank" rel="noopener">:lt(<em>no</em>)</a></td>
-<td align="left">$(“ul li:lt(3)”)</td>
-<td align="left">列出 index 小于 3 的元素</td>
-</tr>
-<tr>
-<td align="left">:not(<em>selector</em>)</td>
-<td align="left">$(“input:not(:empty)”)</td>
-<td align="left">所有不为空的 input 元素</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_header.asp" target="_blank" rel="noopener">:header</a></td>
-<td align="left">$(“:header”)</td>
-<td align="left">所有标题元素 <h1> - <h6></h6></h1></td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_animated.asp" target="_blank" rel="noopener">:animated</a></td>
-<td align="left"></td>
-<td align="left">所有动画元素</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_contains.asp" target="_blank" rel="noopener">:contains(<em>text</em>)</a></td>
-<td align="left">$(“:contains(‘W3School’)”)</td>
-<td align="left">包含指定字符串的所有元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_empty.asp" target="_blank" rel="noopener">:empty</a></td>
-<td align="left">$(“:empty”)</td>
-<td align="left">无子（元素）节点的所有元素</td>
-</tr>
-<tr>
-<td align="left">:hidden</td>
-<td align="left">$(“p:hidden”)</td>
-<td align="left">所有隐藏的 <p> 元素</p></td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_visible.asp" target="_blank" rel="noopener">:visible</a></td>
-<td align="left">$(“table:visible”)</td>
-<td align="left">所有可见的表格</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">s1,s2,s3</td>
-<td align="left">$(“th,td,.intro”)</td>
-<td align="left">所有带有匹配选择的元素</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">[<a href="https://www.w3school.com.cn/jquery/selector_attribute.asp" target="_blank" rel="noopener"><em>attribute</em>]</a></td>
-<td align="left">$(“[href]”)</td>
-<td align="left">所有带有 href 属性的元素</td>
-</tr>
-<tr>
-<td align="left">[<a href="https://www.w3school.com.cn/jquery/selector_attribute_equal_value.asp" target="_blank" rel="noopener"><em>attribute</em>=<em>value</em>]</a></td>
-<td align="left">$(“[href=’#’]”)</td>
-<td align="left">所有 href 属性的值等于 “#” 的元素</td>
-</tr>
-<tr>
-<td align="left">[<a href="https://www.w3school.com.cn/jquery/selector_attribute_notequal_value.asp" target="_blank" rel="noopener"><em>attribute</em>!=<em>value</em>]</a></td>
-<td align="left">$(“[href!=’#’]”)</td>
-<td align="left">所有 href 属性的值不等于 “#” 的元素</td>
-</tr>
-<tr>
-<td align="left">[<a href="https://www.w3school.com.cn/jquery/selector_attribute_end_value.asp" target="_blank" rel="noopener"><em>attribute</em>$=<em>value</em>]</a></td>
-<td align="left">$(“[href$=’.jpg’]”)</td>
-<td align="left">所有 href 属性的值包含以 “.jpg” 结尾的元素</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input.asp" target="_blank" rel="noopener">:input</a></td>
-<td align="left">$(“:input”)</td>
-<td align="left">所有 <input> 元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_text.asp" target="_blank" rel="noopener">:text</a></td>
-<td align="left">$(“:text”)</td>
-<td align="left">所有 type=”text” 的 <input> 元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_password.asp" target="_blank" rel="noopener">:password</a></td>
-<td align="left">$(“:password”)</td>
-<td align="left">所有 type=”password” 的 <input> 元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_radio.asp" target="_blank" rel="noopener">:radio</a></td>
-<td align="left">$(“:radio”)</td>
-<td align="left">所有 type=”radio” 的 <input> 元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_checkbox.asp" target="_blank" rel="noopener">:checkbox</a></td>
-<td align="left">$(“:checkbox”)</td>
-<td align="left">所有 type=”checkbox” 的 <input> 元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_submit.asp" target="_blank" rel="noopener">:submit</a></td>
-<td align="left">$(“:submit”)</td>
-<td align="left">所有 type=”submit” 的 <input> 元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_reset.asp" target="_blank" rel="noopener">:reset</a></td>
-<td align="left">$(“:reset”)</td>
-<td align="left">所有 type=”reset” 的 <input> 元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_button.asp" target="_blank" rel="noopener">:button</a></td>
-<td align="left">$(“:button”)</td>
-<td align="left">所有 type=”button” 的 <input> 元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_image.asp" target="_blank" rel="noopener">:image</a></td>
-<td align="left">$(“:image”)</td>
-<td align="left">所有 type=”image” 的 <input> 元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_file.asp" target="_blank" rel="noopener">:file</a></td>
-<td align="left">$(“:file”)</td>
-<td align="left">所有 type=”file” 的 <input> 元素</td>
-</tr>
-<tr>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_enabled.asp" target="_blank" rel="noopener">:enabled</a></td>
-<td align="left">$(“:enabled”)</td>
-<td align="left">所有激活的 input 元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_disabled.asp" target="_blank" rel="noopener">:disabled</a></td>
-<td align="left">$(“:disabled”)</td>
-<td align="left">所有禁用的 input 元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_selected.asp" target="_blank" rel="noopener">:selected</a></td>
-<td align="left">$(“:selected”)</td>
-<td align="left">所有被选取的 input 元素</td>
-</tr>
-<tr>
-<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_checked.asp" target="_blank" rel="noopener">:checked</a></td>
-<td align="left">$(“:checked”)</td>
-<td align="left">所有被选中的 input 元素</td>
-</tr>
-</tbody></table>
-<h4 id="通配符范例"><a href="#通配符范例" class="headerlink" title="通配符范例"></a>通配符范例</h4><p>$(“input[id^=’code’]”);//id属性以code开始的所有input标签</p>
-<p>$(“input[id$=’code’]”);//id属性以code结束的所有input标签</p>
-<p>$(“input[id*=’code’]”);//id属性包含code的所有input标签</p>
-<p>$(“input[name^=’code’]”);//name属性以code开始的所有input标签</p>
-<p>$(“input[name$=’code’]”);//name属性以code结束的所有input标签</p>
-<p>$(“input[name*=’code’]”);//name属性包含code的所有input标签</p>
-<p>$(“input[name*=’code’]”).each(fuction()<br>{</p>
-<p>varsum=0;</p>
-<p>if($(this).val()!=””){</p>
-<p>sum=parseInt(sum)+parseInt($(this).val());</p>
-<p>}</p>
-<p>$(“#”).text(sum);</p>
-<p>})</p>
-<h4 id="更多的选择器实例"><a href="#更多的选择器实例" class="headerlink" title="更多的选择器实例"></a>更多的选择器实例</h4><table>
-<thead>
-<tr>
-<th align="left">语法</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">$(this)</td>
-<td align="left">当前 HTML 元素</td>
-</tr>
-<tr>
-<td align="left">$(“p”)</td>
-<td align="left">所有 <p> 元素</p></td>
-</tr>
-<tr>
-<td align="left">$(“p.intro”)</td>
-<td align="left">所有 class=”intro” 的 <p> 元素</p></td>
-</tr>
-<tr>
-<td align="left">$(“.intro”)</td>
-<td align="left">所有 class=”intro” 的元素</td>
-</tr>
-<tr>
-<td align="left">$(“#intro”)</td>
-<td align="left">id=”intro” 的元素</td>
-</tr>
-<tr>
-<td align="left">$(“ul li:first”)</td>
-<td align="left">每个 <ul> 的第一个 <li> 元素</li></ul></td>
-</tr>
-<tr>
-<td align="left">$(“[href$=’.jpg’]”)</td>
-<td align="left">所有带有以 “.jpg” 结尾的属性值的 href 属性</td>
-</tr>
-<tr>
-<td align="left">$(“div#intro .head”)</td>
-<td align="left">id=”intro” 的 <div> 元素中的所有 class=”head” 的元素</div></td>
-</tr>
-</tbody></table>
-
+<p>jQuery 元素选择器和属性选择器允许您通过标签名、属性名或内容对 HTML 元素进行选择。</p>
+<p>选择器允许您对 HTML 元素组或单个元素进行操作。</p>
+<p>在 HTML DOM 术语中：</p>
+<p>选择器允许您对 DOM 元素组或单个 DOM 节点进行操作。</p>
+<h4 id="jQuery-元素选择器"><a href="#jQuery-元素选择器" class="headerlink" title="jQuery 元素选择器"></a>jQuery 元素选择器</h4><p>jQuery 使用 CSS 选择器来选取 HTML 元素。</p>
+<p>$(“p”) 选取 </p><p> 元素。</p>
+<p>$(“p.intro”) 选取所有 class=”intro” 的 </p><p> 元素。</p>
+<p>$(“p#demo”) 选取所有 id=”demo” 的 </p><p> 元素。</p>
+<h4 id="jQuery-属性选择器"><a href="#jQuery-属性选择器" class="headerlink" title="jQuery 属性选择器"></a>jQuery 属性选择器</h4><p>jQuery 使用 XPath 表达式来选择带有给定属性的元素。</p>
+<p>$(“[href]”) 选取所有带有 href 属性的元素。</p>
+<p>$(“[href=’#’]”) 选取所有带有 href 值等于 “#” 的元素。</p>
+<p>$(“[href!=’#’]”) 选取所有带有 href 值不等于 “#” 的元素。</p>
+<p>$(“[href$=’.jpg’]”) 选取所有 href 值以 “.jpg” 结尾的元素。</p>
+<h4 id="jQuery-CSS-选择器"><a href="#jQuery-CSS-选择器" class="headerlink" title="jQuery CSS 选择器"></a>jQuery CSS 选择器</h4><p>jQuery CSS 选择器可用于改变 HTML 元素的 CSS 属性。</p>
+<p>下面的例子把所有 p 元素的背景颜色更改为红色：</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span><span class="string">"p"</span>).css(<span class="string">"background-color"</span>,<span class="string">"red"</span>);</span><br></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" href="/2021/09/30/学习技术/2021-09-30-Jquery选择器参考手册/#more">more >></a>
+    
     
 
     
@@ -1703,10 +1429,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
               </li>
              
@@ -1715,7 +1437,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1732,10 +1462,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
               </li>
              
               <li class="article-tag-list-item">

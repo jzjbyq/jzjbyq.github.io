@@ -9,18 +9,18 @@
   <title>Jquery选择器参考手册 | AJian的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="完整教程查看 https://www.w3school.com.cn/jquery/index.asp jQuery 参考手册 - 选择器   选择器 实例 选取    * $(“*”) 所有元素   #id $(“#lastname”) id=”lastname” 的元素   .class $(“.intro”) 所有 class=”intro” 的元素   element $(“p”) 所有">
+  <meta name="description" content="完整教程查看 https://www.w3school.com.cn/jquery/index.asp jQuery 元素选择器和属性选择器允许您通过标签名、属性名或内容对 HTML 元素进行选择。 选择器允许您对 HTML 元素组或单个元素进行操作。 在 HTML DOM 术语中： 选择器允许您对 DOM 元素组或单个 DOM 节点进行操作。 jQuery 元素选择器jQuery 使用 CSS">
 <meta name="keywords" content="学习技术">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jquery选择器参考手册">
 <meta property="og:url" content="https://ajian.xyz/2021/09/30/学习技术/2021-09-30-Jquery选择器参考手册/index.html">
 <meta property="og:site_name" content="AJian的Blog">
-<meta property="og:description" content="完整教程查看 https://www.w3school.com.cn/jquery/index.asp jQuery 参考手册 - 选择器   选择器 实例 选取    * $(“*”) 所有元素   #id $(“#lastname”) id=”lastname” 的元素   .class $(“.intro”) 所有 class=”intro” 的元素   element $(“p”) 所有">
+<meta property="og:description" content="完整教程查看 https://www.w3school.com.cn/jquery/index.asp jQuery 元素选择器和属性选择器允许您通过标签名、属性名或内容对 HTML 元素进行选择。 选择器允许您对 HTML 元素组或单个元素进行操作。 在 HTML DOM 术语中： 选择器允许您对 DOM 元素组或单个 DOM 节点进行操作。 jQuery 元素选择器jQuery 使用 CSS">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-09-30T07:43:57.172Z">
+<meta property="og:updated_time" content="2021-09-30T08:46:27.985Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jquery选择器参考手册">
-<meta name="twitter:description" content="完整教程查看 https://www.w3school.com.cn/jquery/index.asp jQuery 参考手册 - 选择器   选择器 实例 选取    * $(“*”) 所有元素   #id $(“#lastname”) id=”lastname” 的元素   .class $(“.intro”) 所有 class=”intro” 的元素   element $(“p”) 所有">
+<meta name="twitter:description" content="完整教程查看 https://www.w3school.com.cn/jquery/index.asp jQuery 元素选择器和属性选择器允许您通过标签名、属性名或内容对 HTML 元素进行选择。 选择器允许您对 HTML 元素组或单个元素进行操作。 在 HTML DOM 术语中： 选择器允许您对 DOM 元素组或单个 DOM 节点进行操作。 jQuery 元素选择器jQuery 使用 CSS">
   
     <link rel="alternative" href="/atom.xml" title="AJian的Blog" type="application/atom+xml">
   
@@ -222,7 +222,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">638字</span>
+      <span class="post-count">898字</span>
     </span>
   </span>
 
@@ -231,7 +231,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
+      <span class="post-count">3分</span>
     </span>
   </span>
 </div>
@@ -243,6 +243,25 @@
   <div class="article-entry" itemprop="articleBody">
     
     <p><strong>完整教程查看 <a href="https://www.w3school.com.cn/jquery/index.asp" target="_blank" rel="noopener">https://www.w3school.com.cn/jquery/index.asp</a></strong></p>
+<p>jQuery 元素选择器和属性选择器允许您通过标签名、属性名或内容对 HTML 元素进行选择。</p>
+<p>选择器允许您对 HTML 元素组或单个元素进行操作。</p>
+<p>在 HTML DOM 术语中：</p>
+<p>选择器允许您对 DOM 元素组或单个 DOM 节点进行操作。</p>
+<h4 id="jQuery-元素选择器"><a href="#jQuery-元素选择器" class="headerlink" title="jQuery 元素选择器"></a>jQuery 元素选择器</h4><p>jQuery 使用 CSS 选择器来选取 HTML 元素。</p>
+<p>$(“p”) 选取 </p><p> 元素。</p>
+<p>$(“p.intro”) 选取所有 class=”intro” 的 </p><p> 元素。</p>
+<p>$(“p#demo”) 选取所有 id=”demo” 的 </p><p> 元素。</p>
+<h4 id="jQuery-属性选择器"><a href="#jQuery-属性选择器" class="headerlink" title="jQuery 属性选择器"></a>jQuery 属性选择器</h4><p>jQuery 使用 XPath 表达式来选择带有给定属性的元素。</p>
+<p>$(“[href]”) 选取所有带有 href 属性的元素。</p>
+<p>$(“[href=’#’]”) 选取所有带有 href 值等于 “#” 的元素。</p>
+<p>$(“[href!=’#’]”) 选取所有带有 href 值不等于 “#” 的元素。</p>
+<p>$(“[href$=’.jpg’]”) 选取所有 href 值以 “.jpg” 结尾的元素。</p>
+<h4 id="jQuery-CSS-选择器"><a href="#jQuery-CSS-选择器" class="headerlink" title="jQuery CSS 选择器"></a>jQuery CSS 选择器</h4><p>jQuery CSS 选择器可用于改变 HTML 元素的 CSS 属性。</p>
+<p>下面的例子把所有 p 元素的背景颜色更改为红色：</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$(</span><span class="string">"p"</span>).css(<span class="string">"background-color"</span>,<span class="string">"red"</span>);</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
 <h4 id="jQuery-参考手册-选择器"><a href="#jQuery-参考手册-选择器" class="headerlink" title="jQuery 参考手册 - 选择器"></a>jQuery 参考手册 - 选择器</h4><table>
 <thead>
 <tr>
@@ -648,7 +667,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#jQuery-参考手册-选择器"><span class="toc-number">1.</span> <span class="toc-text">jQuery 参考手册 - 选择器</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number"></span> <span class="toc-text"> - </span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">0.0.1.</span> <span class="toc-text"></span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通配符范例"><span class="toc-number">1.</span> <span class="toc-text">通配符范例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更多的选择器实例"><span class="toc-number">2.</span> <span class="toc-text">更多的选择器实例</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#jQuery-元素选择器"><span class="toc-number">1.</span> <span class="toc-text">jQuery 元素选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jQuery-属性选择器"><span class="toc-number">2.</span> <span class="toc-text">jQuery 属性选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jQuery-CSS-选择器"><span class="toc-number">3.</span> <span class="toc-text">jQuery CSS 选择器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例"><span class="toc-number">4.</span> <span class="toc-text">实例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jQuery-参考手册-选择器"><span class="toc-number">5.</span> <span class="toc-text">jQuery 参考手册 - 选择器</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number"></span> <span class="toc-text"> - </span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#null"><span class="toc-number">0.0.1.</span> <span class="toc-text"></span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#通配符范例"><span class="toc-number">1.</span> <span class="toc-text">通配符范例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更多的选择器实例"><span class="toc-number">2.</span> <span class="toc-text">更多的选择器实例</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -819,10 +838,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
               </li>
              
@@ -831,7 +846,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -848,10 +871,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
               </li>
              
               <li class="article-tag-list-item">
