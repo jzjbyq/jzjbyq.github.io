@@ -193,6 +193,107 @@
             
 
   
+    <article id="post-学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/08/17/学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误/" target="_blank">SecureCRT使用秘钥登录报libgssapi.so错误</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/08/17/学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误/" class="archive-article-date">
+        <time datetime="2021-08-17T02:23:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-17</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>当SecureCRT使用私钥连接远端计算机时，报libgssapi.so的错误，测试不影响使用，但是会影响连接时对该文件的判断，连接上的延迟会高一些。那么本文就是介绍解决这个弹窗的一个方法。</p>
+<h1 id><a href="#" class="headerlink" title></a><img src="https://i.loli.net/2021/08/17/MSI7KHvY8VB2AbW.png" alt="01"></h1><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#检查是否有libgssapi的相关信息</span></span><br><span class="line">ls -l /usr/<span class="class"><span class="keyword">lib</span>/<span class="title">x86_64</span>-<span class="title">linux</span>-<span class="title">gnu</span> |<span class="title">grep</span> <span class="title">libgssapi</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#如果有，可以看到如下信息，跳过安装 libkrb5-dev 直接创建软链接</span><br><span class="line">lrwxrwxrwx  <span class="number">1</span> root root        <span class="number">26</span> <span class="number">12</span>月 <span class="number">17</span>  <span class="number">2020</span> libgssapi_krb5.so -&gt; mit-krb5/libgssapi_krb5.so</span><br><span class="line">lrwxrwxrwx  <span class="number">1</span> root root        <span class="number">21</span> <span class="number">12</span>月 <span class="number">17</span>  <span class="number">2020</span> libgssapi_krb5.so<span class="number">.2</span> -&gt; libgssapi_krb5.so<span class="number">.2</span><span class="number">.2</span></span><br><span class="line">-rw-r--r--  <span class="number">1</span> root root    <span class="number">309744</span> <span class="number">12</span>月 <span class="number">17</span>  <span class="number">2020</span> libgssapi_krb5.so<span class="number">.2</span><span class="number">.2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#安装 libkrb5-<span class="built_in">dev</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> install libkrb5-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建软连接</span></span><br><span class="line">cd /usr/<span class="class"><span class="keyword">lib</span>/<span class="title">x86_64</span>-<span class="title">linux</span>-<span class="title">gnu</span></span></span><br><span class="line">sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so</span><br></pre></td></tr></table></figure>
+
+<p>如此打开的时候就不会再跳提示了。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/08/17/学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+  
     <article id="post-学习技术/2021-08-16-UOS常见问题记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -579,11 +680,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据库工具</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">数据库工具</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
         		</li>
       		
 		</ul>
@@ -1142,130 +1243,6 @@
 
 
   
-    <article id="post-学习技术/2021-07-21-mysql忘记密码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/07/21/学习技术/2021-07-21-mysql忘记密码/" target="_blank">mysql忘记密码后的补救操作</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/07/21/学习技术/2021-07-21-mysql忘记密码/" class="archive-article-date">
-        <time datetime="2021-07-21T01:42:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>​        维护的数据库多了，总会遇到不清楚管理员密码的时候，这个时候需要临时绕过登陆修改密码或额外创建访问账户，收集了网上的一些资料可以方便操作。</p>
-<p>以下第一步和第二步是两种跳过方式，任选其一。</p>
-<p>1、修改my.ini完成绕过登陆</p>
-<p>​        在my.ini的[mysqld]节点内添加,修改完成后，重启mysql服务即可生效</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">skip-<span class="keyword">grant</span>-<span class="keyword">tables</span></span><br></pre></td></tr></table></figure>
-
-<p>2、使用启动服务参数绕过身份检测。（需要先停止mysql服务，以下边的命令进行启动）</p>
-<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">mysqld</span> --<span class="comment">console</span> --<span class="comment">skip</span><span class="literal">-</span><span class="comment">grant</span><span class="literal">-</span><span class="comment">tables</span> --<span class="comment">shared</span><span class="literal">-</span><span class="comment">memory</span></span><br></pre></td></tr></table></figure>
-
-<p>3、然后保存文件，重启mysql服务，就可以使用;如果默认端口号变更，使用 -P 端口号 进行登陆</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot</span><br><span class="line">mysql -uroot -P <span class="number">13306</span></span><br></pre></td></tr></table></figure>
-
-<p>4、登陆完成后，这个时候我们修改密码或创建新的账户时会提示权限不足，需要先刷新操作权限</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">flush</span> <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
-
-<p>5、然后进行密码修改,例如将用户 root 的密码修改为 newpassword,mysql8以上使用第二行命令进行操作。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> <span class="keyword">password</span>=<span class="keyword">password</span>(<span class="string">'newpassword'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span><br><span class="line"><span class="keyword">update</span> mysql.user <span class="keyword">set</span> authentication_string=<span class="keyword">password</span>(<span class="string">'newpassword'</span>) <span class="keyword">where</span> <span class="keyword">user</span>=<span class="string">'root'</span>;</span><br></pre></td></tr></table></figure>
-
-<p>修改完成后需要再次刷新操作权限,重复第4步骤</p>
-<p>6、添加新的账户,将 库名 替换为要授权访问的库名称，.* 代表允许访问该库名下所有的表,’%’表示允许任意网络进行访问，如果只允许本机访问，可设置为’localhost’，grant select代表只允许查询，不允许修改。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span> <span class="keyword">on</span> 库名.* <span class="keyword">to</span> newuser@<span class="string">'%'</span> <span class="keyword">identified</span> <span class="keyword">by</span> <span class="string">'password'</span>;</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/类别//" class="article-tag-list-link color3">类别</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/21/学习技术/2021-07-21-mysql忘记密码/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1420,30 +1397,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
               </li>
              
@@ -1453,6 +1406,30 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -302,6 +302,125 @@
 
 
   
+    <article id="post-学习技术/2021-10-12-在UOS中使用SecureCRT一键连接天融信管理的服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/10/12/学习技术/2021-10-12-在UOS中使用SecureCRT一键连接天融信管理的服务器/" target="_blank">在UOS中使用SecureCRT一键连接天融信管理的服务器</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/10/12/学习技术/2021-10-12-在UOS中使用SecureCRT一键连接天融信管理的服务器/" class="archive-article-date">
+        <time datetime="2021-10-12T03:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-12</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>运维的客户有一家用的天融信，连接其中的服务器需要安装单点登陆工具，而且必须使用IE，而我们使用UOS第一没法安装单点登陆工具，第二没有IE(虽然有wine版的，但是也没什么好办法安装各种IE插件不是)</p>
+<p>通过分析页面内容，发现通过随机生成的验证码，生成连接参数再调用本地的如putty、SecureCRT等工具进行连接，那么如何使这个步骤由自己决定如何调用呢？想来想去，使用油猴插件应该可以完成验证码的获取和本地应用的调用。</p>
+<p>通过点击页面上的快速登陆按钮，分析找到对应的调用位置</p>
+<p><img src="https://i.loli.net/2021/10/12/trwONu6KhLxWRdX.png" alt="img"></p>
+<p>我这边分配的是调用本地的putty进行连接，所以定位到putty调用的地方</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">putty</span><span class="params">(meta)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> fort_ip = getFortIp(meta.fortIp);</span><br><span class="line">	<span class="keyword">if</span> (fort_ip == <span class="literal">null</span>) &#123;</span><br><span class="line">		alert(<span class="string">"单点登录错误: FORT_IP ERR"</span>);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//sso.run("sso_putty.exe","-ssh -P 22 -pw ROOTROOT root@192.168.23.104");</span></span><br><span class="line">	<span class="keyword">var</span> sso_url = <span class="string">"-ssh -P 22 -pw "</span>+ meta.sessionId +<span class="string">" user@"</span> + fort_ip;</span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		sso.run(<span class="string">"sso_putty.exe"</span>, sso_url);</span><br><span class="line">	&#125; <span class="keyword">catch</span>(err) &#123;</span><br><span class="line">		alert(<span class="string">"客户端控件未安装或被禁用!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我使用的edge浏览器，正常点击，会提示</p>
+<p><img src="https://i.loli.net/2021/10/12/MB2YTAydIlKL9ws.png" alt="image-20211012104001001"></p>
+<p>修改这个返回信息为调用过程:</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function putty(<span class="keyword">meta</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> fort_ip = getFortIp(<span class="keyword">meta</span>.fortIp);</span><br><span class="line">            <span class="keyword">if</span> (fort_ip == null) &#123;</span><br><span class="line">                alert(<span class="string">"单点登录错误: FORT_IP ERR"</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//sso.run("sso_putty.exe","-ssh -P 22 -pw ROOTROOT root@192.168.1.2");</span></span><br><span class="line">            <span class="keyword">var</span> sso_url = <span class="string">"-ssh -P 22 -pw "</span>+ <span class="keyword">meta</span>.sessionId +<span class="string">" user@"</span> + fort_ip;</span><br><span class="line">            try&#123;</span><br><span class="line">                sso.<span class="keyword">run</span>(<span class="string">"sso_putty.exe"</span>, sso_url);</span><br><span class="line">            &#125; catch(<span class="keyword">err</span>) &#123;</span><br><span class="line">            <span class="comment">//根据上边的参数格式可以看出 meta.sessionId就是验证码信息================</span></span><br><span class="line">                <span class="keyword">var</span> randompwd=<span class="string">""</span>;</span><br><span class="line">                <span class="keyword">var</span> seorun=<span class="string">""</span>;</span><br><span class="line">                randompwd = <span class="keyword">meta</span>.sessionId;<span class="comment">//获取验证码内容</span></span><br><span class="line">                <span class="comment">//生成命令行内容并进行base64加密(加密方式可以自选，主要是因为window.open调用时内容不能有空格)</span></span><br><span class="line">                seorun=<span class="keyword">window</span>.btoa(<span class="string">"ssh2 user@`+window.document.domain+` /P 22 /PASSWORD "</span>+randompwd);</span><br><span class="line">                <span class="comment">//与本地mime协议进行通讯</span></span><br><span class="line">                <span class="keyword">window</span>.<span class="keyword">open</span>('x-ssh:<span class="comment">//'+seorun);</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>到这里就完成了验证码提取与参数调用本地应用的内容。</p>
+<p>完整脚本内容可以看 <a href="https://bbs.tampermonkey.net.cn/forum.php?mod=viewthread&tid=1098" target="_blank" rel="noopener">这里</a> 通过浏览器安装 <a href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd?hl=zh-CN" target="_blank" rel="noopener">油猴</a> 或 <a href="https://docs.scriptcat.org/" target="_blank" rel="noopener">脚本猫</a> 导入脚本即可使用</p>
+<p><strong>备注：该脚本对应的是天融信不支持Linux客户端的设备版本，具体版本号未知，因为我也只有访问授权的基础页面，看不到相关版本信息，联系官方客服通过界面也无法判断具体版本。</strong></p>
+<p>附录内容：</p>
+<p>通过js调用本地应用，需要注册本地应用通讯协议</p>
+<p>1、创建并编辑 /usr/share/applications/x-ssh.desktop 文件</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo touch <span class="regexp">/usr/</span>share<span class="regexp">/applications/</span>x-ssh.desktop</span><br><span class="line">sudo chmod +x <span class="regexp">/usr/</span>share<span class="regexp">/applications/</span>x-ssh.desktop</span><br><span class="line">sudo deepin-editor <span class="regexp">/usr/</span>share<span class="regexp">/applications/</span>x-ssh.desktop</span><br></pre></td></tr></table></figure>
+
+<p>将下边内容粘贴到文件内</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Desktop Entry]</span></span><br><span class="line"><span class="attr">Name</span>=x-ssh</span><br><span class="line"><span class="attr">Comment</span>=local ssh trans</span><br><span class="line"><span class="attr">Exec</span>=x-ssh %u</span><br><span class="line"><span class="attr">Icon</span>=</span><br><span class="line"><span class="attr">StartupNotify</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">Terminal</span>=<span class="literal">false</span></span><br><span class="line"><span class="attr">Type</span>=Application</span><br><span class="line"><span class="attr">Categories</span>=Network<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">Actions</span>=Window<span class="comment">;</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Desktop Action Window]</span></span><br><span class="line"><span class="attr">Name</span>=New Window</span><br><span class="line"><span class="attr">Exec</span>=x-ssh %u</span><br><span class="line"><span class="attr">OnlyShowIn</span>=Unity<span class="comment">;</span></span><br><span class="line"><span class="attr">MimeType</span>=x-scheme-handler/x-ssh</span><br></pre></td></tr></table></figure>
+
+<p>2、创建 x-ssh.sh 执行文件，将获取到的参数进行base64解码还原，再调用给SecureCRT</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$1</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">    seorun=`<span class="built_in">echo</span> <span class="variable">$&#123;1/x-ssh:\/\/&#125;</span>|base64 -d`</span><br><span class="line">    /usr/bin/SecureCRT <span class="variable">$seorun</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>3、.sh文件无法被页面的x-ssh://唤起，需要生成二进制文件</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#安装 shc 如果已安装可以跳过</span><br><span class="line">sudo apt install shc</span><br><span class="line"></span><br><span class="line">#生成二进制文件,生成的文件是 <span class="keyword">x</span>-ssh.sh.<span class="keyword">x</span></span><br><span class="line">shc -r -f <span class="keyword">x</span>-ssh.sh</span><br><span class="line"></span><br><span class="line">#移动二进制文件到 /usr/bin</span><br><span class="line">sudo mv <span class="keyword">x</span>-ssh.sh.<span class="keyword">x</span> /usr/bin/<span class="keyword">x</span>-ssh</span><br><span class="line">#赋予执行权限</span><br><span class="line">sudo chmod +<span class="keyword">x</span> /usr/bin/<span class="keyword">x</span>-ssh</span><br></pre></td></tr></table></figure>
+
+<p>4、注册 名为 x-ssh 的应用协议</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xdg-mime<span class="built_in"> default </span>x-ssh.desktop x-scheme-handler/x-ssh</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/10/12/学习技术/2021-10-12-在UOS中使用SecureCRT一键连接天融信管理的服务器/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+  
     <article id="post-学习技术/2021-09-30-Jquery选择器参考手册" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1174,107 +1293,6 @@ function ay(array,val){
 
 
   
-    <article id="post-学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/08/17/学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误/" target="_blank">SecureCRT使用秘钥登录报libgssapi.so错误</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/08/17/学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误/" class="archive-article-date">
-        <time datetime="2021-08-17T02:23:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-17</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>当SecureCRT使用私钥连接远端计算机时，报libgssapi.so的错误，测试不影响使用，但是会影响连接时对该文件的判断，连接上的延迟会高一些。那么本文就是介绍解决这个弹窗的一个方法。</p>
-<h1 id><a href="#" class="headerlink" title></a><img src="https://i.loli.net/2021/08/17/MSI7KHvY8VB2AbW.png" alt="01"></h1><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#检查是否有libgssapi的相关信息</span></span><br><span class="line">ls -l /usr/<span class="class"><span class="keyword">lib</span>/<span class="title">x86_64</span>-<span class="title">linux</span>-<span class="title">gnu</span> |<span class="title">grep</span> <span class="title">libgssapi</span></span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#如果有，可以看到如下信息，跳过安装 libkrb5-dev 直接创建软链接</span><br><span class="line">lrwxrwxrwx  <span class="number">1</span> root root        <span class="number">26</span> <span class="number">12</span>月 <span class="number">17</span>  <span class="number">2020</span> libgssapi_krb5.so -&gt; mit-krb5/libgssapi_krb5.so</span><br><span class="line">lrwxrwxrwx  <span class="number">1</span> root root        <span class="number">21</span> <span class="number">12</span>月 <span class="number">17</span>  <span class="number">2020</span> libgssapi_krb5.so<span class="number">.2</span> -&gt; libgssapi_krb5.so<span class="number">.2</span><span class="number">.2</span></span><br><span class="line">-rw-r--r--  <span class="number">1</span> root root    <span class="number">309744</span> <span class="number">12</span>月 <span class="number">17</span>  <span class="number">2020</span> libgssapi_krb5.so<span class="number">.2</span><span class="number">.2</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#安装 libkrb5-<span class="built_in">dev</span></span><br><span class="line">sudo apt-<span class="built_in">get</span> install libkrb5-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建软连接</span></span><br><span class="line">cd /usr/<span class="class"><span class="keyword">lib</span>/<span class="title">x86_64</span>-<span class="title">linux</span>-<span class="title">gnu</span></span></span><br><span class="line">sudo ln -s mit-krb5/libgssapi_krb5.so libgssapi.so</span><br></pre></td></tr></table></figure>
-
-<p>如此打开的时候就不会再跳提示了。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/08/17/学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1429,30 +1447,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
               </li>
              
@@ -1462,6 +1456,30 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
               </li>
              
               <li class="article-tag-list-item">
