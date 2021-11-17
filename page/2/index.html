@@ -193,6 +193,115 @@
             
 
   
+    <article id="post-学习技术/2021-08-26-Postgre忘记密码后如何处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/08/26/学习技术/2021-08-26-Postgre忘记密码后如何处理/" target="_blank">Postgre忘记密码后如何处理</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/08/26/学习技术/2021-08-26-Postgre忘记密码后如何处理/" class="archive-article-date">
+        <time datetime="2021-08-26T07:11:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>1、停止服务<br>2、找到数据库data目录下的 pg_hba.conf 文件<br>3、打开编辑内容，host后边的 md5 修改为 trust。(下列所有步骤操作完成后记得恢复。)</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># <span class="keyword">TYPE</span>  DATABASE        USER            ADDRESS                 <span class="function"><span class="keyword">METHOD</span></span></span><br><span class="line"><span class="function"># <span class="title">IPv4</span> <span class="title">local</span> <span class="title">connections</span>:</span></span><br><span class="line">host    all             all             <span class="number">127.0</span>.<span class="number">0.1</span>/<span class="number">32</span>            trust</span><br><span class="line"># IPv6 local connections:</span><br><span class="line">host    all             all             ::<span class="number">1</span>/<span class="number">128</span>                 trust</span><br><span class="line"># Allow replication connections <span class="keyword">from</span> localhost, <span class="keyword">by</span> a user <span class="keyword">with</span> the</span><br><span class="line"># replication privilege.</span><br><span class="line">#host    replication     all             <span class="number">127.0</span>.<span class="number">0.1</span>/<span class="number">32</span>            md5</span><br><span class="line">#host    replication     all             ::<span class="number">1</span>/<span class="number">128</span>                 md5</span><br></pre></td></tr></table></figure>
+
+<p>4、启动服务，然后输入下边命令可直接进入到命令行模式</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">psql -U postgres</span></span><br></pre></td></tr></table></figure>
+
+<p>5、修改默认用户 Postgres 的密码</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER<span class="built_in"> USER </span>Postgres WITH PASSWORD <span class="string">'&lt;newpassword&gt;'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>6、添加新用户</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE<span class="built_in"> USER </span>my_user WITH PASSWORD <span class="string">'123456'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>7、新用户赋权</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">USAGE</span> <span class="keyword">ON</span> <span class="keyword">SCHEMA</span> <span class="keyword">PUBLIC</span> <span class="keyword">TO</span> my_user;</span><br></pre></td></tr></table></figure>
+
+<p>8、使用新用户登录</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">psql -U my_user -W postgres</span></span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/08/26/学习技术/2021-08-26-Postgre忘记密码后如何处理/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+  
     <article id="post-学习技术/2021-08-17-SecureCRT使用秘钥登录报libgssapi.so错误" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1150,99 +1259,6 @@
 
 
   
-    <article id="post-资源分享/2021-07-22-在线直播web版" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/07/22/资源分享/2021-07-22-在线直播web版/" target="_blank">在线直播web版</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/07/22/资源分享/2021-07-22-在线直播web版/" class="archive-article-date">
-        <time datetime="2021-07-22T03:45:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-22</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>分享一个在线电视直播的网站</p>
-<p><a href="http://iptv.xiner.store/" target="_blank" rel="noopener">在线电视直播</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">在线观看直播</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/22/资源分享/2021-07-22-在线直播web版/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1417,15 +1433,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1433,7 +1441,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
               </li>
             
             <div class="clearfix"></div>

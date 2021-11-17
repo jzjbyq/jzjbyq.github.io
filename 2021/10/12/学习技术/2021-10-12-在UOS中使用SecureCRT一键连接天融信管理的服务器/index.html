@@ -19,7 +19,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2021/10/12/trwONu6KhLxWRdX.png">
 <meta property="og:image" content="https://i.loli.net/2021/10/12/MB2YTAydIlKL9ws.png">
-<meta property="og:updated_time" content="2021-10-12T03:10:46.718Z">
+<meta property="og:updated_time" content="2021-10-12T03:24:23.577Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在UOS中使用SecureCRT一键连接天融信管理的服务器">
 <meta name="twitter:description" content="运维的客户有一家用的天融信，连接其中的服务器需要安装单点登陆工具，而且必须使用IE，而我们使用UOS第一没法安装单点登陆工具，第二没有IE(虽然有wine版的，但是也没什么好办法安装各种IE插件不是) 通过分析页面内容，发现通过随机生成的验证码，生成连接参数再调用本地的如putty、SecureCRT等工具进行连接，那么如何使这个步骤由自己决定如何调用呢？想来想去，使用油猴插件应该可以完成验证码的">
@@ -258,7 +258,7 @@
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function putty(<span class="keyword">meta</span>) &#123;</span><br><span class="line">            <span class="keyword">var</span> fort_ip = getFortIp(<span class="keyword">meta</span>.fortIp);</span><br><span class="line">            <span class="keyword">if</span> (fort_ip == null) &#123;</span><br><span class="line">                alert(<span class="string">"单点登录错误: FORT_IP ERR"</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//sso.run("sso_putty.exe","-ssh -P 22 -pw ROOTROOT root@192.168.1.2");</span></span><br><span class="line">            <span class="keyword">var</span> sso_url = <span class="string">"-ssh -P 22 -pw "</span>+ <span class="keyword">meta</span>.sessionId +<span class="string">" user@"</span> + fort_ip;</span><br><span class="line">            try&#123;</span><br><span class="line">                sso.<span class="keyword">run</span>(<span class="string">"sso_putty.exe"</span>, sso_url);</span><br><span class="line">            &#125; catch(<span class="keyword">err</span>) &#123;</span><br><span class="line">            <span class="comment">//根据上边的参数格式可以看出 meta.sessionId就是验证码信息================</span></span><br><span class="line">                <span class="keyword">var</span> randompwd=<span class="string">""</span>;</span><br><span class="line">                <span class="keyword">var</span> seorun=<span class="string">""</span>;</span><br><span class="line">                randompwd = <span class="keyword">meta</span>.sessionId;<span class="comment">//获取验证码内容</span></span><br><span class="line">                <span class="comment">//生成命令行内容并进行base64加密(加密方式可以自选，主要是因为window.open调用时内容不能有空格)</span></span><br><span class="line">                seorun=<span class="keyword">window</span>.btoa(<span class="string">"ssh2 user@`+window.document.domain+` /P 22 /PASSWORD "</span>+randompwd);</span><br><span class="line">                <span class="comment">//与本地mime协议进行通讯</span></span><br><span class="line">                <span class="keyword">window</span>.<span class="keyword">open</span>('x-ssh:<span class="comment">//'+seorun);</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 
 <p>到这里就完成了验证码提取与参数调用本地应用的内容。</p>
-<p>完整脚本内容可以看 <a href="https://bbs.tampermonkey.net.cn/forum.php?mod=viewthread&tid=1098" target="_blank" rel="noopener">这里</a> 通过浏览器安装 <a href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd?hl=zh-CN" target="_blank" rel="noopener">油猴</a> 或 <a href="https://docs.scriptcat.org/" target="_blank" rel="noopener">脚本猫</a> 导入脚本即可使用</p>
+<p>完整脚本内容可以看 <a href="https://bbs.tampermonkey.net.cn/forum.php?mod=viewthread&tid=1098" target="_blank" rel="noopener">这里</a> 通过浏览器安装 <a href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd?hl=zh-CN" target="_blank" rel="noopener">油猴</a>  或 <a href="https://docs.scriptcat.org/" target="_blank" rel="noopener">脚本猫</a> 导入脚本即可使用</p>
 <p><strong>备注：该脚本对应的是天融信不支持Linux客户端的设备版本，具体版本号未知，因为我也只有访问授权的基础页面，看不到相关版本信息，联系官方客服通过界面也无法判断具体版本。</strong></p>
 <p>附录内容：</p>
 <p>通过js调用本地应用，需要注册本地应用通讯协议</p>
@@ -360,6 +360,15 @@
 
 
 <nav id="article-nav">
+  
+    <a href="/2021/11/17/学习技术/2021-11-17-OracleCLOB转换BLOB方法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          OracleCLOB转换BLOB方法
+        
+      </div>
+    </a>
   
   
     <a href="/2021/09/30/学习技术/2021-09-30-Jquery选择器参考手册/" id="article-nav-older" class="article-nav-link-wrap">
@@ -568,15 +577,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,7 +585,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
               </li>
             
             <div class="clearfix"></div>
