@@ -6,19 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ajian.xyz">
-  <title>Archives | AJian的Blog</title>
+  <title>oracle数据库文件移动方法 | AJian的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="分享一些网络资源">
-<meta property="og:type" content="website">
-<meta property="og:title" content="AJian的Blog">
-<meta property="og:url" content="https://ajian.xyz/archives/index.html">
+  <meta name="description" content="因业务需求，需要将Oracle数据库的部分文件转移到新的位置 需要操作步骤如下 1、停止所有Oracle数据库的连接和业务程序 2、将需要移动的文件表空间设置offline(需要system用户登陆) 1alter tablespace [tablesspacename] offline;  3、移动文件到新位置 4、设置新数据文件路径(需要system用户登陆) 1alter tablespac">
+<meta name="keywords" content="学习技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="oracle数据库文件移动方法">
+<meta property="og:url" content="https://ajian.xyz/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/index.html">
 <meta property="og:site_name" content="AJian的Blog">
-<meta property="og:description" content="分享一些网络资源">
+<meta property="og:description" content="因业务需求，需要将Oracle数据库的部分文件转移到新的位置 需要操作步骤如下 1、停止所有Oracle数据库的连接和业务程序 2、将需要移动的文件表空间设置offline(需要system用户登陆) 1alter tablespace [tablesspacename] offline;  3、移动文件到新位置 4、设置新数据文件路径(需要system用户登陆) 1alter tablespac">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2022-01-14T08:42:48.746Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AJian的Blog">
-<meta name="twitter:description" content="分享一些网络资源">
+<meta name="twitter:title" content="oracle数据库文件移动方法">
+<meta name="twitter:description" content="因业务需求，需要将Oracle数据库的部分文件转移到新的位置 需要操作步骤如下 1、停止所有Oracle数据库的连接和业务程序 2、将需要移动的文件表空间设置offline(需要system用户登陆) 1alter tablespace [tablesspacename] offline;  3、移动文件到新位置 4、设置新数据文件路径(需要system用户登陆) 1alter tablespac">
   
     <link rel="alternative" href="/atom.xml" title="AJian的Blog" type="application/atom+xml">
   
@@ -187,41 +189,136 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-学习技术/2022-01-14-oracle数据库文件移动方法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+    <h1 class="article-title" itemprop="name">
+      oracle数据库文件移动方法
+    </h1>
+  
+
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/" class="archive-article-date">
         <time datetime="2022-01-14T08:34:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
 </a>
 
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">150字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>因业务需求，需要将Oracle数据库的部分文件转移到新的位置</p>
+<p>需要操作步骤如下</p>
+<p>1、停止所有Oracle数据库的连接和业务程序</p>
+<p>2、将需要移动的文件表空间设置offline(需要system用户登陆)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> [tablesspacename] <span class="keyword">offline</span>;</span><br></pre></td></tr></table></figure>
+
+<p>3、移动文件到新位置</p>
+<p>4、设置新数据文件路径(需要system用户登陆)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> [tablesspacename] <span class="keyword">rename</span> <span class="keyword">datafile</span> <span class="string">'/data/oracle/oradata/orcl/datafile.dbf'</span> <span class="keyword">to</span> <span class="string">'/newpath/datafile.dbf'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>5、设置表空间online</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> [tablesspacename] onfline;</span><br></pre></td></tr></table></figure>
+
+<p>完成！</p>
+<p><strong>附录：</strong></p>
+<h5 id="查询表空间文件的路径"><a href="#查询表空间文件的路径" class="headerlink" title="查询表空间文件的路径"></a>查询表空间文件的路径</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> tablespace_name,file_name,online_status <span class="keyword">from</span> dba_data_files <span class="keyword">where</span> tablespace_name=<span class="string">'tablesspacename'</span>;</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://i.loli.net/2021/08/26/PVcwvtNAMUs1pXB.png">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="https://i.loli.net/2021/08/26/bQg21oLSzUI84OA.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/" target="_blank">oracle数据库文件移动方法</a>
-  
-    </h1>
-  
+      </a>
+    </div>
+    
 
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          阿健
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://ajian.xyz/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/" title="oracle数据库文件移动方法" target="_blank">https://ajian.xyz/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/</a>
+        </li>
+        <li>
+          <strong>版权声明： </strong>
+          本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow" target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+        </li>
+      </ul>
+    </div>
+    
 
-        <div class="article-info info-on-right">
-          
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -233,424 +330,57 @@
 		</ul>
 	</div>
 
-          
+    
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
+
+
+<nav id="article-nav">
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
+  
+    <a href="/2021/12/13/资源分享/2021-12-13-DSM算号器/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DSM算号器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/12/13/资源分享/2021-12-13-DSM算号器/" class="archive-article-date">
-        <time datetime="2021-12-13T03:50:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-13</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/12/13/资源分享/2021-12-13-DSM算号器/" target="_blank">DSM算号器</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/11/17/学习技术/2021-11-17-OracleCLOB转换BLOB方法/" class="archive-article-date">
-        <time datetime="2021-11-17T02:19:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/11/17/学习技术/2021-11-17-OracleCLOB转换BLOB方法/" target="_blank">OracleCLOB转换BLOB方法</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/12/学习技术/2021-10-12-在UOS中使用SecureCRT一键连接天融信管理的服务器/" class="archive-article-date">
-        <time datetime="2021-10-12T03:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-12</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/12/学习技术/2021-10-12-在UOS中使用SecureCRT一键连接天融信管理的服务器/" target="_blank">在UOS中使用SecureCRT一键连接天融信管理的服务器</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/09/30/学习技术/2021-09-30-Jquery选择器参考手册/" class="archive-article-date">
-        <time datetime="2021-09-30T07:37:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-30</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/09/30/学习技术/2021-09-30-Jquery选择器参考手册/" target="_blank">Jquery选择器参考手册</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/09/23/学习技术/2021-09-23-UOS将阿里云盘挂载到本地/" class="archive-article-date">
-        <time datetime="2021-09-23T02:38:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-23</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/09/23/学习技术/2021-09-23-UOS将阿里云盘挂载到本地/" target="_blank">UOS将阿里云盘挂载到本地</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/09/17/学习技术/2021-09-17-油猴插件屏蔽网页广告/" class="archive-article-date">
-        <time datetime="2021-09-17T03:12:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-17</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/09/17/学习技术/2021-09-17-油猴插件屏蔽网页广告/" target="_blank">油猴插件屏蔽网页广告</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/09/14/资源分享/2021-09-14-百家姓暗号/" class="archive-article-date">
-        <time datetime="2021-09-14T07:51:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-14</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/09/14/资源分享/2021-09-14-百家姓暗号/" target="_blank">百家姓暗号</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/08/27/学习技术/2021-08-27-DiskPart分区操作/" class="archive-article-date">
-        <time datetime="2021-08-27T09:48:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-27</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/08/27/学习技术/2021-08-27-DiskPart分区操作/" target="_blank">DiskPart分区操作</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/08/26/学习技术/2021-08-26-ElasticSearch启动报错ForLinux/" class="archive-article-date">
-        <time datetime="2021-08-26T07:26:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-26</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/08/26/学习技术/2021-08-26-ElasticSearch启动报错ForLinux/" target="_blank">ElasticSearch启动报错ForLinux</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -691,8 +421,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

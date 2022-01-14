@@ -193,6 +193,107 @@
             
 
   
+    <article id="post-学习技术/2021-08-26-ElasticSearch启动报错ForLinux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/08/26/学习技术/2021-08-26-ElasticSearch启动报错ForLinux/" target="_blank">ElasticSearch启动报错ForLinux</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/08/26/学习技术/2021-08-26-ElasticSearch启动报错ForLinux/" class="archive-article-date">
+        <time datetime="2021-08-26T07:26:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>解压版ElasticSearch在启动服务时经常遇到这样的报错信息</p>
+<img src="https://i.loli.net/2021/08/26/xESGJyNiqt5DfsF.png" alt="errorpng" style="zoom:67%;">
+
+<p>编辑 /etc/security/limits.conf，追加以下内容，内容前边的 * 号也需要复制到。</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">* </span>soft nofile 65536</span><br><span class="line"><span class="bullet">* </span>hard nofile 65536</span><br></pre></td></tr></table></figure>
+
+<p>然后在 /etc/sysctl.conf文件最后一行添加</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">vm.max_map_count</span>=<span class="number">262144</span></span><br></pre></td></tr></table></figure>
+
+<p>修改完成后需要重新登录用户生效。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/08/26/学习技术/2021-08-26-ElasticSearch启动报错ForLinux/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+  
     <article id="post-资源分享/2021-08-26-VMwarePro-16最新序列号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1156,140 +1257,6 @@
 
 
   
-    <article id="post-资源分享/2021-07-24-download-linux-iso" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/07/24/资源分享/2021-07-24-download-linux-iso/" target="_blank">Linux镜像下载</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/07/24/资源分享/2021-07-24-download-linux-iso/" class="archive-article-date">
-        <time datetime="2021-07-24T14:22:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-24</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Linux常用镜像下载地址</p>
-<table>
-<thead>
-<tr>
-<th>文件名</th>
-<th align="center">发布时间</th>
-<th align="center">HTTP</th>
-<th align="center">BT</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>ArchLinux-2021.08.01-x86_64.iso</td>
-<td align="center">2021-08</td>
-<td align="center"><a href="http://mirrors.163.com/archlinux/iso/2021.08.01/archlinux-2021.08.01-x86_64.iso" target="_blank" rel="noopener">下载</a></td>
-<td align="center">无</td>
-</tr>
-<tr>
-<td>uniontechos-desktop-21.0-home-beta5-amd64.iso</td>
-<td align="center">2021-06</td>
-<td align="center"><a href="https://cdimage-download.chinauos.com/home/uniontechos-desktop-21.0-home-beta5-amd64.iso" target="_blank" rel="noopener">下载</a></td>
-<td align="center">无</td>
-</tr>
-<tr>
-<td>uniontechos-desktop-21.0-home-amd64.iso</td>
-<td align="center">2021-09</td>
-<td align="center"><a href="https://cdimage-download.chinauos.com/home/uniontechos-desktop-21.0-home-amd64.iso" target="_blank" rel="noopener">下载</a></td>
-<td align="center">无</td>
-</tr>
-<tr>
-<td>CentOS-7-x86_64-DVD-2009.iso</td>
-<td align="center">2020-10</td>
-<td align="center"><a href="http://mirrors.aliyun.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2009.iso" target="_blank" rel="noopener">下载</a></td>
-<td align="center"><a href="http://mirrors.aliyun.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2009.torrent" target="_blank" rel="noopener">下载</a></td>
-</tr>
-<tr>
-<td>ubuntu-20.04.2.0-desktop-amd64.iso</td>
-<td align="center">2021-02</td>
-<td align="center"><a href="https://mirrors.dgut.edu.cn/ubuntu-releases/20.04.2.0/ubuntu-20.04.2.0-desktop-amd64.iso" target="_blank" rel="noopener">下载</a></td>
-<td align="center">无</td>
-</tr>
-</tbody></table>
-<p>本文下载链接来自 各官网 提供的原版镜像链接，仅限于学习、测试及实验。</p>
-<p>有任何版权问题可点击左边邮件通知，我会尽快处理。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">资源分享</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">系统镜像</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/24/资源分享/2021-07-24-download-linux-iso/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1304,7 +1271,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 阿健
+    		&copy; 2021-2022 阿健
     	</div>
       	<div class="footer-right">
 			
@@ -1444,22 +1411,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
               </li>
              
@@ -1481,6 +1432,22 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
             
             <div class="clearfix"></div>

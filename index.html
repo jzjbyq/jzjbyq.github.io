@@ -302,6 +302,110 @@
 
 
   
+    <article id="post-学习技术/2022-01-14-oracle数据库文件移动方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/" target="_blank">oracle数据库文件移动方法</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/" class="archive-article-date">
+        <time datetime="2022-01-14T08:34:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>因业务需求，需要将Oracle数据库的部分文件转移到新的位置</p>
+<p>需要操作步骤如下</p>
+<p>1、停止所有Oracle数据库的连接和业务程序</p>
+<p>2、将需要移动的文件表空间设置offline(需要system用户登陆)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> [tablesspacename] <span class="keyword">offline</span>;</span><br></pre></td></tr></table></figure>
+
+<p>3、移动文件到新位置</p>
+<p>4、设置新数据文件路径(需要system用户登陆)</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> [tablesspacename] <span class="keyword">rename</span> <span class="keyword">datafile</span> <span class="string">'/data/oracle/oradata/orcl/datafile.dbf'</span> <span class="keyword">to</span> <span class="string">'/newpath/datafile.dbf'</span>;</span><br></pre></td></tr></table></figure>
+
+<p>5、设置表空间online</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> [tablesspacename] onfline;</span><br></pre></td></tr></table></figure>
+
+<p>完成！</p>
+<p><strong>附录：</strong></p>
+<h5 id="查询表空间文件的路径"><a href="#查询表空间文件的路径" class="headerlink" title="查询表空间文件的路径"></a>查询表空间文件的路径</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> tablespace_name,file_name,online_status <span class="keyword">from</span> dba_data_files <span class="keyword">where</span> tablespace_name=<span class="string">'tablesspacename'</span>;</span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+  
     <article id="post-资源分享/2021-12-13-DSM算号器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1143,107 +1247,6 @@ function ay(array,val){
 
 
   
-    <article id="post-学习技术/2021-08-26-ElasticSearch启动报错ForLinux" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/08/26/学习技术/2021-08-26-ElasticSearch启动报错ForLinux/" target="_blank">ElasticSearch启动报错ForLinux</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/08/26/学习技术/2021-08-26-ElasticSearch启动报错ForLinux/" class="archive-article-date">
-        <time datetime="2021-08-26T07:26:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-26</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>解压版ElasticSearch在启动服务时经常遇到这样的报错信息</p>
-<img src="https://i.loli.net/2021/08/26/xESGJyNiqt5DfsF.png" alt="errorpng" style="zoom:67%;">
-
-<p>编辑 /etc/security/limits.conf，追加以下内容，内容前边的 * 号也需要复制到。</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">* </span>soft nofile 65536</span><br><span class="line"><span class="bullet">* </span>hard nofile 65536</span><br></pre></td></tr></table></figure>
-
-<p>然后在 /etc/sysctl.conf文件最后一行添加</p>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">vm.max_map_count</span>=<span class="number">262144</span></span><br></pre></td></tr></table></figure>
-
-<p>修改完成后需要重新登录用户生效。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/08/26/学习技术/2021-08-26-ElasticSearch启动报错ForLinux/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1258,7 +1261,7 @@ function ay(array,val){
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 阿健
+    		&copy; 2021-2022 阿健
     	</div>
       	<div class="footer-right">
 			
@@ -1398,22 +1401,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库工具</a>
               </li>
              
@@ -1435,6 +1422,22 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">音乐分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">手机软件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习技术</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
             
             <div class="clearfix"></div>
