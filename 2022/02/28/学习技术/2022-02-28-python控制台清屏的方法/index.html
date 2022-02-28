@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ajian.xyz">
-  <title>oracle数据库文件移动方法 | AJian的Blog</title>
+  <title>python控制台清屏的方法 | AJian的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="因业务需求，需要将Oracle数据库的部分文件转移到新的位置 需要操作步骤如下 1、停止所有Oracle数据库的连接和业务程序 2、将需要移动的文件表空间设置offline(需要system用户登陆) 1alter tablespace [tablesspacename] offline;  3、移动文件到新位置 4、设置新数据文件路径(需要system用户登陆) 1alter tablespac">
+  <meta name="description" content="本文资料来自：https://blog.csdn.net/u010037542/article/details/95735453 python实现控制台清屏方法，网上的资料大部分都是调用os.system()，这种方法可以实现，但是有两个比较致命的缺点：  Linux下和Windows平台下命令有异：cls和clear并不一样。 system调用底层的实现是阻塞的系统调用执行外部命令，相当于是先后">
 <meta name="keywords" content="学习技术">
 <meta property="og:type" content="article">
-<meta property="og:title" content="oracle数据库文件移动方法">
-<meta property="og:url" content="https://ajian.xyz/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/index.html">
+<meta property="og:title" content="python控制台清屏的方法">
+<meta property="og:url" content="https://ajian.xyz/2022/02/28/学习技术/2022-02-28-python控制台清屏的方法/index.html">
 <meta property="og:site_name" content="AJian的Blog">
-<meta property="og:description" content="因业务需求，需要将Oracle数据库的部分文件转移到新的位置 需要操作步骤如下 1、停止所有Oracle数据库的连接和业务程序 2、将需要移动的文件表空间设置offline(需要system用户登陆) 1alter tablespace [tablesspacename] offline;  3、移动文件到新位置 4、设置新数据文件路径(需要system用户登陆) 1alter tablespac">
+<meta property="og:description" content="本文资料来自：https://blog.csdn.net/u010037542/article/details/95735453 python实现控制台清屏方法，网上的资料大部分都是调用os.system()，这种方法可以实现，但是有两个比较致命的缺点：  Linux下和Windows平台下命令有异：cls和clear并不一样。 system调用底层的实现是阻塞的系统调用执行外部命令，相当于是先后">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2022-01-14T08:42:48.746Z">
+<meta property="og:updated_time" content="2022-02-28T02:30:17.211Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="oracle数据库文件移动方法">
-<meta name="twitter:description" content="因业务需求，需要将Oracle数据库的部分文件转移到新的位置 需要操作步骤如下 1、停止所有Oracle数据库的连接和业务程序 2、将需要移动的文件表空间设置offline(需要system用户登陆) 1alter tablespace [tablesspacename] offline;  3、移动文件到新位置 4、设置新数据文件路径(需要system用户登陆) 1alter tablespac">
+<meta name="twitter:title" content="python控制台清屏的方法">
+<meta name="twitter:description" content="本文资料来自：https://blog.csdn.net/u010037542/article/details/95735453 python实现控制台清屏方法，网上的资料大部分都是调用os.system()，这种方法可以实现，但是有两个比较致命的缺点：  Linux下和Windows平台下命令有异：cls和clear并不一样。 system调用底层的实现是阻塞的系统调用执行外部命令，相当于是先后">
   
     <link rel="alternative" href="/atom.xml" title="AJian的Blog" type="application/atom+xml">
   
@@ -189,14 +189,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-学习技术/2022-01-14-oracle数据库文件移动方法" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-学习技术/2022-02-28-python控制台清屏的方法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      oracle数据库文件移动方法
+      python控制台清屏的方法
     </h1>
   
 
@@ -208,8 +208,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/" class="archive-article-date">
-        <time datetime="2022-01-14T08:34:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
+<a href="/2022/02/28/学习技术/2022-02-28-python控制台清屏的方法/" class="archive-article-date">
+        <time datetime="2022-02-28T02:25:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-28</time>
 </a>
 
   
@@ -222,7 +222,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">150字</span>
+      <span class="post-count">281字</span>
     </span>
   </span>
 
@@ -242,23 +242,18 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>因业务需求，需要将Oracle数据库的部分文件转移到新的位置</p>
-<p>需要操作步骤如下</p>
-<p>1、停止所有Oracle数据库的连接和业务程序</p>
-<p>2、将需要移动的文件表空间设置offline(需要system用户登陆)</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> [tablesspacename] <span class="keyword">offline</span>;</span><br></pre></td></tr></table></figure>
+    <p>本文资料来自：<a href="https://blog.csdn.net/u010037542/article/details/95735453" target="_blank" rel="noopener">https://blog.csdn.net/u010037542/article/details/95735453</a></p>
+<p>python实现控制台清屏方法，网上的资料大部分都是调用os.system()，这种方法可以实现，但是有两个比较致命的缺点：</p>
+<ol>
+<li>Linux下和Windows平台下命令有异：cls和clear并不一样。</li>
+<li>system调用底层的实现是阻塞的系统调用执行外部命令，相当于是先后调用了fork， exec，waitpid来执行外部命令。这样清屏一个简单的功能，如此大费周章实在是太不合理了。</li>
+</ol>
+<figure class="highlight flix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clear</span></span>():</span><br><span class="line">    os.system(<span class="string">"clear"</span>)</span><br></pre></td></tr></table></figure>
 
-<p>3、移动文件到新位置</p>
-<p>4、设置新数据文件路径(需要system用户登陆)</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> [tablesspacename] <span class="keyword">rename</span> <span class="keyword">datafile</span> <span class="string">'/data/oracle/oradata/orcl/datafile.dbf'</span> <span class="keyword">to</span> <span class="string">'/newpath/datafile.dbf'</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">print</span>(<span class="string">"\033c"</span>, <span class="attribute">end</span>=<span class="string">"\r"</span>)</span><br></pre></td></tr></table></figure>
 
-<p>5、设置表空间online</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> [tablesspacename] onfline;</span><br></pre></td></tr></table></figure>
-
-<p>完成！</p>
-<p><strong>附录：</strong></p>
-<h5 id="查询表空间文件的路径"><a href="#查询表空间文件的路径" class="headerlink" title="查询表空间文件的路径"></a>查询表空间文件的路径</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> tablespace_name,file_name,online_status <span class="keyword">from</span> dba_data_files <span class="keyword">where</span> tablespace_name=<span class="string">'tablesspacename'</span>;</span><br></pre></td></tr></table></figure>
-
+<p>如果有同学用C语言实现过一些改变控制台字符颜色等功能的小程序就会知道，\33开头这样的控制码可以修改很多控制台的输出属性，上面的\033c其实就是清屏指令。</p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>此函数调用效果和Linux下的clear有些不同，clear相当于整个屏幕上移，而输出\033c，或直接把屏幕的内容清空，之前输出的内容也会全部消失不见。</p>
 
     
 
@@ -305,7 +300,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://ajian.xyz/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/" title="oracle数据库文件移动方法" target="_blank">https://ajian.xyz/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/</a>
+          <a href="https://ajian.xyz/2022/02/28/学习技术/2022-02-28-python控制台清屏的方法/" title="python控制台清屏的方法" target="_blank">https://ajian.xyz/2022/02/28/学习技术/2022-02-28-python控制台清屏的方法/</a>
         </li>
         <li>
           <strong>版权声明： </strong>
@@ -343,18 +338,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2022/02/09/学习技术/2022-02-09-自建Nas服务器过程/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          自建Nas服务器过程
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/12/13/资源分享/2021-12-13-DSM算号器/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">DSM算号器</div>
+    <a href="/2022/02/09/学习技术/2022-02-09-自建Nas服务器过程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">自建Nas服务器过程</div>
       <i class="icon-circle-right"></i>
     </a>
   

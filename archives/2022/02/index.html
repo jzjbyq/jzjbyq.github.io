@@ -6,21 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://ajian.xyz">
-  <title>oracle数据库文件移动方法 | AJian的Blog</title>
+  <title>Archives: 2022/2 | AJian的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="因业务需求，需要将Oracle数据库的部分文件转移到新的位置 需要操作步骤如下 1、停止所有Oracle数据库的连接和业务程序 2、将需要移动的文件表空间设置offline(需要system用户登陆) 1alter tablespace [tablesspacename] offline;  3、移动文件到新位置 4、设置新数据文件路径(需要system用户登陆) 1alter tablespac">
-<meta name="keywords" content="学习技术">
-<meta property="og:type" content="article">
-<meta property="og:title" content="oracle数据库文件移动方法">
-<meta property="og:url" content="https://ajian.xyz/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/index.html">
+  <meta name="description" content="分享一些网络资源">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AJian的Blog">
+<meta property="og:url" content="https://ajian.xyz/archives/2022/02/index.html">
 <meta property="og:site_name" content="AJian的Blog">
-<meta property="og:description" content="因业务需求，需要将Oracle数据库的部分文件转移到新的位置 需要操作步骤如下 1、停止所有Oracle数据库的连接和业务程序 2、将需要移动的文件表空间设置offline(需要system用户登陆) 1alter tablespace [tablesspacename] offline;  3、移动文件到新位置 4、设置新数据文件路径(需要system用户登陆) 1alter tablespac">
+<meta property="og:description" content="分享一些网络资源">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2022-01-14T08:42:48.746Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="oracle数据库文件移动方法">
-<meta name="twitter:description" content="因业务需求，需要将Oracle数据库的部分文件转移到新的位置 需要操作步骤如下 1、停止所有Oracle数据库的连接和业务程序 2、将需要移动的文件表空间设置offline(需要system用户登陆) 1alter tablespace [tablesspacename] offline;  3、移动文件到新位置 4、设置新数据文件路径(需要system用户登陆) 1alter tablespac">
+<meta name="twitter:title" content="AJian的Blog">
+<meta name="twitter:description" content="分享一些网络资源">
   
     <link rel="alternative" href="/atom.xml" title="AJian的Blog" type="application/atom+xml">
   
@@ -189,136 +187,41 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-学习技术/2022-01-14-oracle数据库文件移动方法" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
+            
+  
+  
     
-      <header class="article-header">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2022" class="archive-year">2022</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2022/02/28/学习技术/2022-02-28-python控制台清屏的方法/" class="archive-article-date">
+        <time datetime="2022-02-28T02:25:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-28</time>
+</a>
+
+        </div>
+    	 
   
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2022/02/28/学习技术/2022-02-28-python控制台清屏的方法/" target="_blank">python控制台清屏的方法</a>
   
-    <h1 class="article-title" itemprop="name">
-      oracle数据库文件移动方法
     </h1>
   
 
 
-  
-  
-        
-        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
-              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
-        </span>
-
-<a href="/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/" class="archive-article-date">
-        <time datetime="2022-01-14T08:34:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-14</time>
-</a>
-
-  
-  
-    
-<div style="margin-top:10px;">
-  <span class="post-time">
-    <span class="post-meta-item-icon">
-      <!-- fonts.scss -->
-      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
-      <i class="icon-statistics"></i>
-      <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">150字</span>
-    </span>
-  </span>
-
-  <span class="post-time">
-    &nbsp; | &nbsp;
-    <span class="post-meta-item-icon">
-      <i class="icon-book icon"></i>
-      <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
-    </span>
-  </span>
-</div>
-
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>因业务需求，需要将Oracle数据库的部分文件转移到新的位置</p>
-<p>需要操作步骤如下</p>
-<p>1、停止所有Oracle数据库的连接和业务程序</p>
-<p>2、将需要移动的文件表空间设置offline(需要system用户登陆)</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> [tablesspacename] <span class="keyword">offline</span>;</span><br></pre></td></tr></table></figure>
-
-<p>3、移动文件到新位置</p>
-<p>4、设置新数据文件路径(需要system用户登陆)</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> [tablesspacename] <span class="keyword">rename</span> <span class="keyword">datafile</span> <span class="string">'/data/oracle/oradata/orcl/datafile.dbf'</span> <span class="keyword">to</span> <span class="string">'/newpath/datafile.dbf'</span>;</span><br></pre></td></tr></table></figure>
-
-<p>5、设置表空间online</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">tablespace</span> [tablesspacename] onfline;</span><br></pre></td></tr></table></figure>
-
-<p>完成！</p>
-<p><strong>附录：</strong></p>
-<h5 id="查询表空间文件的路径"><a href="#查询表空间文件的路径" class="headerlink" title="查询表空间文件的路径"></a>查询表空间文件的路径</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> tablespace_name,file_name,online_status <span class="keyword">from</span> dba_data_files <span class="keyword">where</span> tablespace_name=<span class="string">'tablesspacename'</span>;</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-    <div class="page-reward">
-      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
-        <div class="tooltip tooltip-east">
-          <span class="tooltip-item">
-            赏
-          </span>
-          <span class="tooltip-content">
-            <span class="tooltip-text">
-              <span class="tooltip-inner">
-                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
-                    class="icon icon-quo-right"></i></p>
-                <div class="reward-box">
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="https://i.loli.net/2021/08/26/PVcwvtNAMUs1pXB.png">
-                    <span class="reward-type">支付宝</span>
-                  </div>
-                  
-                  
-                  <div class="reward-box-item">
-                    <img class="reward-img" src="https://i.loli.net/2021/08/26/bQg21oLSzUI84OA.png">
-                    <span class="reward-type">微信</span>
-                  </div>
-                  
-                </div>
-              </span>
-            </span>
-          </span>
-        </div>
-      </a>
-    </div>
-    
-
-    
-    <div class="declare"> 
-      <ul class="post-copyright">
-        <li>
-          <strong>本文作者：</strong>
-          阿健
-        </li>
-        <li>
-          <strong>本文链接：</strong>
-          <a href="https://ajian.xyz/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/" title="oracle数据库文件移动方法" target="_blank">https://ajian.xyz/2022/01/14/学习技术/2022-01-14-oracle数据库文件移动方法/</a>
-        </li>
-        <li>
-          <strong>版权声明： </strong>
-          本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow" target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
-        </li>
-      </ul>
-    </div>
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -330,66 +233,62 @@
 		</ul>
 	</div>
 
-    
+          
 
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-<nav id="article-nav">
   
-    <a href="/2022/02/09/学习技术/2022-02-09-自建Nas服务器过程/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          自建Nas服务器过程
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2021/12/13/资源分享/2021-12-13-DSM算号器/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">DSM算号器</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2022/02/09/学习技术/2022-02-09-自建Nas服务器过程/" class="archive-article-date">
+        <time datetime="2022-02-09T14:48:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-09</time>
+</a>
 
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
         </div>
-        
-        
-    </div>
-</aside>
+    	 
+  
+    <h1 itemprop="name">
+	
+	  <a class="archive-article-title" href="/2022/02/09/学习技术/2022-02-09-自建Nas服务器过程/" target="_blank">自建Nas服务器过程</a>
+  
+    </h1>
+  
 
 
+        <div class="article-info info-on-right">
+          
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
+          
 
+        </div>
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
 
-
-
-
-
-
-
-
-
-
+    
 
 
           </div>
@@ -430,8 +329,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
