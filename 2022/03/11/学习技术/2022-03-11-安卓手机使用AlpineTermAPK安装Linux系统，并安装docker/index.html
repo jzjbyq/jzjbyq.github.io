@@ -18,7 +18,7 @@
 <meta property="og:description" content="基于Alpine linux，包在百度盘链接: https://pan.baidu.com/s/1eXBmCx8f300_HzGzuYgm1w 提取码: 7vba安装后，等待大概十几分钟加载然后输入 alpine 登录系统，密码为 alpine 。切换到root账户: 输入 sudo -s 切到 root 账户, 密码为 alpine。修改密码: 输入 passwd,接着输入好记的新密码:123">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://s2.loli.net/2022/03/11/e472l5iUP6shaYI.png">
-<meta property="og:updated_time" content="2022-03-11T03:53:19.251Z">
+<meta property="og:updated_time" content="2022-03-11T04:59:22.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安卓手机使用AlpineTermAPK安装Linux系统，并安装docker">
 <meta name="twitter:description" content="基于Alpine linux，包在百度盘链接: https://pan.baidu.com/s/1eXBmCx8f300_HzGzuYgm1w 提取码: 7vba安装后，等待大概十几分钟加载然后输入 alpine 登录系统，密码为 alpine 。切换到root账户: 输入 sudo -s 切到 root 账户, 密码为 alpine。修改密码: 输入 passwd,接着输入好记的新密码:123">
@@ -224,7 +224,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">803字</span>
+      <span class="post-count">808字</span>
     </span>
   </span>
 
@@ -260,7 +260,7 @@
 <p>docker修改镜像源<br>找到 /etc/docker/daemon.json文件，没有该文件就新建一个<br>可以多加几个国内源，比如：</p>
 <p>Docker 官方中国区：<a href="https://registry.docker-cn.com/" target="_blank" rel="noopener">https://registry.docker-cn.com</a></p>
 <p>网易：<a href="http://hub-mirror.c.163.com/" target="_blank" rel="noopener">http://hub-mirror.c.163.com</a></p>
-<p>中国科技大学：<a href="https://docker.mirrors.ustc.edu.cn/" target="_blank" rel="noopener">https://docker.mirrors.ustc.edu.cn</a><br>{undefined<br>“registry-mirrors”: [“<a href="https://bytkgxyr.mirror.aliyuncs.com”,“https//registry.docker-cn.com%E2%80%9D,%E2%80%9Chttp://hub-mirror.c.163.com%E2%80%9D]" target="_blank" rel="noopener">https://bytkgxyr.mirror.aliyuncs.com”,“https://registry.docker-cn.com”,“http://hub-mirror.c.163.com”]</a><br>}</p>
+<p>中国科技大学：<a href="https://docker.mirrors.ustc.edu.cn/" target="_blank" rel="noopener">https://docker.mirrors.ustc.edu.cn</a><br>{undefined<br>    “registry-mirrors”: [“<a href="https://bytkgxyr.mirror.aliyuncs.com&quot;,&quot;https//registry.docker-cn.com&quot;,&quot;http://hub-mirror.c.163.com&quot;]" target="_blank" rel="noopener">https://bytkgxyr.mirror.aliyuncs.com&quot;,&quot;https://registry.docker-cn.com&quot;,&quot;http://hub-mirror.c.163.com&quot;]</a><br>}</p>
 <p>修改时区<br>安装时区设置<br>apk add tzdata<br>复制上海时区<br>cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime<br>指定为上海时区<br>echo “Asia/Shanghai” &gt; /etc/timezone<br>验证<br>date -R<br>输出，和当前时间对比<br>Thu, 14 Feb 2019 14:01:02 +0800<br>删除其他时区配置，节省空间,可不删，<br>apk del tzdata</p>
 <p>docker修改时区<br>1.以root身份进入容器<br>docker exec -it -u root 24795ac94ae7 /bin/sh<br>可以使用date -R 查看时间<br>2.在容器中创建文件<br>mkdir -p /usr/share/zoneinfo/Asia<br>3.回到宿主机，复制宿主机里的文件到容器中<br>docker cp /usr/share/zoneinfo/Asia/Shanghai 容器ID或容器名:/usr/share/zoneinfo/Asia<br>4. 进入容器<br>docker exec -it -u root 容器Id或容器名 bash<br>执行命令 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime<br>5.执行date -R 查看时区显示时间是否正确<br>原文链接：<a href="https://blog.csdn.net/wangxuelei036/article/details/107022189" target="_blank" rel="noopener">https://blog.csdn.net/wangxuelei036/article/details/107022189</a></p>
 <p>查看容器Id<br>docker ps<br>查看docker时间<br>docker exec 容器Id date</p>
@@ -543,11 +543,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -559,19 +567,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">资源分享</a>
+                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">在线观看直播</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">系统镜像</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">在线影院</a>
               </li>
              
               <li class="article-tag-list-item">
