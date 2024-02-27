@@ -1,0 +1,2457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>睡眠之声 v1.7.3 绿化版</title>
+    <url>/2021/07/19/%E6%89%8B%E6%9C%BA%E8%BD%AF%E4%BB%B6/2021-07-19-sleepa/</url>
+    <content><![CDATA[<p>​        睡眠之声 app 是一款专门给用户催眠的睡眠辅助应用,用户只需睡前播放精心挑选的舒缓声音,你就会像婴儿一样的入睡,并且里面有多达36种声音混搭。<span id="more"></span></p>
+<table>
+<thead>
+<tr>
+<th align="left">【软件截图】</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><img src="https://i.loli.net/2021/07/19/R4yBhi6dr73t9JG.jpg" align=left alt="微信图片_20210716162517" style="zoom:25%;" /><img src="https://i.loli.net/2021/07/19/xJDQgd9vlWOhREY.jpg" align=left alt="微信图片_20210716162517" style="zoom:25%;" /><img src="https://i.loli.net/2021/07/19/8U6LxjpvYZEMW7i.jpg" align=left alt="微信图片_20210716162517" style="zoom:25%;" /></td>
+</tr>
+</tbody></table>
+<p>【软件修改】</p>
+<p>去除广告。</p>
+<p>【软件测评】</p>
+<p>功能可以使用，无广告</p>
+<p><strong>责任声明:</strong><br><strong>尊重各网络文件的版权问题，该软件文件出自网络，</strong><br><strong>所有提供的软件和资源均为软件或程序作者提供和网友推荐收集整理而来，</strong><br><strong>仅供学习和研究使用同时要求用户在24小时内删除本软件所有文件,</strong><br><strong>同时测试学习和研究所带来一切责任后果自负.</strong></p>
+<p>【软件下载】</p>
+<p> <a href="https://jzjbyq.lanzoui.com/iVqhvgbnoxc">下载地址</a></p>
+]]></content>
+      <tags>
+        <tag>手机软件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>parted分区实例操作</title>
+    <url>/2021/07/19/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-07-19-parted%E5%AE%9E%E4%BE%8B%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<p>服务器2块硬盘，500G用来安装操作系统，16T硬盘用来存放数据</p>
+<p>当前16T硬盘未初始化，需要先分区再设置开机挂载，以下是记录操作的全过程</p>
+<p>第一步，使用 lsblk 命令查看当前硬盘列表，</p>
+<p>可以看到 500G硬盘代表的 sda 已经分为了 sda1 以及 sda2 ，根目录50G HOME目录392G</p>
+<p>还有一块14.6T的硬盘 sdb 未分区也未挂载</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://i.loli.net/2021/07/19/QJLwqGg972C41WT.png" alt="01"></h1><p>输入命令对进入硬盘编辑模式</p>
+<pre class="line-numbers language-none"><code class="language-none">parted &#x2F;dev&#x2F;sdb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="https://i.loli.net/2021/07/19/J49R5nkF3gpT1hC.png" alt="02"></h1><p>看到上图表示进入硬盘编辑模式</p>
+<p>输入mktable ，然后输入gpt将硬盘格式设置为gpt</p>
+<h1 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="https://i.loli.net/2021/07/19/OgewXao68b4y9pL.png" alt="03"></h1><p>如果有提示是否将分区设置为gpt，操作后硬盘数据将丢失，是否继续，输入 y 后回车</p>
+<p>接下来创建分区</p>
+<pre class="line-numbers language-none"><code class="language-none">mkpart<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="-3"><a href="#-3" class="headerlink" title=""></a><img src="https://i.loli.net/2021/07/19/ticmonw9e34POjq.png" alt="04"></h1><p>提示输入分区名称，这里相当于是Windows的磁盘卷标，默认输入 data，回车</p>
+<p>提示输入文件系统类型，这里输入 xfs，xfs分区支持大硬盘，使用ext4的话超过16T就不能识别了，该硬盘刚好16T，所以我们选择xfs分区</p>
+<p>起始点和结束点，这里是从0扇区到多少位置作为一个分区，可以分多个，这里我们将整块硬盘作为一个分区</p>
+<p>起始点输入 0，结束点输入-1，这里会有警告，输入i 忽略警告继续。</p>
+<p>输入p可查看当前分区情况，可以看到当前硬盘分了一个区，start 起始点，end 结束点分别是 17.4kB 16.0TB,硬盘总大小 Size 为 16.0TB，标签 name 为 data</p>
+<p>到这里分区完成，输入q可以退出硬盘编辑模式</p>
+<p>接下来需要格式化分区，再挂载出来才可以正常访问使用，仍然输入lsblk，可以看到刚才分出来的 sdb1 分区</p>
+<h1 id="-4"><a href="#-4" class="headerlink" title=""></a><img src="https://i.loli.net/2021/07/19/A74jP9p2akwZ1IN.png" alt="05"></h1><p>输入格式化命令，图中少了-f，按照代码行格式输入</p>
+<pre class="line-numbers language-none"><code class="language-none">mkfs.xfs -f &#x2F;dev&#x2F;sdb1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>看到如下图结果</p>
+<h1 id="-5"><a href="#-5" class="headerlink" title=""></a><img src="https://i.loli.net/2021/07/19/qnkEGfhdSoiCLKD.png" alt="06"></h1><p>挂载磁盘，先建立目录，将sdb1分区挂载到&#x2F;opt&#x2F;congjing目录</p>
+<pre class="line-numbers language-none"><code class="language-none">mkdir -p &#x2F;opt&#x2F;congjing
+mount &#x2F;dev&#x2F;sdb1 &#x2F;opt&#x2F;congjing<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>输入命令查看磁盘挂载情况</p>
+<pre class="line-numbers language-none"><code class="language-none">df -h<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="-6"><a href="#-6" class="headerlink" title=""></a><img src="https://i.loli.net/2021/07/19/pne4UOyQXVMYT3m.png" alt="07"></h1><p>可以看到 &#x2F;dev&#x2F;sdb1已经挂载为 &#x2F;opt&#x2F;congjing，重启后该挂载点不会自动挂载，接下来的操作设置为开机自动挂载</p>
+<p>先查看当前磁盘挂载配置文件</p>
+<pre class="line-numbers language-none"><code class="language-none">cat &#x2F;etc&#x2F;fstab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="-7"><a href="#-7" class="headerlink" title=""></a><img src="https://i.loli.net/2021/07/19/1T8WiXSYRCvgMDG.png" alt="08"></h1><p>可以看到配置文件中没有我们之前挂载的磁盘情况，需要将要挂载的磁盘信息添加到该配置文件当中</p>
+<p>通过uuid进行挂载，查看uuid</p>
+<pre class="line-numbers language-none"><code class="language-none">blkid<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="-8"><a href="#-8" class="headerlink" title=""></a><img src="https://i.loli.net/2021/07/19/5YQhfw9ivpAMyg8.png" alt="09"></h1><p>可以看到&#x2F;dev&#x2F;sdb1的UUID是 ”00198bfc-7cdf-4e81-a1f0-76d2f4ddd9ee“</p>
+<p>输入以下命令将挂载命令添加到 &#x2F;etc&#x2F;fstab文件中，输入 cat &#x2F;etc&#x2F;fstab 查看是否写入到文件</p>
+<pre class="line-numbers language-none"><code class="language-none">echo &quot;UUID&#x3D;00198bfc-7cdf-4e81-a1f0-76d2f4ddd9ee &#x2F;opt&#x2F;congjing xfs defaults 0 0&quot;&gt;&gt;&#x2F;etc&#x2F;fstab
+cat &#x2F;etc&#x2F;fstab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="-9"><a href="#-9" class="headerlink" title=""></a><img src="https://i.loli.net/2021/07/19/fwQGPpz1YWbkx79.png" alt="10"></h1><p>到这里，分区及开机挂载设置完成！</p>
+]]></content>
+      <categories>
+        <category>类别</category>
+      </categories>
+      <tags>
+        <tag>学习技术</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql忘记密码后的补救操作</title>
+    <url>/2021/07/21/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-07-21-mysql%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81/</url>
+    <content><![CDATA[<p>​        维护的数据库多了，总会遇到不清楚管理员密码的时候，这个时候需要临时绕过登陆修改密码或额外创建访问账户，收集了网上的一些资料可以方便操作。</p>
+<p>以下第一步和第二步是两种跳过方式，任选其一。</p>
+<p>1、修改my.ini完成绕过登陆</p>
+<p>​		在my.ini的[mysqld]节点内添加,修改完成后，重启mysql服务即可生效</p>
+<pre class="line-numbers language-none"><code class="language-none">[mysqld]
+skip-grant-tables<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>2、使用启动服务参数绕过身份检测。（需要先停止mysql服务，以下边的命令进行启动）</p>
+<pre class="line-numbers language-none"><code class="language-none">mysqld --console --skip-grant-tables --shared-memory<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>3、然后保存文件，重启mysql服务，就可以使用;如果默认端口号变更，使用 -P 端口号 进行登陆</p>
+<pre class="line-numbers language-none"><code class="language-none">mysql -uroot
+mysql -uroot -P 13306<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<p>4、登陆完成后，这个时候我们修改密码或创建新的账户时会提示权限不足，需要先刷新操作权限</p>
+<pre class="line-numbers language-none"><code class="language-none">flush privileges;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>5、然后进行密码修改,例如将用户 root 的密码修改为 newpassword,mysql8以上使用第二行命令进行操作。</p>
+<pre class="line-numbers language-none"><code class="language-none">update mysql.user set password&#x3D;password(&#39;newpassword&#39;) where user&#x3D;&#39;root&#39;;
+update mysql.user set authentication_string&#x3D;password(&#39;newpassword&#39;) where user&#x3D;&#39;root&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>修改完成后需要再次刷新操作权限,重复第4步骤</p>
+<p>6、添加新的账户,将 库名 替换为要授权访问的库名称，.* 代表允许访问该库名下所有的表,’%’表示允许任意网络进行访问，如果只允许本机访问，可设置为’localhost’，grant select代表只允许查询，不允许修改。</p>
+<pre class="line-numbers language-none"><code class="language-none">grant select on 库名.* to newuser@&#39;%&#39; identified by &#39;password&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+]]></content>
+      <categories>
+        <category>类别</category>
+      </categories>
+      <tags>
+        <tag>学习技术</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决VirtualBox找不到USB设备的方法</title>
+    <url>/2021/07/26/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-07-26-VirtualBox%E7%9C%8B%E4%B8%8D%E5%88%B0USB%E8%AE%BE%E5%A4%87%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p><strong>安装Oracle VM VirtualBox Extension Pack，需要把linux用户加入 vboxusers 用户组</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">sudo usermod -aG vboxusers $USER<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>然后重启系统或者注销用户生效</strong></p>
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UOS隐藏指定分区</title>
+    <url>/2021/08/03/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-08-03-UOS%E9%9A%90%E8%97%8F%E7%9B%98%E7%AC%A6/</url>
+    <content><![CDATA[<p>　　由于UOS默认显示efi、boot等分区，感官上觉得很多余，搜索论坛有人分享了隐藏指定分区的方法，现在做个记录。</p>
+<pre class="line-numbers language-none"><code class="language-none">#查看挂载分区对应的设备名称
+~$ lsblk
+#查看设备名称对应的UUID
+~$ blkid
+#讲查到的UUID替换到下边的语句中，2720-4A42 就是系统EFI分区的UUID
+ENV&#123;ID_FS_UUID&#125;&#x3D;&#x3D;&quot;2720-4A42&quot;,ENV&#123;UDISKS_IGNORE&#125;&#x3D;&quot;1&quot;
+
+#然后使用下边命令打开，将上面修改好的语句添加到文件最后边
+~$ sudo deepin-editor &#x2F;etc&#x2F;udev&#x2F;rules.d&#x2F;80-udisks2.rules
+
+#通常只需要隐藏&#x2F;boot&#x2F;efi、&#x2F;boot 两个分区就可以了
+#使用以下脚本将所有分区的隐藏语句打印出来
+~$ curl https:&#x2F;&#x2F;ajian.xyz&#x2F;bash&#x2F;uuid-hide.sh|bash
+
+#添加卷标命令,格式 e2label device [newlabel]
+e2label &#x2F;dev&#x2F;sda5 home<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SecureCRT运行提示libc.so.6找不到GLIBC_2.29</title>
+    <url>/2021/07/27/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-07-27-SecureCRT%E8%BF%90%E8%A1%8C%E6%8F%90%E7%A4%BAlibc.so.6%E6%89%BE%E4%B8%8D%E5%88%B0GLIBC_2.29/</url>
+    <content><![CDATA[<p>在UOSBeta5中安装SecureCRT，8.7.3,运行时提示找不到版本为GLIBC_2.29的libm.so.6文件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">:~$ SecureCRT 
+SecureCRT: /lib/x86_64-linux-gnu/libm.so.6: version `GLIBC_2.29' not found <span class="token punctuation">(</span>required by SecureCRT<span class="token punctuation">)</span>
+:~$<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>网上查找了资料</p>
+<p>根据这条命令可以查询libm.so.6所支持的版本</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">:~$ strings  /lib/x86_64-linux-gnu/libm.so.6 <span class="token operator">|</span> <span class="token function">grep</span> GLIBC_
+GLIBC_2.2.5
+GLIBC_2.4
+GLIBC_2.15
+GLIBC_2.18
+GLIBC_2.23
+GLIBC_2.24
+GLIBC_2.25
+GLIBC_2.26
+GLIBC_2.27
+GLIBC_2.28
+GLIBC_PRIVATE
+:~$ 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>从上面结果可以看到GLIBC支持到了2.28,但是我们现在需要的是2.29</p>
+<p>到 <a href="http://www.gnu.org/software/libc">http://www.gnu.org/software/libc</a> 下载新的GLIBC</p>
+<p>找到对应版本进入页面下载</p>
+<p>对应版本链接为 <a href="http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz">http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz</a></p>
+<p>可以通过wget获取, 以下是下载编译和使用过程，这里有编译好的libm文件可以 <a href="https://jzjbyq.lanzoui.com/iqy8upz1euf">下载</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">cd</span> ~/Downloads/
+$ <span class="token function">wget</span> http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz
+--2021-07-27 09:17:50--  http://mirrors.nju.edu.cn/gnu/libc/glibc-2.29.tar.gz
+正在解析主机 mirrors.nju.edu.cn <span class="token punctuation">(</span>mirrors.nju.edu.cn<span class="token punctuation">)</span><span class="token punctuation">..</span>. <span class="token number">210.28</span>.130.3, <span class="token number">2001</span>:da8:1007:4011::3
+正在连接 mirrors.nju.edu.cn <span class="token punctuation">(</span>mirrors.nju.edu.cn<span class="token punctuation">)</span><span class="token operator">|</span><span class="token number">210.28</span>.130.3<span class="token operator">|</span>:80<span class="token punctuation">..</span>. 已连接。
+已发出 HTTP 请求，正在等待回应<span class="token punctuation">..</span>. <span class="token number">200</span> OK
+长度：32592893 <span class="token punctuation">(</span>31M<span class="token punctuation">)</span> <span class="token punctuation">[</span>application/octet-stream<span class="token punctuation">]</span>
+正在保存至: “glibc-2.29.tar.gz”
+
+glibc-2.29.tar.gz           <span class="token number">100</span>%<span class="token punctuation">[</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span><span class="token operator">></span><span class="token punctuation">]</span>  <span class="token number">31</span>.08M  <span class="token number">9</span>.97MB/s  用时 <span class="token number">3</span>.1s    
+
+<span class="token number">2021</span>-07-27 09:17:53 <span class="token punctuation">(</span><span class="token number">9.97</span> MB/s<span class="token punctuation">)</span> - 已保存 “glibc-2.29.tar.gz” <span class="token punctuation">[</span><span class="token number">32592893</span>/32592893<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment">#解压</span>
+<span class="token function">tar</span> zxvf glibc-2.29.tar.gz
+<span class="token comment">#创建编译目录，并进入该目录</span>
+$ <span class="token function">mkdir</span> <span class="token parameter variable">-p</span> glibc-2.29/build <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> glibc-2.29/build
+
+<span class="token comment">#检查运行编译环境,如果有报错：These critical programs are missing or too old: bison</span>
+$ <span class="token punctuation">..</span>/configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span><span class="token environment constant">$HOME</span>/Downloads/glibc-2.29/build
+<span class="token comment">#需要执行安装 sudo apt install bison</span>
+$ <span class="token punctuation">..</span>/configure <span class="token parameter variable">--prefix</span><span class="token operator">=</span><span class="token environment constant">$HOME</span>/Downloads/glibc-2.29/build
+
+<span class="token comment">#开始编译,等待时间约5分钟</span>
+<span class="token function">make</span> <span class="token parameter variable">-j4</span>
+
+<span class="token comment">#将编译后的文件复制到 /lib/x86_64-linux-gnu/</span>
+<span class="token function">sudo</span> <span class="token function">cp</span> ~/Downloads/glibc-2.29/build/lib/libm-2.29.so /lib/x86_64-linux-gnu/
+<span class="token comment">#设置 libm.so.6 链接到新的文件上</span>
+<span class="token function">sudo</span> <span class="token function">ln</span> <span class="token parameter variable">-s</span> <span class="token parameter variable">-f</span> /lib/x86_64-linux-gnu/libm-2.29.so /lib/x86_64-linux-gnu/libm.so.6
+
+<span class="token comment">#再次运行SecureCRT就可以正常打开了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UOS常见问题记录</title>
+    <url>/2021/08/16/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-08-16-UOS%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<h6 id="默认使用UOS自己的文件管理器"><a href="#默认使用UOS自己的文件管理器" class="headerlink" title="默认使用UOS自己的文件管理器"></a>默认使用UOS自己的文件管理器</h6><p>安装KDE以后，UOS的DDE桌面计算机打开会出错，可以恢复默认使用UOS的文件管理器</p>
+<p>在终端里输入</p>
+<pre class="line-numbers language-none"><code class="language-none">gio mime inode&#x2F;directory dde-file-manager.desktop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>恢复正常</p>
+<h6 id="禁用安卓容器"><a href="#禁用安卓容器" class="headerlink" title="禁用安卓容器"></a>禁用安卓容器</h6><p>由于UOS默认uengine开启运行，对一些配置老旧的机型影响比较明显，可以禁用容器来释放被占用的系统资源</p>
+<p>1、禁用容器</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo systemctl disable uengine-container uengine-session<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>2、启用容器，如果想要继续使用，可以通过以下命令恢复使用</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo systemctl enable uengine-container uengine-session
+sudo systemctl start uengine-container uengine-session<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SecureCRT使用秘钥登录报libgssapi.so错误</title>
+    <url>/2021/08/17/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-08-17-SecureCRT%E4%BD%BF%E7%94%A8%E7%A7%98%E9%92%A5%E7%99%BB%E5%BD%95%E6%8A%A5libgssapi.so%E9%94%99%E8%AF%AF/</url>
+    <content><![CDATA[<p>当SecureCRT使用私钥连接远端计算机时，报libgssapi.so的错误，测试不影响使用，但是会影响连接时对该文件的判断，连接上的延迟会高一些。那么本文就是介绍解决这个弹窗的一个方法。</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://i.loli.net/2021/08/17/MSI7KHvY8VB2AbW.png" alt="01"></h1><pre class="line-numbers language-none"><code class="language-none">#检查是否有libgssapi的相关信息
+ls -l &#x2F;usr&#x2F;lib&#x2F;x86_64-linux-gnu |grep libgssapi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">#如果有，可以看到如下信息，跳过安装 libkrb5-dev 直接创建软链接
+lrwxrwxrwx  1 root root        26 12月 17  2020 libgssapi_krb5.so -&gt; mit-krb5&#x2F;libgssapi_krb5.so
+lrwxrwxrwx  1 root root        21 12月 17  2020 libgssapi_krb5.so.2 -&gt; libgssapi_krb5.so.2.2
+-rw-r--r--  1 root root    309744 12月 17  2020 libgssapi_krb5.so.2.2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">#安装 libkrb5-dev
+sudo apt-get install libkrb5-dev<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">#创建软连接
+cd &#x2F;usr&#x2F;lib&#x2F;x86_64-linux-gnu
+sudo ln -s mit-krb5&#x2F;libgssapi_krb5.so libgssapi.so<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>如此打开的时候就不会再跳提示了。</p>
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ElasticSearch启动报错ForLinux</title>
+    <url>/2021/08/26/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-08-26-ElasticSearch%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99ForLinux/</url>
+    <content><![CDATA[<p>解压版ElasticSearch在启动服务时经常遇到这样的报错信息</p>
+<img src="https://i.loli.net/2021/08/26/xESGJyNiqt5DfsF.png" alt="errorpng" style="zoom:67%;" />
+
+<p>编辑 &#x2F;etc&#x2F;security&#x2F;limits.conf，追加以下内容，内容前边的 * 号也需要复制到。</p>
+<pre class="line-numbers language-none"><code class="language-none">* soft nofile 65536
+* hard nofile 65536<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>然后在 &#x2F;etc&#x2F;sysctl.conf文件最后一行添加</p>
+<pre class="line-numbers language-none"><code class="language-none">vm.max_map_count&#x3D;262144<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>修改完成后需要重新登录用户生效。</p>
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Postgre忘记密码后如何处理</title>
+    <url>/2021/08/26/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-08-26-Postgre%E5%BF%98%E8%AE%B0%E5%AF%86%E7%A0%81%E5%90%8E%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<p>1、停止服务<br>2、找到数据库data目录下的 pg_hba.conf 文件<br>3、打开编辑内容，host后边的 md5 修改为 trust。(下列所有步骤操作完成后记得恢复。)</p>
+<pre class="line-numbers language-none"><code class="language-none"># TYPE  DATABASE        USER            ADDRESS                 METHOD
+# IPv4 local connections:
+host    all             all             127.0.0.1&#x2F;32            trust
+# IPv6 local connections:
+host    all             all             ::1&#x2F;128                 trust
+# Allow replication connections from localhost, by a user with the
+# replication privilege.
+#host    replication     all             127.0.0.1&#x2F;32            md5
+#host    replication     all             ::1&#x2F;128                 md5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>4、启动服务，然后输入下边命令可直接进入到命令行模式</p>
+<pre class="line-numbers language-none"><code class="language-none">psql -U postgres<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>5、修改默认用户 Postgres 的密码</p>
+<pre class="line-numbers language-none"><code class="language-none">ALTER USER Postgres WITH PASSWORD &#39;&lt;newpassword&gt;&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>6、添加新用户</p>
+<pre class="line-numbers language-none"><code class="language-none">CREATE USER my_user WITH PASSWORD &#39;123456&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>7、新用户赋权</p>
+<pre class="line-numbers language-none"><code class="language-none">GRANT USAGE ON SCHEMA PUBLIC TO my_user;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>8、使用新用户登录</p>
+<pre class="line-numbers language-none"><code class="language-none">psql -U my_user -W postgres<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DiskPart分区操作</title>
+    <url>/2021/08/27/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-08-27-DiskPart%E5%88%86%E5%8C%BA%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<h4 id="1、使用U盘制作引导盘"><a href="#1、使用U盘制作引导盘" class="headerlink" title="1、使用U盘制作引导盘"></a>1、使用U盘制作引导盘</h4><p><img src="https://i.loli.net/2021/08/27/kjHTuyDhsdbeiwN.png" alt="Ventoy"></p>
+<p>推荐使用 <a href="https://github.com/ventoy/Ventoy/releases">Ventoy</a> 引导工具,该工具具有很好的便捷性和适应性，可以在多中平台进行镜像引导，如amd、arm等。</p>
+<p>具体使用操作可以翻阅 <a href="https://www.ventoy.net/cn/doc_start.html">文档指导</a> 进行操作。<span id="more"></span></p>
+<h4 id="2、启动镜像到安装分区页面"><a href="#2、启动镜像到安装分区页面" class="headerlink" title="2、启动镜像到安装分区页面"></a>2、启动镜像到安装分区页面</h4><p><img src="https://i.loli.net/2021/08/27/v6uK7kX9Pa2CfeE.png" alt="image-20210827153233893"></p>
+<p>在该页面输入组合按键 SHIFT+F10，可以呼叫出cmd命令行窗口。</p>
+<p>在命令行中输入  进入分区软件。</p>
+<pre class="line-numbers language-none"><code class="language-none">#指定要操作的磁盘，第一块盘从0号开始
+select disk 0
+#清除磁盘内容，新硬盘无需这一步
+clean
+#转换磁盘格式为gpt分区
+convert gpt
+#创建efi分区,一般200MB就够用，引导文件存放分区
+create partition efi size&#x3D;200
+#创建MSR分区，也是200MB
+create partition msr size&#x3D;200
+#创建primary分区，操作系统也将安装在该分区
+create partition primary size&#x3D;51200
+#退出分区软件
+exit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>3、继续退出命令行窗口后，在安装程序界面中点击刷新，即可看到划分好的分区。</p>
+<p>​	选择主分区后，点击下一步继续系统的安装。</p>
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>UOS将阿里云盘挂载到本地</title>
+    <url>/2021/09/23/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-09-23-UOS%E5%B0%86%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98%E6%8C%82%E8%BD%BD%E5%88%B0%E6%9C%AC%E5%9C%B0/</url>
+    <content><![CDATA[<h6 id="越来越火的阿里云盘"><a href="#越来越火的阿里云盘" class="headerlink" title="越来越火的阿里云盘"></a><strong>越来越火的阿里云盘</strong></h6><p><strong>最近这段时间最火的云盘当属阿里云盘了，不限速，又有大量的扩容活动以及不定期发放的扩容福利码，让普通用户也可以拥有大量的云盘空间供使用，特别是当CloudDrive这个神器的出现，可以将云盘挂载为本地磁盘的样子，可以像操作本地硬盘中的文件一样来进行云盘文件的操作，别提有多方便了，阿里云盘不限速的承诺，让这个功能有了更好的使用条件。</strong></p>
+<p><strong>喜欢存储蓝光电影的同学，即使云盘app中可以投屏，但是一些多音轨硬字幕的视频文件，在app以及投屏中都无法进行切换，网上说kodi可以切换，经过测试无法切换;但是将云盘挂载到本地，再使用kodi进行播放就完全没有问题了。利用家里的nas服务器挂载云盘，使用kodi媒体库连接，可以刮削影片图片简介信息，一个家庭影院播放系统基本就完成了。</strong></p>
+<p><strong>越说越兴奋，接下来就是进行挂载的操作说明了。</strong></p>
+<p><strong>百度大部分教程都是讲的Windows使用CloudDrive将阿里云盘挂载为本地磁盘，CloudDrive Linux版本需要安装宝塔面板再部署网页程序去挂载，中间出现的问题较多。</strong></p>
+<p><strong>偶然之间在一个blog中看到使用了webdav的方式进行挂载，操作简单方便，但是该blog不稳定，经常打不开，所以在这里做个记录。</strong></p>
+<span id="more"></span>
+
+<h6 id="Webdav协议"><a href="#Webdav协议" class="headerlink" title="Webdav协议"></a>Webdav协议</h6><p><strong>感谢zxbu大神，实现了阿里云盘的webdav协议，只需要简单的配置一下，就可以让阿里云盘变身为webdav协议的文件服务器。 基于此，你可以把阿里云盘挂载为Windows、Linux、Mac系统的磁盘，可以通过NAS系统做文件管理或文件同步</strong></p>
+<p><strong>项目地址:</strong> <a href="https://github.com/zxbu/webdav-aliyundrive">https://github.com/zxbu/webdav-aliyundrive</a></p>
+<p><strong>在项目地址中介绍了使用方式，可以jar包运行，需要自行编译后再进行操作；也可以使用docker进行管理，一次性部署完成。</strong></p>
+<p><strong>接下来使用比较简单的方式。</strong></p>
+<h6 id="1、安装docker服务，"><a href="#1、安装docker服务，" class="headerlink" title="1、安装docker服务，"></a><strong>1、安装docker服务</strong>，</h6><p><strong>使用新版UOS的同学可以直接使用下边命令进行安装。(因为Beta6以及公测版蓝牙驱动配置的问题，我用的是Beta5)</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">sudo apt install docker-ce<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>使用其它版本无法直接安装的，参考百度内容进行安装</strong></p>
+<h6 id="2、在docker中安装zx5253-webdav-aliyundriver"><a href="#2、在docker中安装zx5253-webdav-aliyundriver" class="headerlink" title="2、在docker中安装zx5253&#x2F;webdav-aliyundriver"></a><strong>2、在docker中安装zx5253&#x2F;webdav-aliyundriver</strong></h6><pre class="line-numbers language-none"><code class="language-none">docker run -d --name&#x3D;webdav-aliyundriver --restart&#x3D;always -p 8080:8080  -v &#x2F;etc&#x2F;localtime:&#x2F;etc&#x2F;localtime -v &#x2F;etc&#x2F;aliyun-driver&#x2F;:&#x2F;etc&#x2F;aliyun-driver&#x2F; -e TZ&#x3D;&quot;Asia&#x2F;Shanghai&quot; -e ALIYUNDRIVE_REFRESH_TOKEN&#x3D;&quot;your refreshToken&quot; -e ALIYUNDRIVE_AUTH_PASSWORD&#x3D;&quot;admin&quot; -e JAVA_OPTS&#x3D;&quot;-Xmx1g&quot; zx5253&#x2F;webdav-aliyundriver
+
+# &#x2F;etc&#x2F;aliyun-driver&#x2F; 挂载卷自动维护了最新的refreshToken，建议挂载
+# ALIYUNDRIVE_AUTH_PASSWORD 是admin账户的密码，建议修改
+# JAVA_OPTS 可修改最大内存占用，比如 -e JAVA_OPTS&#x3D;&quot;-Xmx512m&quot; 表示最大内存限制为512m<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">--aliyundrive.refresh-token
+    阿里云盘的refreshToken，登录网页版 按f12打开控制台—application—local storage—token，即可查看refresh token
+--server.port
+    非必填，服务器端口号，默认为8080
+--aliyundrive.auth.enable&#x3D;true
+    是否开启WebDav账户验证，默认开启
+--aliyundrive.auth.user-name&#x3D;admin
+    WebDav账户，默认admin
+--aliyundrive.auth.password&#x3D;admin
+    WebDav密码，默认admin
+--aliyundrive.work-dir&#x3D;&#x2F;etc&#x2F;aliyun-driver&#x2F;
+    token挂载路径（如果多开的话，需修改此配置）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>如果只是使用kodi等播放器播放视频，到这里就可以连接到webdav服务了，需要挂载磁盘的接着看下边的内容</strong></p>
+<h6 id="3、安装配置rclone客户端"><a href="#3、安装配置rclone客户端" class="headerlink" title="3、安装配置rclone客户端"></a>3、安装配置rclone客户端</h6><pre class="line-numbers language-none"><code class="language-none">#安装 rclone
+curl https:&#x2F;&#x2F;rclone.org&#x2F;install.sh | sudo bash
+#安装完成后，运行rclone连接webdav完成配置
+rclone config
+
+#配置过程代码，参考着一步一步来
+#name请自行替换
+#密码需要输入两遍进行确认,建议上面运行webdav程序的时候不设置密码或使用默认密码
+[root@localhost yum.repos.d]# rclone config
+2021&#x2F;08&#x2F;12 16:28:35 NOTICE: Config file &quot;&#x2F;root&#x2F;.config&#x2F;rclone&#x2F;rclone.conf&quot; not found - using defaults
+No remotes found - make a new one
+n) New remote
+s) Set configuration password
+q) Quit config
+n&#x2F;s&#x2F;q&gt; n
+name&gt; aliyunwebdav
+Type of storage to configure.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+Choose a number from below, or type in your own value
+ 1 &#x2F; 1Fichier
+   \ &quot;fichier&quot;
+ 2 &#x2F; Alias for an existing remote
+   \ &quot;alias&quot;
+ 3 &#x2F; Amazon Drive
+   \ &quot;amazon cloud drive&quot;
+ 4 &#x2F; Amazon S3 Compliant Storage Providers including AWS, Alibaba, Ceph, Digital Ocean, Dreamhost, IBM COS, Minio, SeaweedFS, and Tencent COS
+   \ &quot;s3&quot;
+ 5 &#x2F; Backblaze B2
+   \ &quot;b2&quot;
+ 6 &#x2F; Box
+   \ &quot;box&quot;
+ 7 &#x2F; Cache a remote
+   \ &quot;cache&quot;
+ 8 &#x2F; Citrix Sharefile
+   \ &quot;sharefile&quot;
+ 9 &#x2F; Compress a remote
+   \ &quot;compress&quot;
+10 &#x2F; Dropbox
+   \ &quot;dropbox&quot;
+11 &#x2F; Encrypt&#x2F;Decrypt a remote
+   \ &quot;crypt&quot;
+12 &#x2F; Enterprise File Fabric
+   \ &quot;filefabric&quot;
+13 &#x2F; FTP Connection
+   \ &quot;ftp&quot;
+14 &#x2F; Google Cloud Storage (this is not Google Drive)
+   \ &quot;google cloud storage&quot;
+15 &#x2F; Google Drive
+   \ &quot;drive&quot;
+16 &#x2F; Google Photos
+   \ &quot;google photos&quot;
+17 &#x2F; Hadoop distributed file system
+   \ &quot;hdfs&quot;
+18 &#x2F; Hubic
+   \ &quot;hubic&quot;
+19 &#x2F; In memory object storage system.
+   \ &quot;memory&quot;
+20 &#x2F; Jottacloud
+   \ &quot;jottacloud&quot;
+21 &#x2F; Koofr
+   \ &quot;koofr&quot;
+22 &#x2F; Local Disk
+   \ &quot;local&quot;
+23 &#x2F; Mail.ru Cloud
+   \ &quot;mailru&quot;
+24 &#x2F; Mega
+   \ &quot;mega&quot;
+25 &#x2F; Microsoft Azure Blob Storage
+   \ &quot;azureblob&quot;
+26 &#x2F; Microsoft OneDrive
+   \ &quot;onedrive&quot;
+27 &#x2F; OpenDrive
+   \ &quot;opendrive&quot;
+28 &#x2F; OpenStack Swift (Rackspace Cloud Files, Memset Memstore, OVH)
+   \ &quot;swift&quot;
+29 &#x2F; Pcloud
+   \ &quot;pcloud&quot;
+30 &#x2F; Put.io
+   \ &quot;putio&quot;
+31 &#x2F; QingCloud Object Storage
+   \ &quot;qingstor&quot;
+32 &#x2F; SSH&#x2F;SFTP Connection
+   \ &quot;sftp&quot;
+33 &#x2F; Sugarsync
+   \ &quot;sugarsync&quot;
+34 &#x2F; Tardigrade Decentralized Cloud Storage
+   \ &quot;tardigrade&quot;
+35 &#x2F; Transparently chunk&#x2F;split large files
+   \ &quot;chunker&quot;
+36 &#x2F; Union merges the contents of several upstream fs
+   \ &quot;union&quot;
+37 &#x2F; Uptobox
+   \ &quot;uptobox&quot;
+38 &#x2F; Webdav
+   \ &quot;webdav&quot;
+39 &#x2F; Yandex Disk
+   \ &quot;yandex&quot;
+40 &#x2F; Zoho
+   \ &quot;zoho&quot;
+41 &#x2F; http Connection
+   \ &quot;http&quot;
+42 &#x2F; premiumize.me
+   \ &quot;premiumizeme&quot;
+43 &#x2F; seafile
+   \ &quot;seafile&quot;
+Storage&gt; 38
+URL of http host to connect to
+Enter a string value. Press Enter for the default (&quot;&quot;).
+Choose a number from below, or type in your own value
+ 1 &#x2F; Connect to example.com
+   \ &quot;https:&#x2F;&#x2F;example.com&quot;
+url&gt; http:&#x2F;&#x2F;127.0.0.1:8080
+Name of the Webdav site&#x2F;service&#x2F;software you are using
+Enter a string value. Press Enter for the default (&quot;&quot;).
+Choose a number from below, or type in your own value
+ 1 &#x2F; Nextcloud
+   \ &quot;nextcloud&quot;
+ 2 &#x2F; Owncloud
+   \ &quot;owncloud&quot;
+ 3 &#x2F; Sharepoint Online, authenticated by Microsoft account.
+   \ &quot;sharepoint&quot;
+ 4 &#x2F; Sharepoint with NTLM authentication. Usually self-hosted or on-premises.
+   \ &quot;sharepoint-ntlm&quot;
+ 5 &#x2F; Other site&#x2F;service or software
+   \ &quot;other&quot;
+vendor&gt; 5
+User name. In case NTLM authentication is used, the username should be in the format &#39;Domain\User&#39;.
+Enter a string value. Press Enter for the default (&quot;&quot;).
+user&gt; admin
+Password.
+y) Yes type in my own password
+g) Generate random password
+n) No leave this optional password blank (default)
+y&#x2F;g&#x2F;n&gt; y
+Enter the password:
+password:
+Confirm the password:
+password:
+Bearer token instead of user&#x2F;pass (e.g. a Macaroon)
+Enter a string value. Press Enter for the default (&quot;&quot;).
+bearer_token&gt; 
+Edit advanced config?
+y) Yes
+n) No (default)
+y&#x2F;n&gt; 
+--------------------
+[aliyunwebdav]
+type &#x3D; webdav
+url &#x3D; http:&#x2F;&#x2F;127.0.0.1:8080
+vendor &#x3D; other
+user &#x3D; admin
+pass &#x3D; *** ENCRYPTED ***
+--------------------
+y) Yes this is OK (default)
+e) Edit this remote
+d) Delete this remote
+y&#x2F;e&#x2F;d&gt; 
+Current remotes:
+
+Name                 Type
+&#x3D;&#x3D;&#x3D;&#x3D;                 &#x3D;&#x3D;&#x3D;&#x3D;
+aliyunwebdav         webdav
+
+e) Edit existing remote
+n) New remote
+d) Delete remote
+r) Rename remote
+c) Copy remote
+s) Set configuration password
+q) Quit config
+e&#x2F;n&#x2F;d&#x2F;r&#x2F;c&#x2F;s&#x2F;q&gt;  q
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h6 id="4、挂载webdav到本地"><a href="#4、挂载webdav到本地" class="headerlink" title="4、挂载webdav到本地"></a>4、挂载webdav到本地</h6><pre class="line-numbers language-none"><code class="language-none">#新建本地文件夹,位置可以自己选
+mkdir &#x2F;data&#x2F;aliyunwebdav
+#挂载
+rclone mount DriveName:Folder LocalFolder --cache-dir &#x2F;tmp --allow-other --vfs-cache-mode writes --allow-non-empty<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>DriverName是你在配置rclone的时候设置的名字,Folder没有需要求的话填&#x2F;即可,LocalFolder是你本地挂载的地址,&#x2F;tmp比较特殊,上传时缓存目录,其他类型挂载一般时不需要这个参数的,默认&#x2F;tmp地址即可,除非你的系统特殊。</strong></p>
+<p><strong>执行完之后即可访问本地挂载的文件夹查看文件了.</strong></p>
+<h6 id="5、设置开机自动挂载"><a href="#5、设置开机自动挂载" class="headerlink" title="5、设置开机自动挂载"></a>5、设置开机自动挂载</h6><pre class="line-numbers language-none"><code class="language-none">#将后面修改成你上面手动运行命令中，除了rclone的全部参数
+command&#x3D;&quot;mount DriveName:Folder LocalFolder --cache-dir &#x2F;tmp --allow-other --vfs-cache-mode writes --allow-non-empty&quot;
+#以下是一整条命令，一起复制到SSH客户端运行
+cat &gt; &#x2F;etc&#x2F;systemd&#x2F;system&#x2F;rclone.service &lt;&lt;EOF
+[Unit]
+Description&#x3D;Rclone
+After&#x3D;network-online.target
+
+[Service]
+Type&#x3D;simple
+ExecStart&#x3D;$(command -v rclone) $&#123;command&#125;
+Restart&#x3D;on-abort
+User&#x3D;root
+
+[Install]
+WantedBy&#x3D;default.target
+EOF<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">#启动服务
+systemctl start rclone
+
+#设置开机自动挂载
+systemctl enable rclone
+
+#其它操作命令
+重启：systemctl restart rclone
+停止：systemctl stop rclone
+状态：systemctl status rclone<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>本文转载自：</strong><a href="https://southcat.net/2811.html">https://southcat.net/2811.html</a></p>
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在UOS中使用SecureCRT一键连接天融信管理的服务器</title>
+    <url>/2021/10/12/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-10-12-%E5%9C%A8UOS%E4%B8%AD%E4%BD%BF%E7%94%A8SecureCRT%E4%B8%80%E9%94%AE%E8%BF%9E%E6%8E%A5%E5%A4%A9%E8%9E%8D%E4%BF%A1%E7%AE%A1%E7%90%86%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
+    <content><![CDATA[<p>运维的客户有一家用的天融信，连接其中的服务器需要安装单点登陆工具，而且必须使用IE，而我们使用UOS第一没法安装单点登陆工具，第二没有IE(虽然有wine版的，但是也没什么好办法安装各种IE插件不是)</p>
+<p>通过分析页面内容，发现通过随机生成的验证码，生成连接参数再调用本地的如putty、SecureCRT等工具进行连接，那么如何使这个步骤由自己决定如何调用呢？想来想去，使用油猴插件应该可以完成验证码的获取和本地应用的调用。</p>
+<p>通过点击页面上的快速登陆按钮，分析找到对应的调用位置</p>
+<p><img src="https://i.loli.net/2021/10/12/trwONu6KhLxWRdX.png" alt="img"></p>
+<p>我这边分配的是调用本地的putty进行连接，所以定位到putty调用的地方</p>
+<pre class="line-numbers language-none"><code class="language-none">function putty(meta) &#123;
+	var fort_ip &#x3D; getFortIp(meta.fortIp);
+	if (fort_ip &#x3D;&#x3D; null) &#123;
+		alert(&quot;单点登录错误: FORT_IP ERR&quot;);
+		return;
+	&#125;
+	
+	&#x2F;&#x2F;sso.run(&quot;sso_putty.exe&quot;,&quot;-ssh -P 22 -pw ROOTROOT root@192.168.23.104&quot;);
+	var sso_url &#x3D; &quot;-ssh -P 22 -pw &quot;+ meta.sessionId +&quot; user@&quot; + fort_ip;
+	try&#123;
+		sso.run(&quot;sso_putty.exe&quot;, sso_url);
+	&#125; catch(err) &#123;
+		alert(&quot;客户端控件未安装或被禁用!&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我使用的edge浏览器，正常点击，会提示</p>
+<p><img src="https://i.loli.net/2021/10/12/MB2YTAydIlKL9ws.png" alt="image-20211012104001001"></p>
+<p>修改这个返回信息为调用过程:</p>
+<pre class="line-numbers language-none"><code class="language-none">function putty(meta) &#123;
+            var fort_ip &#x3D; getFortIp(meta.fortIp);
+            if (fort_ip &#x3D;&#x3D; null) &#123;
+                alert(&quot;单点登录错误: FORT_IP ERR&quot;);
+                return;
+            &#125;
+
+            &#x2F;&#x2F;sso.run(&quot;sso_putty.exe&quot;,&quot;-ssh -P 22 -pw ROOTROOT root@192.168.1.2&quot;);
+            var sso_url &#x3D; &quot;-ssh -P 22 -pw &quot;+ meta.sessionId +&quot; user@&quot; + fort_ip;
+            try&#123;
+                sso.run(&quot;sso_putty.exe&quot;, sso_url);
+            &#125; catch(err) &#123;
+            &#x2F;&#x2F;根据上边的参数格式可以看出 meta.sessionId就是验证码信息&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+                var randompwd&#x3D;&quot;&quot;;
+                var seorun&#x3D;&quot;&quot;;
+                randompwd &#x3D; meta.sessionId;&#x2F;&#x2F;获取验证码内容
+                &#x2F;&#x2F;生成命令行内容并进行base64加密(加密方式可以自选，主要是因为window.open调用时内容不能有空格)
+                seorun&#x3D;window.btoa(&quot;ssh2 user@&#96;+window.document.domain+&#96; &#x2F;P 22 &#x2F;PASSWORD &quot;+randompwd);
+                &#x2F;&#x2F;与本地mime协议进行通讯
+                window.open(&#39;x-ssh:&#x2F;&#x2F;&#39;+seorun);
+            &#125;
+        &#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>到这里就完成了验证码提取与参数调用本地应用的内容。</p>
+<p>完整脚本内容可以看 <a href="https://bbs.tampermonkey.net.cn/forum.php?mod=viewthread&tid=1098">这里</a> 通过浏览器安装 <a href="https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd?hl=zh-CN">油猴</a>  或 <a href="https://docs.scriptcat.org/">脚本猫</a> 导入脚本即可使用</p>
+<p><strong>备注：该脚本对应的是天融信不支持Linux客户端的设备版本，具体版本号未知，因为我也只有访问授权的基础页面，看不到相关版本信息，联系官方客服通过界面也无法判断具体版本。</strong></p>
+<p>附录内容：</p>
+<p>通过js调用本地应用，需要注册本地应用通讯协议</p>
+<p>1、创建并编辑 &#x2F;usr&#x2F;share&#x2F;applications&#x2F;x-ssh.desktop 文件</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo touch &#x2F;usr&#x2F;share&#x2F;applications&#x2F;x-ssh.desktop
+sudo chmod +x &#x2F;usr&#x2F;share&#x2F;applications&#x2F;x-ssh.desktop
+sudo deepin-editor &#x2F;usr&#x2F;share&#x2F;applications&#x2F;x-ssh.desktop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>将下边内容粘贴到文件内</p>
+<pre class="line-numbers language-none"><code class="language-none">[Desktop Entry]
+Name&#x3D;x-ssh
+Comment&#x3D;local ssh trans
+Exec&#x3D;x-ssh %u
+Icon&#x3D;
+StartupNotify&#x3D;true
+Terminal&#x3D;false
+Type&#x3D;Application
+Categories&#x3D;Network;
+
+Actions&#x3D;Window;
+
+[Desktop Action Window]
+Name&#x3D;New Window
+Exec&#x3D;x-ssh %u
+OnlyShowIn&#x3D;Unity;
+MimeType&#x3D;x-scheme-handler&#x2F;x-ssh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>2、创建 x-ssh.sh 执行文件，将获取到的参数进行base64解码还原，再调用给SecureCRT</p>
+<pre class="line-numbers language-none"><code class="language-none">#!&#x2F;bin&#x2F;bash
+if [ -n &quot;$1&quot; ]; then
+    seorun&#x3D;&#96;echo $&#123;1&#x2F;x-ssh:\&#x2F;\&#x2F;&#125;|base64 -d&#96;
+    &#x2F;usr&#x2F;bin&#x2F;SecureCRT $seorun
+fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>3、.sh文件无法被页面的x-ssh:&#x2F;&#x2F;唤起，需要生成二进制文件</p>
+<pre class="line-numbers language-none"><code class="language-none">#安装 shc 如果已安装可以跳过
+sudo apt install shc
+
+#生成二进制文件,生成的文件是 x-ssh.sh.x
+shc -r -f x-ssh.sh
+
+#移动二进制文件到 &#x2F;usr&#x2F;bin
+sudo mv x-ssh.sh.x &#x2F;usr&#x2F;bin&#x2F;x-ssh
+#赋予执行权限
+sudo chmod +x &#x2F;usr&#x2F;bin&#x2F;x-ssh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>4、注册 名为 x-ssh 的应用协议</p>
+<pre class="line-numbers language-none"><code class="language-none">xdg-mime default x-ssh.desktop x-scheme-handler&#x2F;x-ssh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Jquery选择器参考手册</title>
+    <url>/2021/09/30/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-09-30-Jquery%E9%80%89%E6%8B%A9%E5%99%A8%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/</url>
+    <content><![CDATA[<p><strong>完整教程查看 <a href="https://www.w3school.com.cn/jquery/index.asp">https://www.w3school.com.cn/jquery/index.asp</a></strong></p>
+<p>jQuery 元素选择器和属性选择器允许您通过标签名、属性名或内容对 HTML 元素进行选择。</p>
+<p>选择器允许您对 HTML 元素组或单个元素进行操作。</p>
+<p>在 HTML DOM 术语中：</p>
+<p>选择器允许您对 DOM 元素组或单个 DOM 节点进行操作。</p>
+<h4 id="jQuery-元素选择器"><a href="#jQuery-元素选择器" class="headerlink" title="jQuery 元素选择器"></a>jQuery 元素选择器</h4><p>jQuery 使用 CSS 选择器来选取 HTML 元素。</p>
+<p>$(“p”) 选取 <p> 元素。</p>
+<p>$(“p.intro”) 选取所有 class&#x3D;”intro” 的 <p> 元素。</p>
+<p>$(“p#demo”) 选取所有 id&#x3D;”demo” 的 <p> 元素。</p>
+<h4 id="jQuery-属性选择器"><a href="#jQuery-属性选择器" class="headerlink" title="jQuery 属性选择器"></a>jQuery 属性选择器</h4><p>jQuery 使用 XPath 表达式来选择带有给定属性的元素。</p>
+<p>$(“[href]”) 选取所有带有 href 属性的元素。</p>
+<p>$(“[href&#x3D;’#’]”) 选取所有带有 href 值等于 “#” 的元素。</p>
+<p>$(“[href!&#x3D;’#’]”) 选取所有带有 href 值不等于 “#” 的元素。</p>
+<p>$(“[href$&#x3D;’.jpg’]”) 选取所有 href 值以 “.jpg” 结尾的元素。</p>
+<h4 id="jQuery-CSS-选择器"><a href="#jQuery-CSS-选择器" class="headerlink" title="jQuery CSS 选择器"></a>jQuery CSS 选择器</h4><p>jQuery CSS 选择器可用于改变 HTML 元素的 CSS 属性。</p>
+<p>下面的例子把所有 p 元素的背景颜色更改为红色：</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><pre class="line-numbers language-none"><code class="language-none">$(&quot;p&quot;).css(&quot;background-color&quot;,&quot;red&quot;);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<span id="more"></span>
+
+<h4 id="jQuery-参考手册-选择器"><a href="#jQuery-参考手册-选择器" class="headerlink" title="jQuery 参考手册 - 选择器"></a>jQuery 参考手册 - 选择器</h4><table>
+<thead>
+<tr>
+<th align="left">选择器</th>
+<th align="left">实例</th>
+<th align="left">选取</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_all.asp">*</a></td>
+<td align="left">$(“*”)</td>
+<td align="left">所有元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_id.asp">#<em>id</em></a></td>
+<td align="left">$(“#lastname”)</td>
+<td align="left">id&#x3D;”lastname” 的元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_class.asp">.<em>class</em></a></td>
+<td align="left">$(“.intro”)</td>
+<td align="left">所有 class&#x3D;”intro” 的元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_element.asp"><em>element</em></a></td>
+<td align="left">$(“p”)</td>
+<td align="left">所有 <p> 元素</td>
+</tr>
+<tr>
+<td align="left">.<em>class</em>.<em>class</em></td>
+<td align="left">$(“.intro.demo”)</td>
+<td align="left">所有 class&#x3D;”intro” 且 class&#x3D;”demo” 的元素</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_first.asp">:first</a></td>
+<td align="left">$(“p:first”)</td>
+<td align="left">第一个 <p> 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_last.asp">:last</a></td>
+<td align="left">$(“p:last”)</td>
+<td align="left">最后一个 <p> 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_even.asp">:even</a></td>
+<td align="left">$(“tr:even”)</td>
+<td align="left">所有偶数 <tr> 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_odd.asp">:odd</a></td>
+<td align="left">$(“tr:odd”)</td>
+<td align="left">所有奇数 <tr> 元素</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_eq.asp">:eq(<em>index</em>)</a></td>
+<td align="left">$(“ul li:eq(3)”)</td>
+<td align="left">列表中的第四个元素（index 从 0 开始）</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_gt.asp">:gt(<em>no</em>)</a></td>
+<td align="left">$(“ul li:gt(3)”)</td>
+<td align="left">列出 index 大于 3 的元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_lt.asp">:lt(<em>no</em>)</a></td>
+<td align="left">$(“ul li:lt(3)”)</td>
+<td align="left">列出 index 小于 3 的元素</td>
+</tr>
+<tr>
+<td align="left">:not(<em>selector</em>)</td>
+<td align="left">$(“input:not(:empty)”)</td>
+<td align="left">所有不为空的 input 元素</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_header.asp">:header</a></td>
+<td align="left">$(“:header”)</td>
+<td align="left">所有标题元素 <h1> - <h6></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_animated.asp">:animated</a></td>
+<td align="left"></td>
+<td align="left">所有动画元素</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_contains.asp">:contains(<em>text</em>)</a></td>
+<td align="left">$(“:contains(‘W3School’)”)</td>
+<td align="left">包含指定字符串的所有元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_empty.asp">:empty</a></td>
+<td align="left">$(“:empty”)</td>
+<td align="left">无子（元素）节点的所有元素</td>
+</tr>
+<tr>
+<td align="left">:hidden</td>
+<td align="left">$(“p:hidden”)</td>
+<td align="left">所有隐藏的 <p> 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_visible.asp">:visible</a></td>
+<td align="left">$(“table:visible”)</td>
+<td align="left">所有可见的表格</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">s1,s2,s3</td>
+<td align="left">$(“th,td,.intro”)</td>
+<td align="left">所有带有匹配选择的元素</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">[<a href="https://www.w3school.com.cn/jquery/selector_attribute.asp"><em>attribute</em>]</a></td>
+<td align="left">$(“[href]”)</td>
+<td align="left">所有带有 href 属性的元素</td>
+</tr>
+<tr>
+<td align="left">[<a href="https://www.w3school.com.cn/jquery/selector_attribute_equal_value.asp"><em>attribute</em>&#x3D;<em>value</em>]</a></td>
+<td align="left">$(“[href&#x3D;’#’]”)</td>
+<td align="left">所有 href 属性的值等于 “#” 的元素</td>
+</tr>
+<tr>
+<td align="left">[<a href="https://www.w3school.com.cn/jquery/selector_attribute_notequal_value.asp"><em>attribute</em>!&#x3D;<em>value</em>]</a></td>
+<td align="left">$(“[href!&#x3D;’#’]”)</td>
+<td align="left">所有 href 属性的值不等于 “#” 的元素</td>
+</tr>
+<tr>
+<td align="left">[<a href="https://www.w3school.com.cn/jquery/selector_attribute_end_value.asp"><em>attribute</em>$&#x3D;<em>value</em>]</a></td>
+<td align="left">$(“[href$&#x3D;’.jpg’]”)</td>
+<td align="left">所有 href 属性的值包含以 “.jpg” 结尾的元素</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input.asp">:input</a></td>
+<td align="left">$(“:input”)</td>
+<td align="left">所有 <input> 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_text.asp">:text</a></td>
+<td align="left">$(“:text”)</td>
+<td align="left">所有 type&#x3D;”text” 的 <input> 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_password.asp">:password</a></td>
+<td align="left">$(“:password”)</td>
+<td align="left">所有 type&#x3D;”password” 的 <input> 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_radio.asp">:radio</a></td>
+<td align="left">$(“:radio”)</td>
+<td align="left">所有 type&#x3D;”radio” 的 <input> 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_checkbox.asp">:checkbox</a></td>
+<td align="left">$(“:checkbox”)</td>
+<td align="left">所有 type&#x3D;”checkbox” 的 <input> 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_submit.asp">:submit</a></td>
+<td align="left">$(“:submit”)</td>
+<td align="left">所有 type&#x3D;”submit” 的 <input> 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_reset.asp">:reset</a></td>
+<td align="left">$(“:reset”)</td>
+<td align="left">所有 type&#x3D;”reset” 的 <input> 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_button.asp">:button</a></td>
+<td align="left">$(“:button”)</td>
+<td align="left">所有 type&#x3D;”button” 的 <input> 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_image.asp">:image</a></td>
+<td align="left">$(“:image”)</td>
+<td align="left">所有 type&#x3D;”image” 的 <input> 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_file.asp">:file</a></td>
+<td align="left">$(“:file”)</td>
+<td align="left">所有 type&#x3D;”file” 的 <input> 元素</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_enabled.asp">:enabled</a></td>
+<td align="left">$(“:enabled”)</td>
+<td align="left">所有激活的 input 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_disabled.asp">:disabled</a></td>
+<td align="left">$(“:disabled”)</td>
+<td align="left">所有禁用的 input 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_selected.asp">:selected</a></td>
+<td align="left">$(“:selected”)</td>
+<td align="left">所有被选取的 input 元素</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.w3school.com.cn/jquery/selector_input_checked.asp">:checked</a></td>
+<td align="left">$(“:checked”)</td>
+<td align="left">所有被选中的 input 元素</td>
+</tr>
+</tbody></table>
+<h4 id="通配符范例"><a href="#通配符范例" class="headerlink" title="通配符范例"></a>通配符范例</h4><p>$(“input[id^&#x3D;’code’]”);&#x2F;&#x2F;id属性以code开始的所有input标签</p>
+<p>$(“input[id$&#x3D;’code’]”);&#x2F;&#x2F;id属性以code结束的所有input标签</p>
+<p>$(“input[id*&#x3D;’code’]”);&#x2F;&#x2F;id属性包含code的所有input标签</p>
+<p>$(“input[name^&#x3D;’code’]”);&#x2F;&#x2F;name属性以code开始的所有input标签</p>
+<p>$(“input[name$&#x3D;’code’]”);&#x2F;&#x2F;name属性以code结束的所有input标签</p>
+<p>$(“input[name*&#x3D;’code’]”);&#x2F;&#x2F;name属性包含code的所有input标签</p>
+<p>$(“input[name*&#x3D;’code’]”).each(fuction()<br>{</p>
+<p>varsum&#x3D;0;</p>
+<p>if($(this).val()!&#x3D;””){</p>
+<p>sum&#x3D;parseInt(sum)+parseInt($(this).val());</p>
+<p>}</p>
+<p>$(“#”).text(sum);</p>
+<p>})</p>
+<h4 id="更多的选择器实例"><a href="#更多的选择器实例" class="headerlink" title="更多的选择器实例"></a>更多的选择器实例</h4><table>
+<thead>
+<tr>
+<th align="left">语法</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">$(this)</td>
+<td align="left">当前 HTML 元素</td>
+</tr>
+<tr>
+<td align="left">$(“p”)</td>
+<td align="left">所有 <p> 元素</td>
+</tr>
+<tr>
+<td align="left">$(“p.intro”)</td>
+<td align="left">所有 class&#x3D;”intro” 的 <p> 元素</td>
+</tr>
+<tr>
+<td align="left">$(“.intro”)</td>
+<td align="left">所有 class&#x3D;”intro” 的元素</td>
+</tr>
+<tr>
+<td align="left">$(“#intro”)</td>
+<td align="left">id&#x3D;”intro” 的元素</td>
+</tr>
+<tr>
+<td align="left">$(“ul li:first”)</td>
+<td align="left">每个 <ul> 的第一个 <li> 元素</td>
+</tr>
+<tr>
+<td align="left">$(“[href$&#x3D;’.jpg’]”)</td>
+<td align="left">所有带有以 “.jpg” 结尾的属性值的 href 属性</td>
+</tr>
+<tr>
+<td align="left">$(“div#intro .head”)</td>
+<td align="left">id&#x3D;”intro” 的 <div> 元素中的所有 class&#x3D;”head” 的元素</td>
+</tr>
+</tbody></table>
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OracleCLOB转换BLOB方法</title>
+    <url>/2021/11/17/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-11-17-OracleCLOB%E8%BD%AC%E6%8D%A2BLOB%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>最近需要clob转blob 搜索找到一个创建oracle函数转换的</p>
+<pre class="line-numbers language-none"><code class="language-none">CREATE OR REPLACE FUNCTION clob_to_blob(b IN CLOB DEFAULT empty_clob()) RETURN BLOB IS
+ res         BLOB;
+ b_len       NUMBER :&#x3D; dbms_lob.getlength(b);
+  dest_offset1 NUMBER :&#x3D; 1;
+  src_offset1  NUMBER :&#x3D; 1;
+ amount_c    INTEGER :&#x3D; dbms_lob.lobmaxsize;
+ blob_csid   NUMBER :&#x3D; dbms_lob.default_csid;
+ lang_ctx    INTEGER :&#x3D; dbms_lob.default_lang_ctx;
+ warning     INTEGER;
+BEGIN
+  IF b_len &gt; 0 THEN
+   dbms_lob.createtemporary(res,TRUE);
+   dbms_lob.open(res ,dbms_lob.lob_readwrite);
+   dbms_lob.converttoblob(res,b,amount_c,dest_offset1,src_offset1,blob_csid,lang_ctx,warning);
+  ELSE
+    SELECT empty_blob() INTO res FROM dual;
+  END IF;
+  RETURN res;
+END clob_to_blob;
+-- 刘轶鹤<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自建Nas服务器过程</title>
+    <url>/2022/02/09/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2022-02-09-%E8%87%AA%E5%BB%BANas%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<p>新的内容</p>
+<p>现在越来越多的朋友开始打造自己的Nas服务器，什么是Nas呢，一台Nas服务器可以像网盘一样存储各式各样的文件，也可以随时随地的进行访问、共享，也可以通过各式工具对文件批量操作管理；可以搭建下载服务器，通过PC或手机远程下载文件到Nas中；搭建媒体服务器，下载的高清视频资源可以在PC、手机以及家中智能电视中进行播放；搭建相册服务，拥有自己的相册展示平台</p>
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>oracle数据库文件移动方法</title>
+    <url>/2022/01/14/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2022-01-14-oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6%E7%A7%BB%E5%8A%A8%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>因业务需求，需要将Oracle数据库的部分文件转移到新的位置</p>
+<p>需要操作步骤如下</p>
+<p>1、停止所有Oracle数据库的连接和业务程序</p>
+<p>2、将需要移动的文件表空间设置offline(需要system用户登陆)</p>
+<pre class="line-numbers language-none"><code class="language-none">alter tablespace [tablesspacename] offline;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>3、移动文件到新位置</p>
+<p>4、设置新数据文件路径(需要system用户登陆)</p>
+<pre class="line-numbers language-none"><code class="language-none">alter tablespace [tablesspacename] rename datafile &#39;&#x2F;data&#x2F;oracle&#x2F;oradata&#x2F;orcl&#x2F;datafile.dbf&#39; to &#39;&#x2F;newpath&#x2F;datafile.dbf&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>5、设置表空间online</p>
+<pre class="line-numbers language-none"><code class="language-none">alter tablespace [tablesspacename] online;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>完成！</p>
+<p><strong>附录：</strong></p>
+<h5 id="查询表空间文件的路径"><a href="#查询表空间文件的路径" class="headerlink" title="查询表空间文件的路径"></a>查询表空间文件的路径</h5><pre class="line-numbers language-none"><code class="language-none">select tablespace_name,file_name,online_status from dba_data_files where tablespace_name&#x3D;&#39;tablesspacename&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>安卓手机使用AlpineTermAPK安装Linux系统，并安装docker</title>
+    <url>/2022/03/11/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2022-03-11-%E5%AE%89%E5%8D%93%E6%89%8B%E6%9C%BA%E4%BD%BF%E7%94%A8AlpineTermAPK%E5%AE%89%E8%A3%85Linux%E7%B3%BB%E7%BB%9F%EF%BC%8C%E5%B9%B6%E5%AE%89%E8%A3%85docker/</url>
+    <content><![CDATA[<p><img src="https://s2.loli.net/2022/03/11/e472l5iUP6shaYI.png" alt="image-20220311115231415"></p>
+<p>基于Alpine linux，包在百度盘链接: <a href="https://pan.baidu.com/s/1eXBmCx8f300_HzGzuYgm1w">https://pan.baidu.com/s/1eXBmCx8f300_HzGzuYgm1w</a> 提取码: 7vba<br>安装后，等待大概十几分钟加载<br>然后输入 alpine 登录系统，密码为 alpine 。<br>切换到root账户: 输入 sudo -s 切到 root 账户, 密码为 alpine。<br>修改密码: 输入 passwd,接着输入好记的新密码:123456</p>
+<p>开启SSH<br>编辑ssh配置文件<br>vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>把下面两个配置的后的no 修改为 yes<br>PermitRootLogin<br>PasswordAuthentication<br>保存退出<br>reboot （重启系统）<br>添加开机启动</p>
+<p>rc-update add sshd boot<br>开启ssh<br>service sshd start<br>常用命令<br>service sshd restart 重启<br>service sshd status 查看状态</p>
+<p>映射Linux端口到手机上，电脑端链接必须映射<br>因无法直接访问Alpine Term里Linux端口<br>所以想访问那个端口就得再Alpine Term里映射<br>如:映射ssh的22端口<br>在Alpine Term软件里,手指再软件的左上方向右滑,会出现菜单<br>点击QEMU,执行:hostfwd_add tcp::2222-:22<br>Linux的22端口映射到手机的2222端口上了<br>然后用ssh工具链接2222端口就行了，IP填手机的IP，推荐使用MobaXterm<br>MobaXterm中文版：<a href="http://www.pc6.com/softview/SoftView_649420.html">http://www.pc6.com/softview/SoftView_649420.html</a></p>
+<p>配置APK源<br>&#x2F;etc&#x2F;apk&#x2F;repositories<br><a href="https://mirrors.aliyun.com/alpine/v3.6/main/">https://mirrors.aliyun.com/alpine/v3.6/main/</a><br>@testing <a href="https://mirrors.aliyun.com/alpine/edge/testing">https://mirrors.aliyun.com/alpine/edge/testing</a><br><a href="https://mirrors.aliyun.com/alpine/v3.6/community/">https://mirrors.aliyun.com/alpine/v3.6/community/</a></p>
+<p>配置DNS<br>修改&#x2F;etc&#x2F;resolv.conf文件：<br>nameserver 114.114.114.114<br>nameserver 114.114.115.115</p>
+<p>更新软件包 :<br>apk update<br>apk upgrade</p>
+<p>安装常用包<br>apk add rpm<br>apk add wget</p>
+<p>安装docker<br>apk add docker</p>
+<p>使docker开机启动<br>rc-update add docker</p>
+<p>开启docker服务<br>service docker start</p>
+<p>后台启动<br>setsid containerd<br>setsid dockerd<br>测试<br>docker info</p>
+<p>docker修改镜像源<br>找到 &#x2F;etc&#x2F;docker&#x2F;daemon.json文件，没有该文件就新建一个<br>可以多加几个国内源，比如：</p>
+<p>Docker 官方中国区：<a href="https://registry.docker-cn.com/">https://registry.docker-cn.com</a></p>
+<p>网易：<a href="http://hub-mirror.c.163.com/">http://hub-mirror.c.163.com</a></p>
+<p>中国科技大学：<a href="https://docker.mirrors.ustc.edu.cn/">https://docker.mirrors.ustc.edu.cn</a><br>{undefined<br>    “registry-mirrors”: [“<a href="https://bytkgxyr.mirror.aliyuncs.com","https//registry.docker-cn.com%22,%22http://hub-mirror.c.163.com%22]">https://bytkgxyr.mirror.aliyuncs.com&quot;,&quot;https://registry.docker-cn.com&quot;,&quot;http://hub-mirror.c.163.com&quot;]</a><br>}</p>
+<p>修改时区<br>安装时区设置<br>apk add tzdata<br>复制上海时区<br>cp &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai &#x2F;etc&#x2F;localtime<br>指定为上海时区<br>echo “Asia&#x2F;Shanghai” &gt; &#x2F;etc&#x2F;timezone<br>验证<br>date -R<br>输出，和当前时间对比<br>Thu, 14 Feb 2019 14:01:02 +0800<br>删除其他时区配置，节省空间,可不删，<br>apk del tzdata</p>
+<p>docker修改时区<br>1.以root身份进入容器<br>docker exec -it -u root 24795ac94ae7 &#x2F;bin&#x2F;sh<br>可以使用date -R 查看时间<br>2.在容器中创建文件<br>mkdir -p &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia<br>3.回到宿主机，复制宿主机里的文件到容器中<br>docker cp &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai 容器ID或容器名:&#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia<br>4. 进入容器<br>docker exec -it -u root 容器Id或容器名 bash<br>执行命令 cp &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai &#x2F;etc&#x2F;localtime<br>5.执行date -R 查看时区显示时间是否正确<br>原文链接：<a href="https://blog.csdn.net/wangxuelei036/article/details/107022189">https://blog.csdn.net/wangxuelei036/article/details/107022189</a></p>
+<p>查看容器Id<br>docker ps<br>查看docker时间<br>docker exec 容器Id date</p>
+<p>查看docker日志：查看运行中的container：docker ps，在主机中实时查看docker容器日志：docker logs -f -t –tail 行数 容器名[containerID]<br>｜ 详情：<a href="https://blog.csdn.net/aoxixi/article/details/103334794">https://blog.csdn.net/aoxixi/article/details/103334794</a></p>
+<p>docker启动命令,docker重启命令,docker关闭命令</p>
+<p>启动 systemctl start docker<br>守护进程重启 sudo systemctl daemon-reload<br>重启docker服务 systemctl restart docker<br>重启docker服务 sudo service docker restart<br>关闭docker service docker stop<br>关闭docker systemctl stop docker<br>————————————————</p>
+<p>本文转载自：<a href="https://www.cnblogs.com/ifwz/p/15890571.html">https://www.cnblogs.com/ifwz/p/15890571.html</a></p>
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SQLSERVER连接报错处理办法</title>
+    <url>/2023/02/16/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2023-02-16-%E8%AE%B0%E5%BD%95SQLSERVER%E8%BF%9E%E6%8E%A5%E6%8A%A5%E9%94%99%E5%86%85%E5%AE%B9/</url>
+    <content><![CDATA[<h3 id="SQLSERVER连接报错处理办法"><a href="#SQLSERVER连接报错处理办法" class="headerlink" title="SQLSERVER连接报错处理办法"></a>SQLSERVER连接报错处理办法</h3><h5 id="防火墙拦截提示"><a href="#防火墙拦截提示" class="headerlink" title="防火墙拦截提示"></a>防火墙拦截提示</h5><pre class="line-numbers language-none"><code class="language-none">Connection reset ClientConnectionId:bed67405-14a2-4021-b1af-8fedd07cf693
+  Connection reset<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-none"><code class="language-none">Connection failed. Verify all connection parameters and confirm that the appropriate driver is installed.
+I&#x2F;O Error: Connection reset<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<ul>
+<li>处理办法：检查是否开启局域网访问；关闭防火墙或放开数据库端口</li>
+</ul>
+<h5 id="测试数据库连接提示"><a href="#测试数据库连接提示" class="headerlink" title="测试数据库连接提示"></a>测试数据库连接提示</h5><pre class="line-numbers language-none"><code class="language-none">错误连接数据库 [mssql] : org.pentaho.di.core.exception.KettleDatabaseException: 
+Error occurred while trying to connect to the database
+
+Driver class &#39;net.sourceforge.jtds.jdbc.Driver&#39; could not be found, make sure the &#39;MS SQL Server&#39; driver (jar file) is installed.
+net.sourceforge.jtds.jdbc.Driver<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>处理办法：下载 <a href="https://nchc.dl.sourceforge.net/project/jtds/jtds/1.3.1/jtds-1.3.1-dist.zip">JTDS</a> 驱动包，将压缩包中的 jtds-1.3.1.jar 文件放入tomcat&#x2F;lib目录，重启kettle-pack-tomcat服务</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>银河麒麟V10 Failed to download metadata for repo &#39;ks10-adv-os&#39; 报错问题</title>
+    <url>/2023/03/23/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2023-03-23-%E9%93%B6%E6%B2%B3%E9%BA%92%E9%BA%9F%E7%B3%BB%E7%BB%9F%E4%BF%AE%E6%94%B9%E6%BA%90/</url>
+    <content><![CDATA[<p>银河麒麟V10 Failed to download metadata for repo ‘ks10-adv-os 报错问题’</p>
+<p>修改系统源，默认源无法正常使用</p>
+<p>备份repo源</p>
+<pre class="line-numbers language-none"><code class="language-none">cp &#x2F;etc&#x2F;yum.repos.d&#x2F;kylin_aarch64.repo &#x2F;etc&#x2F;yum.repos.d&#x2F;kylin_aarch64.repo.bak<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>修改repo源</p>
+<p>输入命令：vim kylin_aarch64.repo<br>删除原代码，将下列代码复制过去</p>
+<pre class="line-numbers language-none"><code class="language-none">[ks10-adv-os]
+name &#x3D; Kylin Linux Advanced Server 10 - Os
+baseurl &#x3D; http:&#x2F;&#x2F;archive2.kylinos.cn&#x2F;rpm&#x2F;kylin&#x2F;production&#x2F;KY-KY10-GFB-aarch64&#x2F;custom&#x2F;kylin-server&#x2F;KY10-GFB-aarch64&#x2F;
+gpgcheck &#x3D; 0
+enabled &#x3D; 1
+
+[ks10-adv-updates]
+name &#x3D; Kylin Linux Advanced Server 10 - Updates
+baseurl &#x3D; http:&#x2F;&#x2F;update.cs2c.com.cn:8080&#x2F;NS&#x2F;V10&#x2F;V10SP1&#x2F;os&#x2F;adv&#x2F;lic&#x2F;updates&#x2F;$basearch&#x2F;
+gpgcheck &#x3D; 0
+enabled &#x3D; 0
+
+[ks10-adv-addons]
+name &#x3D; Kylin Linux Advanced Server 10 - Addons
+baseurl &#x3D; http:&#x2F;&#x2F;update.cs2c.com.cn:8080&#x2F;NS&#x2F;V10&#x2F;V10SP1&#x2F;os&#x2F;adv&#x2F;lic&#x2F;addons&#x2F;$basearch&#x2F;
+gpgcheck &#x3D; 0
+enabled &#x3D; 0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Stable Diffusion 一些扩展插件</title>
+    <url>/2023/03/30/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2023-03-30-StableDiffusion%E5%AE%89%E8%A3%85%E6%89%A9%E5%B1%95/</url>
+    <content><![CDATA[<p>使用Stable Diffusion启动器，已包含主程序和所需插件</p>
+<p>Lora训练脚本,手动安装,不需SD主程式，只需要模型文件支持</p>
+<pre class="line-numbers language-none"><code class="language-none">git clone --recurse-submodules https:&#x2F;&#x2F;hub.fgit.gq&#x2F;Akegarasu&#x2F;lora-scripts<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>各种插件</p>
+<pre class="line-numbers language-none"><code class="language-none">Civitai插件安装
+# 添加Civitai模型下载插件,方便快捷的下载对应模型
+https:&#x2F;&#x2F;hub.fgit.gq&#x2F;camenduru&#x2F;sd-civitai-browser.git
+
+llul 插件安装
+# 蒙版范围修改
+https:&#x2F;&#x2F;github.com&#x2F;hnmr293&#x2F;sd-webui-llul.git
+
+controlNet插件
+# 姿势定位插件
+https:&#x2F;&#x2F;github.com&#x2F;Mikubill&#x2F;sd-webui-controlnet.git
+# Controlnet模型
+cd ~&#x2F;stable-diffusion-webui&#x2F;extensions&#x2F;sd-webui-controlnet&#x2F;models
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11e_sd15_ip2p.pth             &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11e_sd15_ip2p.yaml            &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11e_sd15_shuffle.pth          &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11f1e_sd15_tile.pth           &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11f1p_sd15_depth.pth          &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_canny.pth            &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_inpaint.pth          &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_lineart.pth          &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_mlsd.pth             &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_normalbae.pth        &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_openpose.pth         &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_scribble.pth         &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_seg.pth              &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_softedge.pth         &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15s2_lineart_anime.pth
+
+
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11e_sd15_ip2p.yaml            &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11e_sd15_shuffle.yaml         &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11f1e_sd15_tile.yaml          &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11f1p_sd15_depth.yaml         &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_canny.yaml           &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_inpaint.yaml         &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_lineart.yaml         &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_mlsd.yaml            &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_normalbae.yaml       &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_openpose.yaml        &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_scribble.yaml        &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_seg.yaml             &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15_softedge.yaml        &amp;&amp; \
+wget https:&#x2F;&#x2F;huggingface.co&#x2F;lllyasviel&#x2F;ControlNet-v1-1&#x2F;resolve&#x2F;main&#x2F;control_v11p_sd15s2_lineart_anime.yaml
+
+3D OpenPose Edit
+https:&#x2F;&#x2F;github.com&#x2F;nonnonstop&#x2F;sd-webui-3d-open-pose-editor.git	
+
+提词器插件
+# 中文对照表
+https:&#x2F;&#x2F;hub.fgit.gq&#x2F;maple-flowers&#x2F;maple-from-fall-and-flower.git
+
+中文提示词自动翻译插件
+https:&#x2F;&#x2F;github.com&#x2F;ParisNeo&#x2F;prompt_translator.git
+
+输入中文自动变英文的插件
+https:&#x2F;&#x2F;github.com&#x2F;Physton&#x2F;sd-webui-prompt-all-in-one
+
+防止颜色污染
+https:&#x2F;&#x2F;github.com&#x2F;hnmr293&#x2F;sd-webui-cutoff
+
+精准抠图插件
+https:&#x2F;&#x2F;github.com&#x2F;continue-revolution&#x2F;sd-webui-segment-anything
+
+背景抠图
+https:&#x2F;&#x2F;github.com&#x2F;danielgatis&#x2F;rembg
+
+蒙版抠图插件
+https:&#x2F;&#x2F;github.com&#x2F;mattyamonaca&#x2F;PBRemTools
+# 模型安装路径：stable-diffusion-webui&#x2F;extensions&#x2F;PBRemTools&#x2F;models
+https:&#x2F;&#x2F;dl.fbaipublicfiles.com&#x2F;segment_anything&#x2F;sam_vit_h_4b8939.pth
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>python 依赖</p>
+<p>triton </p>
+<pre class="line-numbers language-none"><code class="language-none">python -m pip install tritonclient[all] attrdict -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>创建虚拟目录,进入到lora-scripts目录, 右键打开命令行，输入</p>
+<pre class="line-numbers language-none"><code class="language-none">python -m venv venv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>运行Install.ps1闪退, 需要打开PowerShell执行脚本权限</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token comment"># 查看列表</span>
+<span class="token function">Get-ExecutionPolicy</span> <span class="token operator">-</span>List
+<span class="token comment"># 设置允许</span>
+<span class="token function">Set-ExecutionPolicy</span> <span class="token operator">-</span>ExecutionPolicy RemoteSigned <span class="token operator">-</span>Scope CurrentUser<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Dreambooth需要的依赖</p>
+<pre class="line-numbers language-none"><code class="language-none">python -m pip install pillow
+python -m pip install torch<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>docker Arm 架构运行x86镜像的操作</title>
+    <url>/2023/04/13/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2023-04-13-docker-Arm%E6%9E%B6%E6%9E%84%E8%BF%90%E8%A1%8Cx86%E9%95%9C%E5%83%8F/</url>
+    <content><![CDATA[<p>1、安装 qmeu </p>
+<pre class="line-numbers language-none"><code class="language-none">wget https:&#x2F;&#x2F;download.qemu.org&#x2F;qemu-8.0.0-rc3.tar.xz
+tar xvJf qemu-8.0.0-rc3.tar.xz
+cd qemu-8.0.0-rc3
+.&#x2F;configure
+make
+make install<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>2、可能需要安装的依赖,编译安装需要</p>
+<pre class="line-numbers language-none"><code class="language-none">yum install ninja-build
+yum install clang
+yum install iasl
+yum install gcc-c++
+yum install pixman pixman-devel
+dnf install gmp-devel
+dnf install libmpc-devel
+dnf install mpfr
+dnf install mpfr-devel
+dnf install texinfo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>3、gcc版本过低</p>
+<pre class="line-numbers language-none"><code class="language-none">wget http:&#x2F;&#x2F;ftp.gnu.org&#x2F;gnu&#x2F;gcc&#x2F;gcc-7.5.0&#x2F;gcc-7.5.0.tar.gz
+tar zxvf gcc-7.5.0.tar.gz
+cd gcc-7.5.0
+mkdir build
+..&#x2F;configure --prefix&#x3D;&#x2F;usr&#x2F;bin --enable-checking&#x3D;release --enable-languages&#x3D;c,c++ --disable-multilib 
+#
+make -j8	&#x2F;&#x2F;启用多线程编译
+make install  &#x2F;&#x2F;防止权限问题<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>4、注册qemu解释器</p>
+<pre class="line-numbers language-none"><code class="language-none"># x86运行arm
+docker run --rm --privileged multiarch&#x2F;qemu-user-static:register --reset
+# arm运行x86
+docker run --rm --privileged aptman&#x2F;qus -s -- -p x86_64<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>5、创建oracle容器</p>
+<pre class="line-numbers language-none"><code class="language-none">docker run -d -p 1521:1521 -e ORACLE_PASSWORD&#x3D;cj123456 -v &#x2F;usr&#x2F;local&#x2F;bin&#x2F;qemu-x86_64:&#x2F;usr&#x2F;bin&#x2F;qemu-x86_64 -v &#x2F;opt&#x2F;congjing&#x2F;oracle&#x2F;oradata:&#x2F;u01&#x2F;app&#x2F;oracle&#x2F;oradata gvenzl&#x2F;oracle-xe:11
+docker run -d -p 1521:1521 -e ORACLE_PASSWORD&#x3D;cj123456 -v &#x2F;usr&#x2F;local&#x2F;bin&#x2F;qemu-x86_64:&#x2F;usr&#x2F;bin&#x2F;qemu-x86_64 gvenzl&#x2F;oracle-xe
+-v &#x2F;opt&#x2F;congjing&#x2F;oracle&#x2F;oradata:&#x2F;opt&#x2F;oracle&#x2F;oradata<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>python控制台清屏的方法</title>
+    <url>/2022/02/28/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2022-02-28-python%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%B8%85%E5%B1%8F%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>本文资料来自：<a href="https://blog.csdn.net/u010037542/article/details/95735453">https://blog.csdn.net/u010037542/article/details/95735453</a></p>
+<p>python实现控制台清屏方法，网上的资料大部分都是调用os.system()，这种方法可以实现，但是有两个比较致命的缺点：</p>
+<ol>
+<li>Linux下和Windows平台下命令有异：cls和clear并不一样。</li>
+<li>system调用底层的实现是阻塞的系统调用执行外部命令，相当于是先后调用了fork， exec，waitpid来执行外部命令。这样清屏一个简单的功能，如此大费周章实在是太不合理了。</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">import os
+ 
+def clear():
+    os.system(&quot;clear&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><pre class="line-numbers language-none"><code class="language-none">print(&quot;\033c&quot;, end&#x3D;&quot;\r&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>如果有同学用C语言实现过一些改变控制台字符颜色等功能的小程序就会知道，\33开头这样的控制码可以修改很多控制台的输出属性，上面的\033c其实就是清屏指令。</p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>此函数调用效果和Linux下的clear有些不同，clear相当于整个屏幕上移，而输出\033c，或直接把屏幕的内容清空，之前输出的内容也会全部消失不见。</p>
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IU-Blueming 好歌推荐</title>
+    <url>/2021/07/20/%E9%9F%B3%E4%B9%90%E5%88%86%E4%BA%AB/2021-07-20-IU-Blueming/</url>
+    <content><![CDATA[<p>《Blueming》是韩国女歌手<a href="https://baike.baidu.com/item/%E6%9D%8E%E7%9F%A5%E6%81%A9/74308">李知恩</a>（IU）发行的迷你专辑《[Love Poem](<a href="https://baike.baidu.com/item/Love">https://baike.baidu.com/item/Love</a> Poem&#x2F;24154290)》中的一首主打歌曲.</p>
+<p>该歌曲于2019年11月18日下午6时发行，截至韩国时间11月19日上午8时，《Blueming》在melon、genie、olleh music、FLO、bugs、soribada等主要音源网站均取得了第一的成绩</p>
+<video width="70%" height="70%" id="video" controls="" autoplay="autoplay" preload="none" align="left">
+    <source id="mp4" src="https://yk8yggo6.v1d.szbdyd.com:9305/fseeca82d4.a.bdydns.com/1924164272/cloudmusic/b3ec/core/79ca/9f4f8c52b29ade50a375f0cdb3305a0c.mp4?wsSecret=34817b089262b0122b4878746ef600f8&wsTime=1626746904" type="video/mp4">
+</video>
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>MV</category>
+      </categories>
+      <tags>
+        <tag>音乐分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>KettlePack 任务管理工具</title>
+    <url>/2021/07/19/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/2021-07-19-kettlepack/</url>
+    <content><![CDATA[<p><strong>KettlePack 任务管理工具</strong></p>
+<p>软件简介</p>
+<p>​        KettlePack是一个基于Kettle9（兼容Kettle8及其他版本）的web端调度监控管理平台，专门用来调度和监控由Kettle客户端创建的Job和Transformation，安装使用简单方便，并拥有完善的帮助文档和在线支持，目前基本可以支持所有的组件，包括大数据组件（hbase、hive、hdfs等）。</p>
+<p>主要功能说明<span id="more"></span></p>
+<p>一体化任务管理：KettlePack可将kettle生成的ktr和kjb文件进行批量导入，支持成千上万个kettle任务的同时处理。</p>
+<p>可视化运维监控：提供丰富的运维监控视图，实时查看作业运行日志，log日志，kettle内部的运行日志，系统操作日志等。</p>
+<p>基于文件资源库：KettlePack内部集成文件资源库，通过KettlePack文件管理路径来存放所有需要监控运维的作业及转换。</p>
+<p>完整的定时策略：KettlePack集成定时策略，可以根据定时策略来执行kettle的作业及转换任务。</p>
+<p>主界面概览</p>
+<p><img src="https://i.loli.net/2021/07/19/NJa2U58vSnVTQot.png" alt="预览图"></p>
+<p>功能说明：</p>
+<p>执行中任务：当前KettlePack中运行的全部任务数量，包括作业数量和转换数量。</p>
+<p>转换成功率(一周)：最近一周内，转换任务的成功率。（成功率&#x3D;转换成功数 ÷ 总转换任务数 × 100%）</p>
+<p>作业成功率(一周)：最近一周内，作业任务的成功率。（成功率&#x3D;转换成功数 ÷ 总转换任务数 × 100%）</p>
+<p>任务执行情况：条形统计图统计最近一周转换&#x2F;作业的成功或失败的具体数量。</p>
+<p>任务监控：7天内，作业和转换的监控状况，可以通过折线图的方式监控每日作业及转换的变化规律。</p>
+<p>作业及错误记录：显示正在运行中的任务（转换和作业），以及任务对应的错误记录，可以方便快捷的定位问题所在。</p>
+<p>测试地址:  <a href="http://kettlepack.congjing.net/">http://kettlepack.congjing.net/</a></p>
+<p>试用账号:  guest</p>
+<p>试用密码:  guest</p>
+<p>KettlePack 软件下载地址</p>
+<p><a href="http://www.congjing.net/h-col-139.html">http://www.congjing.net/h-col-139.html</a></p>
+<p>对软件有什么问题可以到 QQ群：491723218 问询</p>
+]]></content>
+      <categories>
+        <category>数据库工具</category>
+      </categories>
+      <tags>
+        <tag>数据库工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在线直播web版</title>
+    <url>/2021/07/22/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/2021-07-22-%E5%9C%A8%E7%BA%BF%E7%9B%B4%E6%92%ADweb%E7%89%88/</url>
+    <content><![CDATA[<p>分享一个在线电视直播的网站</p>
+<p><a href="http://iptv.xiner.store/">在线电视直播</a></p>
+]]></content>
+      <tags>
+        <tag>资源分享</tag>
+        <tag>在线观看直播</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows镜像下载</title>
+    <url>/2021/07/20/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/2021-07-20-download-windows-iso/</url>
+    <content><![CDATA[<h3 id="系统镜像下载"><a href="#系统镜像下载" class="headerlink" title="系统镜像下载"></a><strong>系统镜像下载</strong></h3><table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>发布时间</th>
+<th>ED2K</th>
+<th>BT</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 7 Professional with Service Pack 1, VL Build (x64)</td>
+<td>2011-05-12</td>
+<td><a href="ed2k://|file|cn_windows_7_professional_with_sp1_vl_build_x64_dvd_u_677816.iso|3266004992|5A52F4CCEFA71797D58389B397038B2F|/">下载</a></td>
+<td>无</td>
+</tr>
+<tr>
+<td>Windows 10 (business edition), version 21H1 (updated Jun 2021) (x64)</td>
+<td>2021-06-21</td>
+<td><a href="ed2k://|file|cn_windows_10_business_editions_version_21h1_updated_jun_2021_x64_dvd_9d9154fa.iso|5707534336|69E3B7C619BD8C09CFC2B2C19A91E13E|/">下载</a></td>
+<td><a href="magnet:?xt=urn:btih:B73F75DCC5701C1935ABA8A5552FF570A14AC0F2&dn=cn_windows_10_business_editions_version_21h1_updated_jun_2021_x64_dvd_9d9154fa.iso&xl=5707534336">下载</a></td>
+</tr>
+<tr>
+<td>Windows 10 (consumer edition), version 21H1 (updated Jun 2021) (x64)</td>
+<td>2021-06-21</td>
+<td><a href="ed2k://|file|cn_windows_10_consumer_editions_version_21h1_updated_jun_2021_x64_dvd_9f28b97a.iso|5821403136|243BC0461B743EBF2F5B9B9B4FDC64C4|/">下载</a></td>
+<td><a href="magnet:?xt=urn:btih:864C361B3312EA6B52BBD7778259BFC809C221D5&dn=cn_windows_10_consumer_editions_version_21h1_updated_jun_2021_x64_dvd_9f28b97a.iso&xl=5821403136">下载</a></td>
+</tr>
+<tr>
+<td>Windows 10 Enterprise LTSC 2019 (x64)</td>
+<td>2019-03-15</td>
+<td><a href="ed2k://|file|cn_windows_10_enterprise_ltsc_2019_x64_dvd_9c09ff24.iso|4478906368|E7C526499308841A4A6D116C857DB669|/">下载</a></td>
+<td>无</td>
+</tr>
+<tr>
+<td>Windows 2008 R2 Standard Enterprise Datacenter(x64)</td>
+<td>2011-02-21</td>
+<td><a href="ed2k://|file|cn_windows_server_2008_r2_standard_enterprise_datacenter_and_web_with_sp1_vl_build_x64_dvd_617396.iso|3368962048|7C210CAC37A05F459758BCC1F4478F9E|/">下载</a></td>
+<td>无</td>
+</tr>
+<tr>
+<td>Windows Server 2012 R2 VL with Update (x64)</td>
+<td>2014-12-15</td>
+<td><a href="ed2k://|file|cn_windows_server_2012_r2_vl_with_update_x64_dvd_6052729.iso|5545527296|BD499EBCABF406AB82293DD8A5803493|/">下载</a></td>
+<td>无</td>
+</tr>
+<tr>
+<td>Windows Server 2016 VL (x64)</td>
+<td>2018-03-08</td>
+<td><a href="ed2k://|file|cn_windows_server_2016_vl_x64_dvd_11636695.iso|6302720000|44742A3D464B9765203E2A4DB73FF704|/">下载</a></td>
+<td>无</td>
+</tr>
+<tr>
+<td>Windows Server 2016 (Updated Feb 2018) (x64)</td>
+<td>2018-02-15</td>
+<td><a href="ed2k://|file|cn_windows_server_2016_updated_feb_2018_x64_dvd_11636703.iso|6294265856|4077CEBEBB40AFA5A66017D2EC7A9CD5|/">下载</a></td>
+<td>无</td>
+</tr>
+<tr>
+<td>Windows Server 2019 (Updated July 2020) (x64)</td>
+<td>2020-07-21</td>
+<td><a href="ed2k://|file|cn_windows_server_2019_updated_july_2020_x64_dvd_2c9b67da.iso|5675251712|19AE348F0D321785007D95B7D2FAF320|/">下载</a></td>
+<td><a href="magnet:?xt=urn:btih:22A410DEA1B0886354A34D19E995BECBB7EBA15E&dn=cn_windows_server_2019_updated_july_2020_x64_dvd_2c9b67da.iso&xl=5675251712">下载</a></td>
+</tr>
+<tr>
+<td>Windows Server 2022 (x64) - DVD</td>
+<td>2021-08-18</td>
+<td><a href="ed2k://|file|zh-cn_windows_server_2022_x64_dvd_6c73507d.iso|5805221888|8D72A80C08CEFD49AB831C0AD08EE69C|/">下载</a></td>
+<td><a href="magnet:?xt=urn:btih:0A63B2E08D5D154A79D408040BE4994917C223D3&dn=zh-cn_windows_server_2022_x64_dvd_6c73507d.iso&xl=5805221888">下载</a></td>
+</tr>
+</tbody></table>
+<h3 id="Windows-版本介绍"><a href="#Windows-版本介绍" class="headerlink" title="Windows 版本介绍"></a>Windows 版本介绍</h3><p>business_editions Education(教育版); Enterprise (企业版); Professional(专业版)；</p>
+<p>consumer_editions Home(家庭版); Education(教育版) ; Professional(专业版)；</p>
+<p>Windows 10 各版本区别：<br>家庭版(Home)：供家庭用户使用，无法加入Active Directory和Azure AD，不允许远程链接<br>专业版(Professional)：供小型企业使用 在家庭版基础上增加了域账号加入、bitlocker、企业商店等功能<br>企业版(Enterprise)：供中大型企业使用 在专业版基础上增加了DirectAccess，AppLocker等高级企业功能<br>教育版(Education)：供学校使用 (学校职员, 管理人员, 老师和学生) 其功能基本和企业版的一样<br>LTSB版：无Edge浏览器、小娜，无磁贴，可选是否下载和安装补丁，其它版都不能自选补丁<br>N版：带“N”的版本相当于阉割版，移除了Windows Media Player，几乎用不到N版。<br>————————————————<br>版本介绍详情来源：<a href="https://blog.csdn.net/liubing8609/article/details/80822539">https://blog.csdn.net/liubing8609/article/details/80822539</a></p>
+<h3 id="Windows-Server-安装序列号"><a href="#Windows-Server-安装序列号" class="headerlink" title="Windows Server 安装序列号"></a><strong>Windows Server</strong> <strong>安装序列号</strong></h3><h4 id="Windows-Server-2019"><a href="#Windows-Server-2019" class="headerlink" title="Windows Server 2019"></a>Windows Server 2019</h4><table>
+<thead>
+<tr>
+<th><strong>操作系统版本</strong></th>
+<th><strong>KMS 客户</strong> <strong>端安装程序</strong> <strong>密钥</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Server 2019 Datacenter</td>
+<td>WMDGN-G9PQG-XVVXX-R3X43-63DFG</td>
+</tr>
+<tr>
+<td>Windows Server 2019 Standard</td>
+<td>N69G4-B89J2-4G8F4-WWYCC-J464C</td>
+</tr>
+<tr>
+<td>Windows Server 2019 Essentials</td>
+<td>WVDHN-86M7X-466P6-VHXV7-YY726</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="Windows-Server-2016"><a href="#Windows-Server-2016" class="headerlink" title="Windows Server 2016"></a>Windows Server 2016</h4><table>
+<thead>
+<tr>
+<th><strong>操作系统版本</strong></th>
+<th><strong>KMS 客户</strong> <strong>端安装程序</strong> <strong>密钥</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Server 2016 Datacenter</td>
+<td>CB7KF-BWN84-R7R2Y-793K2-8XDDG</td>
+</tr>
+<tr>
+<td>Windows Server 2016 Standard</td>
+<td>WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY</td>
+</tr>
+<tr>
+<td>Windows Server 2016 Essentials</td>
+<td>JCKRF-N37P4-C2D82-9YXRT-4M63B</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="Windows-10-，所有支持的半年频道版本"><a href="#Windows-10-，所有支持的半年频道版本" class="headerlink" title="Windows 10 ，所有支持的半年频道版本"></a>Windows 10 ，所有支持的半年频道版本</h3><table>
+<thead>
+<tr>
+<th><strong>操作系统版本</strong></th>
+<th><strong>KMS 客户</strong> <strong>端安装程序</strong> <strong>密钥</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 10 专业版</td>
+<td>W269N-WFGWX-YVC9B-4J6C9-T83GX</td>
+</tr>
+<tr>
+<td>Windows 10 专业版 N</td>
+<td>MH37W-N47XK-V7XM9-C7227-GCQG9</td>
+</tr>
+<tr>
+<td>Windows 10 专业工作站版</td>
+<td>NRG8B-VKK3Q-CXVCJ-9G2XF-6Q84J</td>
+</tr>
+<tr>
+<td>Windows 10 专业工作站版 N</td>
+<td>9FNHH-K3HBT-3W4TD-6383H-6XYWF</td>
+</tr>
+<tr>
+<td>Windows 10 专业教育版</td>
+<td>6TP4R-GNPTD-KYYHQ-7B7DP-J447Y</td>
+</tr>
+<tr>
+<td>Windows 10 专业教育版 N</td>
+<td>YVWGF-BXNMC-HTQYQ-CPQ99-66QFC</td>
+</tr>
+<tr>
+<td>Windows 10 教育版</td>
+<td>NW6C2-QMPVW-D7KKK-3GKT6-VCFB2</td>
+</tr>
+<tr>
+<td>Windows 10 教育版 N</td>
+<td>2WH4N-8QGBV-H22JP-CT43Q-MDWWJ</td>
+</tr>
+<tr>
+<td>Windows 10 企业版</td>
+<td>NPPR9-FWDCX-D2C8J-H872K-2YT43</td>
+</tr>
+<tr>
+<td>Windows 10 企业版 N</td>
+<td>DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4</td>
+</tr>
+<tr>
+<td>Windows 10 企业版 G</td>
+<td>YYVX9-NTFWV-6MDM3-9PT4T-4M68B</td>
+</tr>
+<tr>
+<td>Windows 10 企业版 G N</td>
+<td>44RPN-FTY23-9VTTB-MP9BX-T84FV</td>
+</tr>
+</tbody></table>
+<h3 id="Windows-10-LTSC-LTSB-版本"><a href="#Windows-10-LTSC-LTSB-版本" class="headerlink" title="Windows 10 LTSC&#x2F;LTSB 版本"></a>Windows 10 LTSC&#x2F;LTSB 版本</h3><h4 id="Windows-10-LTSC-2019"><a href="#Windows-10-LTSC-2019" class="headerlink" title="Windows 10 LTSC 2019"></a>Windows 10 LTSC 2019</h4><table>
+<thead>
+<tr>
+<th><strong>操作系统版本</strong></th>
+<th><strong>KMS 客户</strong> <strong>端安装程序</strong> <strong>密钥</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 10 企业版 LTSC 2019</td>
+<td>M7XTQ-FN8P6-TTKYV-9D4CC-J462D</td>
+</tr>
+<tr>
+<td>Windows 10 企业版 N LTSC 2019</td>
+<td>92NFX-8DJQP-P6BBQ-THF9C-7CG2H</td>
+</tr>
+</tbody></table>
+<h4 id="Windows-10-LTSB-2016"><a href="#Windows-10-LTSB-2016" class="headerlink" title="Windows 10 LTSB 2016"></a>Windows 10 LTSB 2016</h4><table>
+<thead>
+<tr>
+<th><strong>操作系统版本</strong></th>
+<th><strong>KMS 客户</strong> <strong>端安装程序</strong> <strong>密钥</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 10 企业版 LTSB 2016</td>
+<td>DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ</td>
+</tr>
+<tr>
+<td>Windows 10 企业版 N LTSB 2016</td>
+<td>QFFDN-GRT3P-VKWWX-X7T3R-8B639</td>
+</tr>
+</tbody></table>
+<h4 id="Windows-10-LTSB-2015"><a href="#Windows-10-LTSB-2015" class="headerlink" title="Windows 10 LTSB 2015"></a>Windows 10 LTSB 2015</h4><table>
+<thead>
+<tr>
+<th><strong>操作系统版本</strong></th>
+<th><strong>KMS 客户</strong> <strong>端安装程序</strong> <strong>密钥</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 10 企业版 2015 LTSB</td>
+<td>WNMTR-4C88C-JK8YV-HQ7T2-76DF9</td>
+</tr>
+<tr>
+<td>Windows 10 企业版 2015 LTSB N</td>
+<td>2F77B-TNFGY-69QQF-B8YKP-D69TJ</td>
+</tr>
+</tbody></table>
+<h4 id="Windows-Server-2012-R2"><a href="#Windows-Server-2012-R2" class="headerlink" title="Windows Server 2012 R2"></a>Windows Server 2012 R2</h4><table>
+<thead>
+<tr>
+<th><strong>操作系统版本</strong></th>
+<th><strong>KMS 客户</strong> <strong>端安装程序</strong> <strong>密钥</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Server 2012 R2 Server Standard</td>
+<td>D2N9P-3P6X9-2R39C-7RTCD-MDVJX</td>
+</tr>
+<tr>
+<td>Windows Server 2012 R2 Datacenter</td>
+<td>W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9</td>
+</tr>
+<tr>
+<td>Windows Server 2012 R2 Essentials</td>
+<td>KNC87-3J2TX-XB4WP-VCPJV-M4FWM</td>
+</tr>
+</tbody></table>
+<h4 id="Windows-Server-2008-R2"><a href="#Windows-Server-2008-R2" class="headerlink" title="Windows Server 2008 R2"></a>Windows Server 2008 R2</h4><table>
+<thead>
+<tr>
+<th><strong>操作系统版本</strong></th>
+<th><strong>KMS 客户</strong> <strong>端安装程序</strong> <strong>密钥</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Server 2008 R2 Web 版</td>
+<td>6TPJF-RBVHG-WBW2R-86QPH-6RTM4</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 HPC 版</td>
+<td>TT8MH-CG224-D3D7Q-498W2-9QCTX</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 标准版</td>
+<td>YC6KT-GKW9T-YTKYR-T4X34-R7VHC</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 企业版</td>
+<td>489J6-VHDMP-X63PK-3K798-CPX3Y</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 Datacenter</td>
+<td>74YFP-3QFB3-KQT8W-PMXWJ-7M648</td>
+</tr>
+<tr>
+<td>面向基于 Itanium 系统的 Windows Server 2008 R2</td>
+<td>GT63C-RJFQ3-4GMB6-BRFB9-CB83V</td>
+</tr>
+</tbody></table>
+<h4 id="Windows-7"><a href="#Windows-7" class="headerlink" title="Windows 7"></a>Windows 7</h4><table>
+<thead>
+<tr>
+<th><strong>操作系统版本</strong></th>
+<th><strong>KMS 客户</strong> <strong>端安装程序</strong> <strong>密钥</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 7 专业版</td>
+<td>FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4</td>
+</tr>
+<tr>
+<td>Windows 7 专业版 N</td>
+<td>MRPKT-YTG23-K7D7T-X2JMM-QY7MG</td>
+</tr>
+<tr>
+<td>Windows 7 专业版 E</td>
+<td>W82YF-2Q76Y-63HXB-FGJG9-GF7QX</td>
+</tr>
+<tr>
+<td>Windows 7 企业版</td>
+<td>33PXH-7Y6KF-2VJC9-XBBR8-HVTHH</td>
+</tr>
+<tr>
+<td>Windows 7 企业版 N</td>
+<td>YDRBP-3D83W-TY26F-D46B2-XCKRJ</td>
+</tr>
+<tr>
+<td>Windows 7 企业版 E</td>
+<td>C29WB-22CC8-VJ326-GHFJW-H9DH4</td>
+</tr>
+</tbody></table>
+<h4 id="Windows-KMS激活方法"><a href="#Windows-KMS激活方法" class="headerlink" title="Windows KMS激活方法"></a>Windows KMS激活方法</h4><pre class="line-numbers language-none"><code class="language-none">slmgr -ipk 上边对应版本的密钥
+slmgr -skms kms.03k.org
+slmgr -ato<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>本文下载链接来自 itellyou 提供的原版镜像，仅限于学习、测试及实验。</p>
+<p>安装序列号来自网络搜索，仅供安装试用。</p>
+<p>有任何版权问题可点击左边邮件通知，我会尽快处理。</p>
+]]></content>
+      <categories>
+        <category>下载</category>
+      </categories>
+      <tags>
+        <tag>资源分享</tag>
+        <tag>系统镜像</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Dbeaver免费开源的数据库管理工具</title>
+    <url>/2021/08/03/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/2021-08-03-Dbeaver/</url>
+    <content><![CDATA[<img src="https://i.loli.net/2021/08/03/lF6OTehaA7kRW2f.png" align="center" />
+
+<p>2021-04-17 更新：DBeaver 提供了一个基于 Web 的浏览器版本：CloudBeaver。</p>
+<p>在制作《SQL 入门教程》时，接触到了这款非常强大易用的数据库管理和开发工具：DBeaver，也就是上面这个可爱的小河狸。</p>
+<p>DBeaver 是一个基于 Java 开发，免费开源的通用数据库管理和开发工具，使用非常友好的 ASL 协议。可以通过官方网站或者 Github 进行下载。</p>
+<p>由于 DBeaver 基于 Java 开发，可以运行在各种操作系统上，包括：Windows、Linux、macOS 等。DBeaver 采用 Eclipse 框架开发，支持插件扩展，并且提供了许多数据库管理工具：ER 图、数据导入&#x2F;导出、数据库比较、模拟数据生成等。</p>
+<p>DBeaver 通过 JDBC 连接到数据库，可以支持几乎所有的数据库产品，包括：MySQL、PostgreSQL、MariaDB、SQLite、Oracle、Db2、SQL Server、Sybase、MS Access、Teradata、Firebird、Derby 等等。商业版本更是可以支持各种 NoSQL 和大数据平台：MongoDB、InfluxDB、Apache Cassandra、Redis、Apache Hive 等。</p>
+<h4 id="下载与安装"><a href="#下载与安装" class="headerlink" title="下载与安装"></a>下载与安装</h4><p>DBeaver 社区版可以通过 <a href="https://dbeaver.io/download/" target="_blank">官方网站</a> 或者 <a href="https://github.com/dbeaver/dbeaver/releases" target="_blank">Github</a> 进行下载。两者都为不同的操作系统提供了安装包或者解压版，可以选择是否需要同时安装 JRE。另外，官方网站还提供了 DBeaver 的 Eclipse 插件，可以在 Eclipse 中进行集成。</p>
+<p>DBeaver 支持中文，安装过程非常简单，不多说，唯一需要注意的是 DBeaver 的运行依赖于 JRE（最新版本自带 JRE 啦！）。不出意外，安装完成后运行安装目录下的 dbeaver.exe 可以看到以下界面（Windows 10）：</p>
+<img src="https://i.loli.net/2021/08/03/E6HnMWDNzpckFs5.png" align="center"/>
+
+<p>从这里可以选择要添加的数据库类型，填入数据库连接对应信息即可。</p>
+]]></content>
+      <tags>
+        <tag>数据库工具</tag>
+        <tag>资源分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux镜像下载</title>
+    <url>/2021/07/24/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/2021-07-24-download-linux-iso/</url>
+    <content><![CDATA[<p>Linux常用镜像下载地址</p>
+<table>
+<thead>
+<tr>
+<th>文件名</th>
+<th align="center">发布时间</th>
+<th align="center">HTTP</th>
+<th align="center">BT</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ArchLinux-2021.08.01-x86_64.iso</td>
+<td align="center">2021-08</td>
+<td align="center"><a href="http://mirrors.163.com/archlinux/iso/2021.08.01/archlinux-2021.08.01-x86_64.iso">下载</a></td>
+<td align="center">无</td>
+</tr>
+<tr>
+<td>uniontechos-desktop-21.0-home-beta5-amd64.iso</td>
+<td align="center">2021-06</td>
+<td align="center"><a href="https://cdimage-download.chinauos.com/home/uniontechos-desktop-21.0-home-beta5-amd64.iso">下载</a></td>
+<td align="center">无</td>
+</tr>
+<tr>
+<td>uniontechos-desktop-21.0-home-amd64.iso</td>
+<td align="center">2021-09</td>
+<td align="center"><a href="https://cdimage-download.chinauos.com/home/uniontechos-desktop-21.0-home-amd64.iso">下载</a></td>
+<td align="center">无</td>
+</tr>
+<tr>
+<td>CentOS-7-x86_64-DVD-2009.iso</td>
+<td align="center">2020-10</td>
+<td align="center"><a href="http://mirrors.aliyun.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2009.iso">下载</a></td>
+<td align="center"><a href="http://mirrors.aliyun.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2009.torrent">下载</a></td>
+</tr>
+<tr>
+<td>ubuntu-20.04.2.0-desktop-amd64.iso</td>
+<td align="center">2021-02</td>
+<td align="center"><a href="https://mirrors.dgut.edu.cn/ubuntu-releases/20.04.2.0/ubuntu-20.04.2.0-desktop-amd64.iso">下载</a></td>
+<td align="center">无</td>
+</tr>
+</tbody></table>
+<p>本文下载链接来自 各官网 提供的原版镜像链接，仅限于学习、测试及实验。</p>
+<p>有任何版权问题可点击左边邮件通知，我会尽快处理。</p>
+]]></content>
+      <tags>
+        <tag>资源分享</tag>
+        <tag>系统镜像</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>VMwarePro-16最新序列号</title>
+    <url>/2021/08/26/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/2021-08-26-VMwarePro-16%E6%9C%80%E6%96%B0%E5%BA%8F%E5%88%97%E5%8F%B7/</url>
+    <content><![CDATA[<p>Vmware 安装请自行到官网下载</p>
+<table>
+<thead>
+<tr>
+<th align="center">版本号</th>
+<th align="center">序列号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">16.x</td>
+<td align="center">1ZF3R0-FHED2-M80TY-8QYGC-NPKYF</td>
+</tr>
+<tr>
+<td align="center">15.x</td>
+<td align="center">1FC7D0-D1YDL-M8DXZ-CYPZE-P2AY6</td>
+</tr>
+<tr>
+<td align="center">14.x</td>
+<td align="center">1AU108-FLF9P-H8EJZ-7XMQ9-XG0U8</td>
+</tr>
+<tr>
+<td align="center">12.x</td>
+<td align="center">1ZC3TK-63GE6-481JY-WWW5T-Z7ATA</td>
+</tr>
+<tr>
+<td align="center">11.x</td>
+<td align="center">1YG74R-86G1M-M8DLP-XEQNT-XAHW2</td>
+</tr>
+<tr>
+<td align="center">10.x</td>
+<td align="center">11Z0G9-67285-FZG78-ZL3Q2-234JG</td>
+</tr>
+</tbody></table>
+<p>注意事项<br>1、从VM11开始就不再支持32位系统了，所以32位系统用户和XP系统用户请使用10.0.7版本；<br>2、从VM14开始，对硬件要求进一步提高，所以低配电脑用户请使用12.5.9版本；<br>3、关于VM14黑屏问题，这是 VMware tools 版本过低引起的。<br>转载请注明：<a href="https://www.xuchengen.cn/">思码老徐</a> » <a href="https://www.xuchengen.cn/521">VMware Workstation Pro 16序列号亲测可用</a></p>
+]]></content>
+      <tags>
+        <tag>资源分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>推荐电影《催眠大师》(2014)</title>
+    <url>/2021/08/03/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/2021-08-03-cuimiandashi/</url>
+    <content><![CDATA[<p>催眠大师(2014)</p>
+<img src="https://image11.m1905.cn/uploadfile/2014/0423/20140423074539431495.jpg" align="left" width="30%" /> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ul>
+<li>导演：陈正道</li>
+<li>演员：徐峥、莫文蔚、吕中、王耀庆、胡静</li>
+</ul>
+<p><a href="https://www.1905.com/vod/play/806700.shtml" target="_blank">在线观看</a></p>
+<p> 　　国内擅长催眠疗法的知名心理治疗师徐瑞宁（徐峥 饰）正值事业风生水起之时，由他治疗过的病人全都痊愈出院，这也使得徐瑞宁信心倍增，直至骄傲自大。就连自己的学生在课堂上对他理论的质疑，都毫不收敛的回击过去，这些都被徐瑞宁的大学老师方教授看在眼里。在徐瑞宁一次讲课后，方教授受到其学生的请求，让徐瑞宁诊断一位特殊的病人任小妍（莫文蔚 饰），但方教授嘱咐徐瑞宁，称这位病人的十分怪异，她看过的心理医师没有一名能够治疗她的病情，任小妍讲话虚实难辨而且懂得如何回击治疗师。方教授口中所说的这名病人，让徐瑞宁对她产生了极大的兴趣，并且自大的认为没有治不好的病人。</p>
+<p> 　　当任小妍来到徐瑞宁的诊疗室时，徐瑞宁发现这位病患确实如同方教授所说很有古怪。任小妍声称自己能够看到已经死去的人，并且寻求她的帮助完成生前没有做过的事，徐瑞宁听后不以为然，但任小妍解释自己根本就没有心理疾病，她所看到的都是真实存在的。徐瑞宁在任小妍一顿“疯语”过后，决定采用催眠疗法进行治疗。而当任小妍成功进入催眠状态后，徐瑞宁想要找出任小妍的心理阴影所在，却不曾想自己被带入了一个可怕的陷阱…… </p>
+]]></content>
+      <categories>
+        <category>电影</category>
+      </categories>
+      <tags>
+        <tag>资源分享</tag>
+        <tag>在线观影</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>百家姓暗号</title>
+    <url>/2021/09/14/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/2021-09-14-%E7%99%BE%E5%AE%B6%E5%A7%93%E6%9A%97%E5%8F%B7/</url>
+    <content><![CDATA[<p>一些分享的网站中，有些链接加密串看着和百家姓一样，通过本页面可以将百家姓密码链接转换成正常的磁力链。</p>
+<p>复制引号中内容，在下边进行解密试试吧。</p>
+<p>“水王李苏王吴章窦窦吴王赵钱窦钱陈李吴福水福冯福吴吴吴孙苏苏吴王赵福钱周福窦赵苏孙江沈张贝蒋张余戚尤张沈孔戚金余钱赵余卫陶金尤张韩金金余韩沈尤魏尤孔张金余姜韩华金尤孔张余孙钱秦钱余陶曹沈褚魏韩沈余许陶张余孙赵孙钱余谢郑周余沈姜沈余陈沈陈钱吴周杨褚薛尤金孔江谢吕贝吴王赵王吴李周李李郑”</p>
+<body><input type="text" id="c" style="width:400px;"><input type="button" id="d" value="转换成百家姓>>>>>"><input type="text" id="a" style="width:400px;"><input type="button" id="b" value="<<<<<转换成磁力"><br>
+
+
+
+<script>
+    var t='magnet:?xt=urn:btih:';
+    var obja={
+        "赵":"0", "钱":"1", "孙":"2", "李":"3", "周":"4", "吴":"5", "郑":"6", "王":"7", "冯":"8", "陈":"9",
+        "褚":"a", "卫":"b", "蒋":"c", "沈":"d", "韩":"e", "杨":"f", "朱":"g", "秦":"h", "尤":"i", "许":"j",
+        "何":"k", "吕":"l", "施":"m", "张":"n", "孔":"o", "曹":"p", "严":"q", "华":"r", "金":"s", "魏":"t",
+        "陶":"u", "姜":"v", "戚":"w", "谢":"x", "邹":"y", "喻":"z", "福":"A", "水":"B", "窦":"C", "章":"D",
+        "云":"E", "苏":"F", "潘":"G", "葛":"H", "奚":"I", "范":"J", "彭":"K", "郎":"L", "鲁":"M", "韦":"N",
+        "昌":"O", "马":"P", "苗":"Q", "凤":"R", "花":"S", "方":"T", "俞":"U", "任":"V", "袁":"W", "柳":"X",
+        "唐":"Y", "罗":"Z", "薛":".", "伍":"-", "余":"_", "米":"+", "贝":"=", "姚":"/", "孟":"?", "顾":"#",
+        "尹":"%", "江":"&", "钟":"*"
+    };
+    var b = document.getElementById("b");
+    b.addEventListener("click", function() {
+        var str = document.getElementById("a").value;
+        str=str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+        var strc = str.split("");
+        var c  = '';
+        for(var i=0;i<strc.length;i++){
+            var o=cy(obja,strc[i]);
+            c +=o;
+        }
+        c=t+c;
+        document.getElementById('c').value=c;
+    });
+    var d = document.getElementById("d");
+    d.addEventListener("click", function() {
+        var str = document.getElementById("c").value;
+        str=str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+        var v=str.replace(/magnet:\?xt=urn:btih:/,"");
+        var strc = v.split("");
+        var a  = '';
+        for(var i=0;i<strc.length;i++){
+            a +=ay(obja,strc[i]);
+        }
+        document.getElementById('a').value=a;
+    });
+    function cy(array,val){
+    for( var key in array ){
+        if(key==val){
+            return array[key];
+        }
+    }
+    return '';
+}
+function ay(array,val){
+    for( var key in array ){
+        if(array[key]==val){
+            return key;
+        }
+    }
+    return '';
+}
+</script></body>
+
+
+<p>本页面内容代码转载自：<a href="https://fuliba2021.net/anhao.html">百家姓暗号</a></p>
+]]></content>
+      <tags>
+        <tag>资源分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一款好用的下载工具-文件蜈蚣</title>
+    <url>/2022/04/21/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/2022-04-21-%E4%B8%80%E6%AC%BE%E5%A5%BD%E7%94%A8%E7%9A%84%E4%B8%8B%E8%BD%BD%E5%B7%A5%E5%85%B7-%E6%96%87%E4%BB%B6%E8%9C%88%E8%9A%A3/</url>
+    <content><![CDATA[<h2 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h2><p>文件蜈蚣是一个增强特性的网络文件下载管理器, 快速, 可定制的, 用户友好, 多协议支持, 包含许多有用的辅助工具, 免费无广告, 你也可以用来下载网页中的视频和音频, 将下载速度提高1.1倍, 这是你能找到的最好的互联网下载管理器(目前为止).</p>
+<p>可当作IDM替代，测试某盘通过油猴获取直链下载满速，填入trackerlist 后,torrent下载速度也很舒适。</p>
+<p>安装浏览器插件后，可以嗅探到绝大部分地址，支持m3u8下载合并。</p>
+<p>相比之前的xdm保存中文名称各种乱码还需要手动修改，真的是太爽啦。</p>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>最低版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HTTP,HTTPS 协议 (基础特性例如 gzip, 续传, 多链接 不会被列出.)</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>FTP, FTPS 协议</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Magnet, HASH 地址</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>BT种子</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>其他自定义协议,如 thunder, flashget, qqdl</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>JSON格式地址</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>m3u8流任务</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>流任务 AES-128 解密 (SAMPLE-AES 解密目前还不支持)</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>用户可定制的HTTP cookie, header, user-agent</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>做种限制</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>动态编辑传输任务配置</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>反吸血虫</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>刷新已过期地址</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>分类</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>限制下载,上传速度</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>创建可定制地址 (filec, fileu)</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>代理管理</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>过滤器定制</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>追踪器管理</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>任务详情</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>从任务中导出种子</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>多语言</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>队列或无限制并发设置</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Chrome浏览器集成</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>火狐浏览器集成</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>从网页中捕捉视频,音频</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>从网页中找到所有磁力链接</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>翻译工具</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>HTTP工具</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>URI 编码&#x2F;解码 工具</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>编码&#x2F;解码 工具</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>正则表达式测试工具</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>创建种子</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>种子转磁力工具</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>磁力转种子工具</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>文件合并工具</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>统计</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>从网页下载所有链接</td>
+<td>1.6</td>
+</tr>
+</tbody></table>
+<p>官网地址：<a href="http://www.filecxx.com/">http://www.filecxx.com/</a></p>
+]]></content>
+      <tags>
+        <tag>资源分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DSM算号器</title>
+    <url>/2021/12/13/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/2021-12-13-DSM%E7%AE%97%E5%8F%B7%E5%99%A8/</url>
+    <content><![CDATA[<p>DSM算号器 网络资源转载自 <a href="https://xpenogen.github.io/serial_generator/index.html">https://xpenogen.github.io/serial_generator/index.html</a></p>
+<p>本文仅转载记录</p>
+<iframe id="myFrame" src="/dsm/index.html" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" width=600 height=230></iframe>
+
+]]></content>
+      <tags>
+        <tag>资源分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>油猴插件屏蔽网页广告</title>
+    <url>/2021/09/17/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2021-09-17-%E6%B2%B9%E7%8C%B4%E6%8F%92%E4%BB%B6%E5%B1%8F%E8%94%BD%E7%BD%91%E9%A1%B5%E5%B9%BF%E5%91%8A/</url>
+    <content><![CDATA[<p><strong>油猴是一个很棒的浏览器插件，里面可以安装各式各样的脚本来赋予浏览器更多的能力。</strong></p>
+<p><strong>常见浏览器基本上都支持安装油猴插件，推荐Chrome、Microsoft Edge、360浏览器</strong></p>
+<p><strong>接下来的内容，首先确认已经正常安装好油猴插件，并显示在浏览器工具栏中显示。</strong></p>
+<ul>
+<li><h4 id="第一节-屏蔽广告"><a href="#第一节-屏蔽广告" class="headerlink" title="第一节 屏蔽广告"></a>第一节 屏蔽广告</h4><p>测试网站：<a href="https://www.nfmovies.com/">https://www.nfmovies.com</a>  (没有针对的意思，仅作测试用例使用)</p>
+<p>打开网站后可以看到页面两端都有一个飘窗广告，俗称对联广告。</p>
+<p>接下来我们使用自定义油猴脚本对该广告进行屏蔽</p>
+<p>点击工具栏上的油猴图标<img src="https://i.loli.net/2021/09/17/XyhPB42VSKiuYdk.png" width="25"></p>
+<p>选择添加脚本，可以看到以下内容</p>
+<span id="more"></span>
+
+<pre class="line-numbers language-none"><code class="language-none">  &#x2F;&#x2F; &#x3D;&#x3D;UserScript&#x3D;&#x3D;
+  &#x2F;&#x2F; @name         New Userscript
+  &#x2F;&#x2F; @namespace    http:&#x2F;&#x2F;tampermonkey.net&#x2F;
+  &#x2F;&#x2F; @version      0.1
+  &#x2F;&#x2F; @description  try to take over the world!
+  &#x2F;&#x2F; @author       You
+  &#x2F;&#x2F; @match        https:&#x2F;&#x2F;www.nfmovies.com&#x2F;*
+  &#x2F;&#x2F; @icon         https:&#x2F;&#x2F;www.google.com&#x2F;s2&#x2F;favicons?domain&#x3D;nfmovies.com
+  &#x2F;&#x2F; @grant        none
+  &#x2F;&#x2F; &#x3D;&#x3D;&#x2F;UserScript&#x3D;&#x3D;
+  
+  (function() &#123;
+      &#39;use strict&#39;;
+      
+      &#x2F;&#x2F; Your code here...
+&#125;)();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h6 id="关于脚本元素值可以参考-Greasy-Fork-要读取的脚本元素值"><a href="#关于脚本元素值可以参考-Greasy-Fork-要读取的脚本元素值" class="headerlink" title="关于脚本元素值可以参考 Greasy Fork 要读取的脚本元素值"></a>关于脚本元素值可以参考 <a href="https://greasyfork.org/zh-CN/help/meta-keys">Greasy Fork 要读取的脚本元素值</a></h6><pre class="line-numbers language-none"><code class="language-none">  &#x2F;&#x2F;自定义的脚本全部写在这里
+  (function() &#123;
+      &#39;use strict&#39;;
+      &#x2F;&#x2F;调用Jquery方法屏蔽
+      &#x2F;&#x2F;屏蔽奈菲影视的页面广告
+      if(window.location.href.indexOf(&#39;nfmovies.com&#39;)!&#x3D;-1)
+      &#123;
+          $(&quot;div.myui-ra-container.container&quot;).hide();&#x2F;&#x2F;中间靠上的提示信息
+          $(&quot;*[onclick^&#x3D;&#39;openurl(&#39;]&quot;).parent().hide();&#x2F;&#x2F;两侧以及中间广告
+          $(&quot;.btnclose&quot;).parent().hide();&#x2F;&#x2F;右下角广告
+      &#125;
+&#125;)();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h6 id="分析过程"><a href="#分析过程" class="headerlink" title="分析过程"></a>分析过程</h6><p><img src="https://i.loli.net/2021/09/18/cdMuex18gBhVows.png" alt="image-20210918092548120"></p>
+<p>对着要隐藏的内容点击右键，选择检查，可以弹出开发者工具并且定位到该元素代码位置，鼠标悬停到代码块位置，可以看到页面中橙色块左上角显示的名称。</p>
+<p><img src="https://i.loli.net/2021/09/18/lcEVvr7T5dYtSxB.png" alt="image-20210918092912878"></p>
+<pre class="line-numbers language-none"><code class="language-none">#检查定位到的代码块内容
+&lt;div class&#x3D;&quot;myui-ra-container container&quot;&gt;
+    &lt;div class&#x3D;&quot;row&quot; style&#x3D;&quot;margin:-5px 0 10px 0;color: #3c763d;background-color: #dff0d8;border: 2px dashed #CCC;border-radius: 5px;padding: 5px 20px;&quot;&gt;
+        如果喜欢奈菲，请把奈菲影视推荐给你的小伙伴。注意哦，微信和国产浏览器会直接屏蔽本网站或者显示不正常，安卓小伙伴建议用chrome和APP访问，IOS小伙伴必须用alook和夸克浏览器观看。safari浏览器及其他浏览器无法观看。最近大量资源失效，我们已经开始尽全力补救，如果遇到高清线路无法播放，请先看ckm3u8，kuyun等采集线路。如果想加入我们的大家庭，这是我们的地址：&lt;a href&#x3D;&quot;https:&#x2F;&#x2F;t.me&#x2F;joinchat&#x2F;KmUaGRMWdO29JVd3wcCHCg&quot; target&#x3D;&quot;_blank&quot;&gt;https:&#x2F;&#x2F;t.me&#x2F;joinchat&#x2F;KmUaGRMWdO29JVd3wcCHCg&lt;&#x2F;a&gt;
+    &lt;&#x2F;div&gt;
+&lt;&#x2F;div&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>从代码中可以看到这块信息内容都在 <div class="myui-ra-container container"> 这个div标签下，class名称为”myui-ra-container container”,直接使用jQuery选择器将该代码块隐藏。</p>
+<pre class="line-numbers language-none"><code class="language-none">$(&quot;div.myui-ra-container.container&quot;).hide();&#x2F;&#x2F;中间靠上的提示信息<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>使用这种方法，将左右两边以及右下角的广告也进行隐藏。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>在Ubuntu中安装StableDiffusion</title>
+    <url>/2023/05/05/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2023-05-05-Ubuntu%E5%AE%89%E8%A3%85Stable-Diffusion/</url>
+    <content><![CDATA[<p>安装cuda驱动 <a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#ubuntu">适用于 Linux 的 NVIDIA CUDA 安装指南</a></p>
+<pre class="line-numbers language-none"><code class="language-none">https:&#x2F;&#x2F;docs.nvidia.com&#x2F;cuda&#x2F;cuda-installation-guide-linux&#x2F;index.html#ubuntu<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>安装 miniconda</p>
+<pre class="line-numbers language-none"><code class="language-none">wget https:&#x2F;&#x2F;repo.anaconda.com&#x2F;miniconda&#x2F;Miniconda3-latest-Linux-x86_64.sh
+chmod +x Miniconda3-latest-Linux-x86_64.sh
+.&#x2F;Miniconda3-latest-Linux-x86_64.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>运行后如下所示</p>
+<pre class="line-numbers language-none"><code class="language-none">Welcome to Miniconda3 py310_23.3.1-0
+In order to continue the installation process, please review the license
+agreement.
+Please, press ENTER to continue
+&gt;&gt;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>按回车，出现如下所示，输入yes，回车继续，还有初始化路径也是输入yes</p>
+<pre class="line-numbers language-none"><code class="language-none">Do you accept the license terms? [yes|no]
+[no] &gt;&gt;&gt; <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>安装完成后, 设置一个新的虚拟环境, 并安装python 3.10</p>
+<pre class="line-numbers language-none"><code class="language-none">conda create -n sdui python&#x3D;3.10
+conda activate sdui<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>设置pip国内源</p>
+<pre class="line-numbers language-none"><code class="language-none">python -m pip install --upgrade pip
+pip config set global.index-url https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>安装pytorch <a href="https://pytorch.org/get-started/previous-versions/">Previous PyTorch Versions | PyTorch</a></p>
+<pre class="line-numbers language-none"><code class="language-none">conda install pytorch&#x3D;&#x3D;1.13.1 torchvision&#x3D;&#x3D;0.14.1 torchaudio&#x3D;&#x3D;0.13.1 pytorch-cuda&#x3D;11.7 -c pytorch -c nvidia<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>拉取stable-diffusion项目到本地，执行初始化命令</p>
+<pre class="line-numbers language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;AUTOMATIC1111&#x2F;stable-diffusion-webui.git
+cd stable-diffusion-webui
+pip install -r requirements_versions.txt
+pip install -r requirements.txt
+#.&#x2F;webui.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>launch.py 启动参数, </p>
+<ul>
+<li>–listen 可以开启局域网访问</li>
+<li>–xformers 可以节省GPU显存</li>
+<li>–enable-insecure-extension-access  </li>
+<li>–medvram –autolaunch –deepdanbooru –no-gradio-queue</li>
+<li>–gradio-auth openAI:ABC123 –no-gradio-queue  设置账号密码</li>
+<li>–share  开启公网访问, 自动分配域名</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none"># 这里要安装很多依赖，并且要git clone相关包和模型文件，需要科学上网，否则会失败。
+python launch.py --port 7860 --listen --xformers --enable-insecure-extension-access
+#python launch.py --port 7860 --listen --xformers --enable-insecure-extension-access --medvram --autolaunch --deepdanbooru --no-gradio-queue --api --gradio-auth ajian:dadlsaj,mjp:majunpeng
+
+# 一键切换到conda容器运行
+source ~&#x2F;.bashrc &amp;&amp; conda activate sdui &amp;&amp; cd ~&#x2F;stable-diffusion-webui &amp;&amp; nohup python launch.py --port 7860 --listen --xformers --enable-insecure-extension-access --medvram --autolaunch --deepdanbooru --no-gradio-queue --api --gradio-auth ajian:dadlsaj,mjp:majunpeng &gt;&gt; &#x2F;dev&#x2F;null 2&gt;&amp;1 &amp;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>iptables端口转发</p>
+<pre class="line-numbers language-none"><code class="language-none">iptables -I INPUT -p tcp --dport 7860 -j ACCEPT
+iptables -t nat -A PREROUTING -p tcp --dport 7860 -j REDIRECT --to-ports 7860<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>问题处理</p>
+<p>1、 git插件下载失败 提示 server certificate verification failed.</p>
+<pre class="line-numbers language-none"><code class="language-none"># 关闭git clone时的ssl验证流程
+git config --global http.sslverify false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>2、修改默认的 Extension index URL 文件路径 .&#x2F;modules&#x2F;ui_extensions.py,大概在500多行的位置</p>
+<pre class="line-numbers language-none"><code class="language-none">https:&#x2F;&#x2F;ghproxy.net&#x2F;https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;AUTOMATIC1111&#x2F;stable-diffusion-webui-extensions&#x2F;master&#x2F;index.json<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>3、设置访问账号密码</p>
+<pre class="line-numbers language-none"><code class="language-none">--gradio-auth openAI:ABC123,openAI-2:ABC123-2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>4、lora-scripts训练脚本安装问题</p>
+<pre class="line-numbers language-none"><code class="language-none">#显卡驱动
+wget https:&#x2F;&#x2F;developer.download.nvidia.com&#x2F;compute&#x2F;cuda&#x2F;11.8.0&#x2F;local_installers&#x2F;cuda_11.8.0_520.61.05_linux.run
+sudo sh cuda_11.8.0_520.61.05_linux.run
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>光良-回忆里的疯狂</title>
+    <url>/2021/07/23/%E9%9F%B3%E4%B9%90%E5%88%86%E4%BA%AB/2021-07-23-%E5%85%89%E8%89%AF-%E5%9B%9E%E5%BF%86%E9%87%8C%E7%9A%84%E7%96%AF%E7%8B%82/</url>
+    <content><![CDATA[<p>　　《回忆里的疯狂》是以“回忆”为出发点激发出灵感，用“时间的旅人”为概念，他把过去在工作生活上的回忆用音乐做了总整理，专辑的十首歌曲是种种情感的备忘录，爱情、友情、梦想、欢笑、悲伤等，用音乐来呈现每个回忆片段。</p>
+<p>　　筹备《回忆里的疯狂》的时候，光良从中悟出道理，用音乐记录生活点滴的他不仅唱出”回忆里的疯狂”，并告诉自己及歌迷把握当下用力生活，创造更多值得回忆的疯狂故事，才能活出自己、活的开心。</p>
+<p><a href="https://music.163.com/#/mv?id=10886053&userid=288312313" target="_blank">点击播放</a></p>
+]]></content>
+      <tags>
+        <tag>音乐分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>汪苏泷 20230902 郑州演唱会之三寻宝藏</title>
+    <url>/2023/09/03/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/2023-09-02%20%E6%B1%AA%E8%8B%8F%E6%B3%B7%2020230902%20%E9%83%91%E5%B7%9E%E6%BC%94%E5%94%B1%E4%BC%9A%E4%B9%8B%E4%B8%89%E5%AF%BB%E5%AE%9D%E8%97%8F/</url>
+    <content><![CDATA[<iframe src="//player.bilibili.com/player.html?aid=363084479&bvid=BV1z94y1s7nq&cid=1255527773&p=13" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+]]></content>
+      <categories>
+        <category>演唱会</category>
+      </categories>
+      <tags>
+        <tag>资源分享</tag>
+        <tag>演唱会</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pyinstaller 使用加密编译提示需要安装VC++</title>
+    <url>/2023/09/19/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2023-09-19%20pyinstaller%20%E4%BD%BF%E7%94%A8%E5%8A%A0%E5%AF%86%E7%BC%96%E8%AF%91%E6%8F%90%E7%A4%BA%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85VC++/</url>
+    <content><![CDATA[<p>只需要安装以下几个模块</p>
+<pre class="line-numbers language-none"><code class="language-none">pip install pyinstaller
+pip install pycryptodomex
+pip install tinyaes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>网上很多教程都是让先安装 pycrypto 模块，在安装这个模块时就会提示需要安装 VC++ , 需要 3G~5G 的空间，太浪费硬盘空间了。</p>
+<p>在 python3 中可以使用 pycryptodomex 来进行替代，也无需其它设置，安装好即可使用加密编译</p>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>定时分割catelina.out文件</title>
+    <url>/2023/09/20/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2023-09-20-%E5%AE%9A%E6%97%B6%E5%88%86%E5%89%B2catelina.out%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<p>在crontab中添加定时任务</p>
+<pre class="line-numbers language-none"><code class="language-none"># cron 任务
+1 0 * * * &#x2F;opt&#x2F;caclear.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>将以下代码保存为 &#x2F;opt&#x2F;caclear.sh,并且给与执行权限</p>
+<pre class="line-numbers language-none"><code class="language-none">#!&#x2F;bin&#x2F;bash 
+y&#x3D;&#96;date &quot;+%Y&quot;&#96;
+m&#x3D;&#96;date &quot;+%m&quot;&#96;
+d&#x3D;&#96;date &quot;+%d&quot;&#96;
+capath&#x3D;&#39;&#x2F;opt&#x2F;tomcat&#x2F;logs&#39;
+cp $capath&#x2F;catalina.out $capath&#x2F;catalina.out.$y-$m-$d
+
+echo &quot; &quot; &gt; $capath&#x2F;catalina.out<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>相同网络,PC打不开网页，手机打开正常</title>
+    <url>/2023/09/27/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/2023-09-27-%E7%9B%B8%E5%90%8C%E7%BD%91%E7%BB%9C,PC%E6%89%93%E4%B8%8D%E5%BC%80%E7%BD%91%E9%A1%B5%EF%BC%8C%E6%89%8B%E6%9C%BA%E6%89%93%E5%BC%80%E6%AD%A3%E5%B8%B8/</url>
+    <content><![CDATA[<p>相同网络,PC打不开网页，手机打开正常</p>
+<p>有些可能是使用过酸酸乳后出现的该故障，经过测试，解决办法如下：</p>
+<p>[代理规则]要选全局（这个是重点），[代理模式]选PAC模式，PAC那栏选更新PAC为GFWLis</p>
+<p><img src="https://s2.loli.net/2023/09/27/vz3EUM1ntclgJAf.webp" alt="img"></p>
+<p><img src="https://s2.loli.net/2023/09/27/Bh8IZfLxCQjtz1N.webp" alt="img"></p>
+<p><img src="https://s2.loli.net/2023/09/27/zkV51UsWDfZy9ia.webp" alt="img"></p>
+]]></content>
+      <categories>
+        <category>疑难杂症</category>
+      </categories>
+      <tags>
+        <tag>网络</tag>
+        <tag>浏览器</tag>
+        <tag>打不开</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Oracle因为DNS无法访问导致的连接缓慢问题</title>
+    <url>/2023/12/11/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2023-12-11-Oracle%E5%9B%A0%E4%B8%BADNS%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E5%AF%BC%E8%87%B4%E8%BF%9E%E6%8E%A5%E7%BC%93%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>有台服务器突然在重启后无法启动tomcat项目，看日志是连接数据库超时，使用命令行访问带实例名如下</p>
+<pre class="line-numbers language-none"><code class="language-none">conn user&#x2F;pwd@orcl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>等待很久才能连接的上，但去掉实例名后可以秒连，咨询过开发，说是JAVA项目的JDBC的连接必须含有实例名才可以访问，所以还是得继续找解决办法。</p>
+<p>百度了很久看到一条信息说是DNS无法访问可能导致oracle连接缓慢，换了一条可以用的DNS后果然恢复正常。</p>
+<p>按照百度资料中的说明如下 (原文地址：<a href="https://blog.csdn.net/as1123671649/article/details/132062993)%EF%BC%9A">https://blog.csdn.net/as1123671649/article/details/132062993)：</a></p>
+<p><strong>oracle 11.2.0.1版本的listener解析主机名优先选择从DNS解析，然后才会尝试从hosts文件解析。当&#x2F;etc&#x2F;resolv.conf文件不存在时会从&#x2F;etc&#x2F;hosts解析，当DNS服务器地址无法访问<br>时，会出现数据库建立连接缓慢的问题，一旦DNS服务器本身解析的问题导致找不到ip时，listener就会响应延迟或者hang住。可以通过移除&#x2F;etc&#x2F;resolv.conf文件或者在文件中设置超时时间<br>echo “options timeout:1” &gt;&gt; &#x2F;etc&#x2F;resolv.conf 来解决。</strong></p>
+<p>修改后测试连接会稍微慢一点点但服务已经可以正常启动了，非互联网环境可以直接删除&#x2F;etc&#x2F;resolv.conf文件。</p>
+]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IDM一行代码完成激活</title>
+    <url>/2024/02/27/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/2024-02-27-IDM%E4%B8%80%E8%A1%8C%E4%BB%A3%E7%A0%81%E5%AE%8C%E6%88%90%E6%BF%80%E6%B4%BB/</url>
+    <content><![CDATA[<p><a href="https://www.internetdownloadmanager.com/">官网下载</a> 最新版IDM，并安装到系统</p>
+<p>打开PowerShell窗口，输入以下代码，根据提示内容选择激活即可</p>
+<pre class="line-numbers language-none"><code class="language-none">irm https:&#x2F;&#x2F;massgrave.dev&#x2F;ias | iex<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+]]></content>
+      <tags>
+        <tag>资源分享</tag>
+      </tags>
+  </entry>
+</search>
