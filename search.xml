@@ -2460,4 +2460,48 @@ echo &quot; &quot; &gt; $capath&#x2F;catalina.out<span aria-hidden="true" class=
         <tag>资源分享</tag>
       </tags>
   </entry>
+  <entry>
+    <title>docker搭建svn</title>
+    <url>/2024/05/12/%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF/2024-05-12-docker%E6%90%AD%E5%BB%BAsvn/</url>
+    <content><![CDATA[<h2 id="svn简介"><a href="#svn简介" class="headerlink" title="svn简介"></a>svn简介</h2><p>SVN是Subversion的简称，是一个开放源代码的版本控制系统，相较于RCS、CVS，它采用了分支管理系统，它的设计目标就是取代CVS。互联网上很多版本控制服务已从CVS迁移到Subversion。说得简单一点SVN就是用于多个人共同开发同一个项目，共用资源的目的。</p>
+<h2 id="svn的docker搭建方法"><a href="#svn的docker搭建方法" class="headerlink" title="svn的docker搭建方法"></a>svn的docker搭建方法</h2><ul>
+<li>请提前在服务器安装好docker服务</li>
+<li>本篇教程选用的docker镜像为garethflowers&#x2F;svn-server</li>
+<li>安装并启动容器代码</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> run <span class="token parameter variable">--restart</span> always <span class="token parameter variable">--name</span> svn <span class="token parameter variable">-d</span> <span class="token parameter variable">-v</span> /root/dockers/svn:/var/opt/svn <span class="token parameter variable">-p</span> <span class="token number">3690</span>:3690 garethflowers/svn-server<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="简析"><a href="#简析" class="headerlink" title="简析"></a>简析</h2><ul>
+<li>&#x2F;root&#x2F;dockers&#x2F;svn为宿主机的文件目录，&#x2F;var&#x2F;opt&#x2F;svn为容器内的文件目录</li>
+<li>–restart always命令可以实现容器在宿主机开机时自启动</li>
+<li>-p 3690:3690表示将宿主机的3690端口映射到容器的3690端口，此端口为svn服务的默认端口，可以根据需要自行修改</li>
+</ul>
+<h2 id="创建svn仓库和账户"><a href="#创建svn仓库和账户" class="headerlink" title="创建svn仓库和账户"></a>创建svn仓库和账户</h2><h3 id="进入容器中进行配置"><a href="#进入容器中进行配置" class="headerlink" title="进入容器中进行配置"></a>进入容器中进行配置</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> svn /bin/sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="创建名称为svn的资源仓库"><a href="#创建名称为svn的资源仓库" class="headerlink" title="创建名称为svn的资源仓库"></a>创建名称为svn的资源仓库</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">svnadmin create svn<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>创建成功后svn目录内应该包含以下文件:<br><code>README.txt conf db format hooks locks</code></p>
+<h3 id="资源仓库配置，修改svnserve-conf"><a href="#资源仓库配置，修改svnserve-conf" class="headerlink" title="资源仓库配置，修改svnserve.conf"></a>资源仓库配置，修改svnserve.conf</h3><pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token key attr-name">anon-access</span> <span class="token punctuation">=</span> <span class="token value attr-value">none             # 匿名用户不可读写，也可设置为只读 read</span>
+<span class="token key attr-name">auth-access</span> <span class="token punctuation">=</span> <span class="token value attr-value">write            # 授权用户可写</span>
+<span class="token key attr-name">password-db</span> <span class="token punctuation">=</span> <span class="token value attr-value">passwd           # 密码文件路径，相对于当前目录</span>
+<span class="token key attr-name">authz-db</span> <span class="token punctuation">=</span> <span class="token value attr-value">authz               # 访问控制文件</span>
+<span class="token key attr-name">realm</span> <span class="token punctuation">=</span> <span class="token value attr-value">/var/opt/svn/svn       # 认证命名空间，会在认证提示界面显示，并作为凭证缓存的关键字，可以写仓库名称比如svn</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="配置账号与密码，修改-passwd文件，格式为“账号-密码”"><a href="#配置账号与密码，修改-passwd文件，格式为“账号-密码”" class="headerlink" title="配置账号与密码，修改 passwd文件，格式为“账号 &#x3D; 密码”"></a>配置账号与密码，修改 passwd文件，格式为“账号 &#x3D; 密码”</h3><pre class="line-numbers language-ini" data-language="ini"><code class="language-ini"><span class="token section"><span class="token punctuation">[</span><span class="token section-name selector">users</span><span class="token punctuation">]</span></span>
+<span class="token comment"># harry = harryssecret</span>
+<span class="token comment"># sally = sallyssecret</span>
+<span class="token key attr-name">admin</span> <span class="token punctuation">=</span> <span class="token value attr-value">123456</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="配置账户权限，修改-authz文件"><a href="#配置账户权限，修改-authz文件" class="headerlink" title="配置账户权限，修改 authz文件"></a>配置账户权限，修改 authz文件</h3><pre class="line-numbers language-csharp" data-language="csharp"><code class="language-csharp"><span class="token punctuation">[</span><span class="token attribute"><span class="token class-name">groups</span></span><span class="token punctuation">]</span>
+owner <span class="token operator">=</span> admin
+<span class="token punctuation">[</span><span class="token operator">/</span><span class="token punctuation">]</span>               # <span class="token operator">/</span> 表示所有仓库
+admin <span class="token operator">=</span> rw        # 用户 admin 在所有仓库拥有读写权限
+<span class="token punctuation">[</span>svn<span class="token punctuation">:</span><span class="token operator">/</span><span class="token punctuation">]</span>           # 表示以下用户在仓库 svn 的所有目录有相应权限
+@owner <span class="token operator">=</span> rw       # 表示 owner 组下的用户拥有读写权限<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="拉取svn"><a href="#拉取svn" class="headerlink" title="拉取svn"></a>拉取svn</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">svn co svn://127.0.0.1:3690/svn<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      <tags>
+        <tag>学习技术</tag>
+      </tags>
+  </entry>
 </search>
